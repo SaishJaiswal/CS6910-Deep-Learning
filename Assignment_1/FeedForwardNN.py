@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 import numpy as np
 import pdb
+import math
 np.random.seed(1)
 
 class FFNN():
@@ -299,12 +300,107 @@ class FFNN():
 
 	# Optimization Algorithm: Adam
 	def do_adam(self, x_train, y_train, x_val, y_val):
-		return 0
+		
+		first_momenta = self.initialize_gradients()
+		second_momenta = self.initialize_gradients()
+
+		# Learning rate
+		eta = self.l_rate
+
+		# Beta value
+		beta1 = 0.85
+		beta2 = 0.85
+
+		# Epsilon
+		eps = 0.00000001
+
+		for epoch in range(self.epochs):
+			print(" =============== Epoch Number: " + str(epoch) + " =============== ")
+
+			# Initialize the gradients
+			grads = self.initialize_gradients()
+
+			# Learn the parameters
+			for x,y in zip(x_train,y_train):
+
+				# Forward Propagation
+				activations, pre_activations = self.forwardPropagation(x)
+
+				# Backward Propagation
+				current_gradients = self.backwardPropagation(y, activations, pre_activations)
+
+				# Accumulate gradients
+				for key in grads:
+					grads[key] = grads[key] + current_gradients[key]
+
+			# Update History
+			for key in self.parameters:
+				first_momenta[key] = beta1*first_momenta[key] + (1-beta1)*grads[key]
+				second_momenta[key] = beta2*second_momenta[key] + (1-beta2)*np.square(grads[key])
+				first_momenta[key] = first_momenta[key]/(1-math.pow(beta1, epoch+1))
+				second_momenta[key] = second_momenta[key]/(1-math.pow(beta2, epoch+1))
+				self.parameters[key] = self.parameters[key] - (eta/np.sqrt(second_momenta[key] + eps))*first_momenta[key]
+		
+			# Validation Accuracy
+			val_acc = self.findAccuracy(x_val, y_val)
+			print("Validation Accuracy = " + str(val_acc))
 
 
 	# Optimization Algorithm: NAdam
 	def do_nadam(self, x_train, y_train, x_val, y_val):
-		return 0
+		
+		first_momenta = self.initialize_gradients()
+		second_momenta = self.initialize_gradients()
+
+		# Learning rate
+		eta = self.l_rate
+
+		# Beta value
+		beta1 = 0.9
+		beta2 = 0.999
+
+		# Epsilon
+		eps = 0.00000001
+
+		for epoch in range(self.epochs):
+			print(" =============== Epoch Number: " + str(epoch) + " =============== ")
+
+			# Initialize the gradients
+			grads = self.initialize_gradients()
+			grads_lookAhead = self.initialize_gradients()
+
+			# Calculate Look Ahead
+			for key in grads_lookAhead:
+				grads_lookAhead[key] = gamma*prev_gradients[key]
+
+			# Update parameters based on lookahead
+			for key in self.parameters:
+				self.parameters[key] = self.parameters[key] - grads_lookAhead[key]
+
+			# Learn the parameters
+			for x,y in zip(x_train,y_train):
+
+				# Forward Propagation
+				activations, pre_activations = self.forwardPropagation(x)
+
+				# Backward Propagation
+				current_gradients = self.backwardPropagation(y, activations, pre_activations)
+
+				# Accumulate gradients
+				for key in grads:
+					grads[key] = grads[key] + current_gradients[key]
+
+			# Update History
+			for key in self.parameters:
+				first_momenta[key] = beta1*first_momenta[key] + (1-beta1)*grads[key]
+				second_momenta[key] = beta2*second_momenta[key] + (1-beta2)*np.square(grads[key])
+				first_momenta[key] = first_momenta[key]/(1-math.pow(beta1, epoch+1))
+				second_momenta[key] = second_momenta[key]/(1-math.pow(beta2, epoch+1))
+				self.parameters[key] = self.parameters[key] - (eta/np.sqrt(second_momenta[key] + eps))*first_momenta[key]
+		
+			# Validation Accuracy
+			val_acc = self.findAccuracy(x_val, y_val)
+			print("Validation Accuracy = " + str(val_acc))
 
 
 	# Training the model
