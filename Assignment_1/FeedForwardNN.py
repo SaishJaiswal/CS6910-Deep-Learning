@@ -19,7 +19,7 @@ class FFNN():
 		self.activation_func = activation_func	# Activation funtion for the hidden layers
 		self.loss_func = loss_func		# Loss funtion
 		self.output_activation_func = output_activation_func	# Activation funtion for the output layer
-		self.parameters = self.initializeModelParameters()		# Initializing the parameters -- weights and biases
+		self.parameters = self.initializeModelParameters()	# Initializing the parameters -- weights and biases
 
 	# Activation funtion for the hidden layers
 	def activation(self, x, derivative=False):
@@ -45,7 +45,7 @@ class FFNN():
 	def initializeModelParameters(self):
 		parameters = {}
 		for l in range(1, self.L):
-			parameters["W" + str(l)] = np.random.randn(self.layer_sizes[l], self.layer_sizes[l - 1])/np.sqrt(self.layer_sizes[l - 1])
+			parameters["W" + str(l)] = np.random.randn(self.layer_sizes[l], self.layer_sizes[l - 1])*0.1
 			parameters["b" + str(l)] = np.zeros((self.layer_sizes[l], 1))
 		return parameters
 
@@ -104,7 +104,7 @@ class FFNN():
 	# Find the accuracy
 	def findAccuracy(self, x_test, y_test):
 		predictions = []
-		for x,y in tqdm(zip(x_train,y_train), total=len(x_train)):
+		for x,y in tqdm(zip(x_test ,y_test), total=len(x_test)):
 			activations, pre_activations = self.forwardPropagation(x)
 			predictedClass = np.argmax(activations['h3']) + 1
 			y.reshape(len(y),1)
@@ -163,7 +163,7 @@ class FFNN():
 
 			# Initialize the gradients
 			grads = self.initialize_gradients()
-			grads_lookAhead = self.initialize_gradients()
+			lookAheads = self.initialize_gradients()
 
 			# Learn the parameters
 			for x,y in tqdm(zip(x_train,y_train), total=len(x_train)):
@@ -179,16 +179,16 @@ class FFNN():
 					grads[key] = grads[key] + current_gradients[key]
 
 			# Calculate Look Ahead
-			for key in grads_lookAhead:
-				grads_lookAhead[key] = gamma*prev_gradients[key] + eta*grads[key]
+			for key in lookAheads:
+				lookAheads[key] = gamma*prev_gradients[key] + eta*grads[key]
 
 			# Update Parameters
 			for key in self.parameters:
-				self.parameters[key] = self.parameters[key] - grads_lookAhead[key]
+				self.parameters[key] = self.parameters[key] - lookAheads[key]
 
 			# Update History
 			for key in prev_gradients:
-				prev_gradients[key] = grads_lookAhead[key]
+				prev_gradients[key] = lookAheads[key]
 		
 			# Validation Accuracy
 			val_acc = self.findAccuracy(x_val, y_val)
@@ -211,16 +211,16 @@ class FFNN():
 			print(" =============== Epoch Number: " + str(epoch) + " =============== ")
 
 			# Initialize the gradients
-			grads = self.initialize_gradients()
-			grads_lookAhead = self.initialize_gradients()
+			grads = self.initialize_gradients()			# For accumulating gradients
+			lookAheads = self.initialize_gradients()		# Lookaheads
 
 			# Calculate Look Ahead
-			for key in grads_lookAhead:
-				grads_lookAhead[key] = gamma*prev_gradients[key]
+			for key in lookAheads:
+				lookAheads[key] = gamma*prev_gradients[key]
 
 			# Update parameters based on lookahead
 			for key in self.parameters:
-				self.parameters[key] = self.parameters[key] - grads_lookAhead[key]
+				self.parameters[key] = self.parameters[key] - lookAheads[key]
 			
 			# Learn the parameters
 			for x,y in tqdm(zip(x_train,y_train), total=len(x_train)):
@@ -236,16 +236,16 @@ class FFNN():
 					grads[key] = grads[key] + current_gradients[key]
 
 			# Calculate Look Ahead
-			for key in grads_lookAhead:
-				grads_lookAhead[key] = gamma*prev_gradients[key] + eta*grads[key]
+			for key in lookAheads:
+				lookAheads[key] = gamma*prev_gradients[key] + eta*grads[key]
 
 			# Update Parameters
 			for key in self.parameters:
-				self.parameters[key] = self.parameters[key] - grads_lookAhead[key]
+				self.parameters[key] = self.parameters[key] - lookAheads[key]
 
 			# Update History
 			for key in prev_gradients:
-				prev_gradients[key] = grads_lookAhead[key]
+				prev_gradients[key] = lookAheads[key]
 		
 			# Validation Accuracy
 			val_acc = self.findAccuracy(x_val, y_val)
@@ -265,7 +265,7 @@ class FFNN():
 		eps = 0.00000001
 
 		# Previous values -- History
-		grads_lookAhead = self.initialize_gradients()
+		lookAheads = self.initialize_gradients()
 
 		for epoch in range(self.epochs):
 			print(" =============== Epoch Number: " + str(epoch) + " =============== ")
@@ -287,12 +287,12 @@ class FFNN():
 					grads[key] = grads[key] + current_gradients[key]
 
 			# Update History
-			for key in grads_lookAhead:
-				grads_lookAhead[key] = beta*grads_lookAhead[key] + (1-beta)*np.square(grads[key])
+			for key in lookAheads:
+				lookAheads[key] = beta*lookAheads[key] + (1-beta)*np.square(grads[key])
 
 			# Update Parameters
 			for key in self.parameters:
-				self.parameters[key] = self.parameters[key] - (eta/np.sqrt(grads_lookAhead[key] + eps))*grads[key]
+				self.parameters[key] = self.parameters[key] - (eta/np.sqrt(lookAheads[key] + eps))*grads[key]
 		
 			# Validation Accuracy
 			val_acc = self.findAccuracy(x_val, y_val)
@@ -309,8 +309,8 @@ class FFNN():
 		eta = self.l_rate
 
 		# Beta value
-		beta1 = 0.85
-		beta2 = 0.85
+		beta1 = 0.9
+		beta2 = 0.999
 
 		# Epsilon
 		eps = 0.00000001
@@ -368,15 +368,15 @@ class FFNN():
 
 			# Initialize the gradients
 			grads = self.initialize_gradients()
-			grads_lookAhead = self.initialize_gradients()
+			lookAheads = self.initialize_gradients()
 
 			# Calculate Look Ahead
-			for key in grads_lookAhead:
-				grads_lookAhead[key] = gamma*prev_gradients[key]
+			for key in lookAheads:
+				lookAheads[key] = gamma*prev_gradients[key]
 
 			# Update parameters based on lookahead
 			for key in self.parameters:
-				self.parameters[key] = self.parameters[key] - grads_lookAhead[key]
+				self.parameters[key] = self.parameters[key] - lookAheads[key]
 
 			# Learn the parameters
 			for x,y in tqdm(zip(x_train,y_train), total=len(x_train)):

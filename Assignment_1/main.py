@@ -7,6 +7,7 @@ from sklearn.model_selection import train_test_split
 from keras.utils.np_utils import to_categorical
 import numpy as np
 import pdb
+from sklearn.preprocessing import StandardScaler
 
 
 def main(args):
@@ -29,18 +30,22 @@ def main(args):
 	# Load dataset           
 	(X_train, Y_train), (x_test, y_test) = fashion_mnist.load_data()
 
+	scaler = StandardScaler()
+
 	X_train = X_train.reshape(len(X_train),784)
-	X_train = (X_train/255).astype('float32')	# Normalize the images
+	#X_train = (X_train/255).astype('float32')	# Normalize the images
+	X_train = scaler.fit_transform(X_train)
 	Y_train = Y_train.reshape(len(Y_train),1)
 	Y_train = to_categorical(Y_train)
 
 	x_test = x_test.reshape(len(x_test), 784)
-	x_test = (x_test/255).astype('float32')
+	#x_test = (x_test/255).astype('float32')
+	x_test = scaler.fit_transform(x_test)
 	y_test = y_test.reshape(len(y_test), 1)
 	y_test = to_categorical(y_test)
 
 	# Split the training dataset into train and validation sets
-	x_train, x_val, y_train, y_val = train_test_split(X_train, Y_train, test_size=0.20, random_state=42)
+	x_train, x_val, y_train, y_val = train_test_split(X_train, Y_train, test_size=0.10, random_state=42)
 
 	# Creating an object of the class FFNN
 	network = FeedForwardNN.FFNN(layer_sizes, L, epochs, l_rate, optimizer, batch_size, activation_func, loss_func, output_activation)
