@@ -3,6 +3,7 @@ from sklearn.model_selection import train_test_split
 import numpy as np
 import pdb
 import math
+from tqdm import tqdm
 np.random.seed(1)
 
 class FFNN():
@@ -103,7 +104,7 @@ class FFNN():
 	# Find the accuracy
 	def findAccuracy(self, x_test, y_test):
 		predictions = []
-		for x,y in zip(x_test, y_test):
+		for x,y in tqdm(zip(x_train,y_train), total=len(x_train)):
 			activations, pre_activations = self.forwardPropagation(x)
 			predictedClass = np.argmax(activations['h3']) + 1
 			y.reshape(len(y),1)
@@ -128,7 +129,7 @@ class FFNN():
 			grads = self.initialize_gradients()
 
 			# Learn the parameters
-			for x,y in zip(x_train,y_train):
+			for x,y in tqdm(zip(x_train,y_train), total=len(x_train)):
 
 				# Forward Propagation
 				activations, pre_activations = self.forwardPropagation(x)
@@ -165,7 +166,7 @@ class FFNN():
 			grads_lookAhead = self.initialize_gradients()
 
 			# Learn the parameters
-			for x,y in zip(x_train,y_train):
+			for x,y in tqdm(zip(x_train,y_train), total=len(x_train)):
 
 				# Forward Propagation
 				activations, pre_activations = self.forwardPropagation(x)
@@ -222,7 +223,7 @@ class FFNN():
 				self.parameters[key] = self.parameters[key] - grads_lookAhead[key]
 			
 			# Learn the parameters
-			for x,y in zip(x_train,y_train):
+			for x,y in tqdm(zip(x_train,y_train), total=len(x_train)):
 
 				# Forward Propagation
 				activations, pre_activations = self.forwardPropagation(x)
@@ -273,7 +274,7 @@ class FFNN():
 			grads = self.initialize_gradients()
 
 			# Learn the parameters
-			for x,y in zip(x_train,y_train):
+			for x,y in tqdm(zip(x_train,y_train), total=len(x_train)):
 
 				# Forward Propagation
 				activations, pre_activations = self.forwardPropagation(x)
@@ -321,7 +322,7 @@ class FFNN():
 			grads = self.initialize_gradients()
 
 			# Learn the parameters
-			for x,y in zip(x_train,y_train):
+			for x,y in tqdm(zip(x_train,y_train), total=len(x_train)):
 
 				# Forward Propagation
 				activations, pre_activations = self.forwardPropagation(x)
@@ -378,7 +379,7 @@ class FFNN():
 				self.parameters[key] = self.parameters[key] - grads_lookAhead[key]
 
 			# Learn the parameters
-			for x,y in zip(x_train,y_train):
+			for x,y in tqdm(zip(x_train,y_train), total=len(x_train)):
 
 				# Forward Propagation
 				activations, pre_activations = self.forwardPropagation(x)
