@@ -41,6 +41,15 @@ class FFNN():
 			    return exps / np.sum(exps, axis=0) * (1 - exps / np.sum(exps, axis=0))
 			return exps / np.sum(exps, axis=0)
 
+	# Compute Loss
+	def computeLoss(self, x, y):
+		if self.loss_func == 'cross_entropy':
+			loss = np.sum(-1*y*np.log(x))
+			return loss
+		if self.loss_func == 'squared_error':
+			loss = 0.5*np.sum((y-x)**2)
+			return loss
+
 	# Initializing the parameters -- weights and biases
 	def initializeModelParameters(self):
 		parameters = {}
@@ -102,18 +111,21 @@ class FFNN():
 		return gradients
 		
 	# Find the accuracy
-	def findAccuracy(self, x_test, y_test):
+	def modelPerformance(self, x_test, y_test):
 		predictions = []
+		losses = []
 		for x,y in tqdm(zip(x_test ,y_test), total=len(x_test)):
 			activations, pre_activations = self.forwardPropagation(x)
 			predictedClass = np.argmax(activations['h3']) + 1
 			y.reshape(len(y),1)
 			actualClass = np.argmax(y) + 1
 			predictions.append(predictedClass == actualClass)
+			losses.append(self.computeLoss(activations['h3'],y))
 
 		accuracy = (np.sum(predictions)*100)/len(predictions)
+		loss = np.sum(losses)/len(losses)
 			
-		return accuracy
+		return accuracy, loss
 
 
 	# Optimization Algorithm: Stochastic Gradient Descent
@@ -123,7 +135,7 @@ class FFNN():
 		eta = self.l_rate
 
 		for epoch in range(self.epochs):
-			print(" =============== Epoch Number: " + str(epoch) + " =============== ")
+			print(" =============== Epoch Number: " + str(epoch+1) + " =============== ")
 
 			# Initialize the gradients
 			grads = self.initialize_gradients()
@@ -142,8 +154,9 @@ class FFNN():
 					self.parameters[key] = self.parameters[key] - eta*current_gradients[key]
 		
 			# Validation Accuracy
-			val_acc = self.findAccuracy(x_val, y_val)
+			val_acc, val_loss = self.modelPerformance(x_val, y_val)
 			print("Validation Accuracy = " + str(val_acc))
+			print("Validation Loss = " + str(val_loss))
 
 
 	# Optimization Algorithm: Moment Based Gradient Descent
@@ -191,8 +204,9 @@ class FFNN():
 				prev_gradients[key] = lookAheads[key]
 		
 			# Validation Accuracy
-			val_acc = self.findAccuracy(x_val, y_val)
+			val_acc, val_loss = self.modelPerformance(x_val, y_val)
 			print("Validation Accuracy = " + str(val_acc))
+			print("Validation Loss = " + str(val_loss))
 		
 
 	# Optimization Algorithm: Nesterov Accelerated Gradient Descent
@@ -248,8 +262,9 @@ class FFNN():
 				prev_gradients[key] = lookAheads[key]
 		
 			# Validation Accuracy
-			val_acc = self.findAccuracy(x_val, y_val)
+			val_acc, val_loss = self.modelPerformance(x_val, y_val)
 			print("Validation Accuracy = " + str(val_acc))
+			print("Validation Loss = " + str(val_loss))
 
 
 	# Optimization Algorithm: RMSProp
@@ -295,8 +310,9 @@ class FFNN():
 				self.parameters[key] = self.parameters[key] - (eta/np.sqrt(lookAheads[key] + eps))*grads[key]
 		
 			# Validation Accuracy
-			val_acc = self.findAccuracy(x_val, y_val)
+			val_acc, val_loss = self.modelPerformance(x_val, y_val)
 			print("Validation Accuracy = " + str(val_acc))
+			print("Validation Loss = " + str(val_loss))
 
 
 	# Optimization Algorithm: Adam
@@ -313,7 +329,7 @@ class FFNN():
 		beta2 = 0.999
 
 		# Epsilon
-		eps = 0.00000001
+		eps = 0.000000001
 
 		for epoch in range(self.epochs):
 			print(" =============== Epoch Number: " + str(epoch) + " =============== ")
@@ -343,8 +359,9 @@ class FFNN():
 				self.parameters[key] = self.parameters[key] - (eta/np.sqrt(second_momenta[key] + eps))*first_momenta[key]
 		
 			# Validation Accuracy
-			val_acc = self.findAccuracy(x_val, y_val)
+			val_acc, val_loss = self.modelPerformance(x_val, y_val)
 			print("Validation Accuracy = " + str(val_acc))
+			print("Validation Loss = " + str(val_loss))
 
 
 	# Optimization Algorithm: NAdam
@@ -400,8 +417,9 @@ class FFNN():
 				self.parameters[key] = self.parameters[key] - (eta/np.sqrt(second_momenta[key] + eps))*first_momenta[key]
 		
 			# Validation Accuracy
-			val_acc = self.findAccuracy(x_val, y_val)
+			val_acc, val_loss = self.modelPerformance(x_val, y_val)
 			print("Validation Accuracy = " + str(val_acc))
+			print("Validation Loss = " + str(val_loss))
 
 
 	# Training the model
