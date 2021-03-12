@@ -42,12 +42,12 @@ class FFNN():
 			return exps / np.sum(exps, axis=0)
 
 	# Compute Loss
-	def computeLoss(self, x, y):
+	def computeLoss(self, yHat, y):
 		if self.loss_func == 'cross_entropy':
-			loss = np.sum(-1*y*np.log(x))
+			loss = np.sum(-1*y*np.log(yHat))
 			return loss
 		if self.loss_func == 'squared_error':
-			loss = 0.5*np.sum((y-x)**2)
+			loss = 0.5*np.sum((y-yHat)**2)
 			return loss
 
 	# Initializing the parameters -- weights and biases
