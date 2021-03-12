@@ -1,8 +1,0 @@
-wandb_version: 1
-
-epochs:
-  value: 5
-learning_rate:
-  value: 0.05765857310109858
-optimizer:
-  value: nag

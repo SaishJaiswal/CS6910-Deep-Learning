@@ -1,0 +1,38 @@
+{
+    "os": "Linux-5.4.0-42-generic-x86_64-with-Ubuntu-18.04-bionic",
+    "python": "3.7.5",
+    "heartbeatAt": "2021-03-12T16:20:16.520694",
+    "startedAt": "2021-03-12T16:20:12.039018",
+    "docker": null,
+    "gpu": "GeForce GTX TITAN X",
+    "gpu_count": 2,
+    "cpu_count": 32,
+    "cuda": "10.0.130",
+    "args": [
+        "-l",
+        "784",
+        "256",
+        "32",
+        "10",
+        "--optimizer",
+        "adam",
+        "--epochs",
+        "5",
+        "--l_rate",
+        "0.0000000001",
+        "--batch_size",
+        "512"
+    ],
+    "state": "running",
+    "program": "main.py",
+    "codePath": "Assignment_1/main.py",
+    "git": {
+        "remote": "https://github.com/SaishJaiswal/CS6910-Deep-Learning.git",
+        "commit": "e2c28b107bd94ae030f32f3b5a596ee31939d5a9"
+    },
+    "email": "gupta.ishika08@gmail.com",
+    "root": "/others/ishika/DL",
+    "host": "d1",
+    "username": "ishika",
+    "executable": "/usr/bin/python"
+}

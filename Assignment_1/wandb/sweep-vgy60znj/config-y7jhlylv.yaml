@@ -1,8 +1,0 @@
-wandb_version: 1
-
-epochs:
-  value: 5
-learning_rate:
-  value: 0.023644677676166133
-optimizer:
-  value: sgd

@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
-from sklearn.utils import shuffle 
 import numpy as np
 import pdb
 import math
@@ -10,7 +9,7 @@ np.random.seed(1)
 
 class FFNN():
 	# Initializing the hyperparameters
-	def __init__(self, layer_sizes, L, epochs=10, l_rate=0.0001, optimizer='sgd', batch_size=1, activation_func='tanh', loss_func='cross_entropy', output_activation_func='softmax'):
+	def __init__(self, layer_sizes, L, epochs=10, l_rate=0.01, optimizer='sgd', batch_size=1, activation_func='sigmoid', loss_func='cross_entropy', output_activation_func='softmax'):
 		
 		self.layer_sizes = layer_sizes		# Size of each layer			
 		self.L = L				# Number of layers
@@ -21,7 +20,15 @@ class FFNN():
 		self.activation_func = activation_func	# Activation funtion for the hidden layers
 		self.loss_func = loss_func		# Loss funtion
 		self.output_activation_func = output_activation_func	# Activation funtion for the output layer
-		self.parameters = self.initializeModelParameters()		# Initializing the parameters -- weights and biases
+		self.parameters = self.initializeModelParameters()	# Initializing the parameters -- weights and biases
+		hyperparameter_defaults = dict(
+                        batch_size = 100,
+                        learning_rate = 0.0001,
+                        no_of_epochs = 50
+                        )
+
+		wandb.init(config=hyperparameter_defaults, project="Feed-Fwd Neural Network")
+		config = wandb.config
 
 	# Activation funtion for the hidden layers
 	def activation(self, x, derivative=False):
@@ -40,14 +47,24 @@ class FFNN():
 		if self.output_activation_func == 'softmax':
 			exps = np.exp(x - x.max())
 			if derivative:
-			 return exps / np.sum(exps, axis=0) * (1 - exps / np.sum(exps, axis=0))
+			    return exps / np.sum(exps, axis=0) * (1 - exps / np.sum(exps, axis=0))
 			return exps / np.sum(exps, axis=0)
+
+	# Compute Loss
+	def computeLoss(self, yHat, y):
+		if self.loss_func == 'cross_entropy':
+			indexClass = np.argmax(y)
+			loss = -math.log(yHat[indexClass])
+			return loss
+		if self.loss_func == 'squared_error':
+			loss = 0.5*np.sum((y-yHat)**2)
+			return loss
 
 	# Initializing the parameters -- weights and biases
 	def initializeModelParameters(self):
 		parameters = {}
 		for l in range(1, self.L):
-			parameters["W" + str(l)] = np.random.randn(self.layer_sizes[l], self.layer_sizes[l - 1]) * np.sqrt(1/(self.layer_sizes[l - 1] + self.layer_sizes[l]))
+			parameters["W" + str(l)] = np.random.randn(self.layer_sizes[l], self.layer_sizes[l - 1]) * np.sqrt(2/ (self.layer_sizes[l - 1] + self.layer_sizes[l]))
 			parameters["b" + str(l)] = np.zeros((self.layer_sizes[l], 1))
 		return parameters
 
@@ -104,18 +121,21 @@ class FFNN():
 		return gradients
 		
 	# Find the accuracy
-	def findAccuracy(self, x_test, y_test):
+	def modelPerformance(self, x_test, y_test):
 		predictions = []
+		losses = []
 		for x,y in tqdm(zip(x_test ,y_test), total=len(x_test)):
 			activations, pre_activations = self.forwardPropagation(x)
-			predictedClass = np.argmax(activations['h3']) + 1
+			predictedClass = np.argmax(activations['h' + str(self.L-1)]) + 1
 			y.reshape(len(y),1)
 			actualClass = np.argmax(y) + 1
 			predictions.append(predictedClass == actualClass)
+			losses.append(self.computeLoss(activations['h' + str(self.L-1)],y))
 
 		accuracy = (np.sum(predictions)*100)/len(predictions)
+		loss = np.sum(losses)/len(losses)
 			
-		return accuracy
+		return accuracy, loss
 
 
 	# Optimization Algorithm: Stochastic Gradient Descent
@@ -125,7 +145,7 @@ class FFNN():
 		eta = self.l_rate
 
 		for epoch in range(self.epochs):
-			print(" =============== Epoch Number: " + str(epoch) + " =============== ")
+			print(" =============== Epoch Number: " + str(epoch+1) + " =============== ")
 
 			# Initialize the gradients
 			grads = self.initialize_gradients()
@@ -144,9 +164,13 @@ class FFNN():
 					self.parameters[key] = self.parameters[key] - eta*current_gradients[key]
 		
 			# Validation Accuracy
-			val_acc = self.findAccuracy(x_val, y_val)
+			train_acc, train_loss = self.modelPerformance(x_train, y_train)
+			val_acc, val_loss = self.modelPerformance(x_val, y_val)
+			print("Training Accuracy = " + str(train_acc))
+			print("Training Loss = " + str(train_loss))
 			print("Validation Accuracy = " + str(val_acc))
-			metrics = {'Validation accuracy': val_acc}
+			print("Validation Loss = " + str(val_loss))
+			metrics = {'Validation accuracy': val_acc, 'Validation loss': val_loss, 'Epoch': epoch+1}
 			wandb.log(metrics)
 
 
@@ -167,7 +191,10 @@ class FFNN():
 
 			# Initialize the gradients
 			grads = self.initialize_gradients()
-			grads_lookAhead = self.initialize_gradients()
+			lookAheads = self.initialize_gradients()
+
+			# Number of points seen
+			num_points_seen = 0
 
 			# Learn the parameters
 			for x,y in tqdm(zip(x_train,y_train), total=len(x_train)):
@@ -182,22 +209,33 @@ class FFNN():
 				for key in grads:
 					grads[key] = grads[key] + current_gradients[key]
 
-			# Calculate Look Ahead
-			for key in grads_lookAhead:
-				grads_lookAhead[key] = gamma*prev_gradients[key] + eta*grads[key]
+				num_points_seen = num_points_seen + 1
 
-			# Update Parameters
-			for key in self.parameters:
-				self.parameters[key] = self.parameters[key] - grads_lookAhead[key]
+				if(num_points_seen % self.batch_size == 0):
 
-			# Update History
-			for key in prev_gradients:
-				prev_gradients[key] = grads_lookAhead[key]
+					# Calculate Look Ahead
+					for key in lookAheads:
+						lookAheads[key] = gamma*prev_gradients[key] + eta*grads[key]
+
+					# Update Parameters
+					for key in self.parameters:
+						self.parameters[key] = self.parameters[key] - lookAheads[key]
+
+					# Update History
+					for key in prev_gradients:
+						prev_gradients[key] = lookAheads[key]
+
+					# Initialize the gradients
+					grads = self.initialize_gradients()
 		
 			# Validation Accuracy
-			val_acc = self.findAccuracy(x_val, y_val)
+			train_acc, train_loss = self.modelPerformance(x_train, y_train)
+			val_acc, val_loss = self.modelPerformance(x_val, y_val)
+			print("Training Accuracy = " + str(train_acc))
+			print("Training Loss = " + str(train_loss))
 			print("Validation Accuracy = " + str(val_acc))
-			metrics = {'Validation accuracy': val_acc}
+			print("Validation Loss = " + str(val_loss))
+			metrics = {'Validation accuracy': val_acc, 'Validation loss': val_loss, 'Epoch': epoch+1}
 			wandb.log(metrics)
 		
 
@@ -217,16 +255,19 @@ class FFNN():
 			print(" =============== Epoch Number: " + str(epoch) + " =============== ")
 
 			# Initialize the gradients
-			grads = self.initialize_gradients()
-			grads_lookAhead = self.initialize_gradients()
+			grads = self.initialize_gradients()			# For accumulating gradients
+			lookAheads = self.initialize_gradients()		# Lookaheads
 
 			# Calculate Look Ahead
-			for key in grads_lookAhead:
-				grads_lookAhead[key] = gamma*prev_gradients[key]
+			for key in lookAheads:
+				lookAheads[key] = gamma*prev_gradients[key]
 
 			# Update parameters based on lookahead
 			for key in self.parameters:
-				self.parameters[key] = self.parameters[key] - grads_lookAhead[key]
+				self.parameters[key] = self.parameters[key] - lookAheads[key]
+
+			# Number of points seen
+			num_points_seen = 0
 			
 			# Learn the parameters
 			for x,y in tqdm(zip(x_train,y_train), total=len(x_train)):
@@ -240,23 +281,34 @@ class FFNN():
 				# Accumulate gradients
 				for key in grads:
 					grads[key] = grads[key] + current_gradients[key]
+				
+				num_points_seen = num_points_seen + 1
 
-			# Calculate Look Ahead
-			for key in grads_lookAhead:
-				grads_lookAhead[key] = gamma*prev_gradients[key] + eta*grads[key]
+				if(num_points_seen % self.batch_size == 0):	
 
-			# Update Parameters
-			for key in self.parameters:
-				self.parameters[key] = self.parameters[key] - grads_lookAhead[key]
+					# Calculate Look Ahead
+					for key in lookAheads:
+						lookAheads[key] = gamma*prev_gradients[key] + eta*grads[key]
 
-			# Update History
-			for key in prev_gradients:
-				prev_gradients[key] = grads_lookAhead[key]
+					# Update Parameters
+					for key in self.parameters:
+						self.parameters[key] = self.parameters[key] - lookAheads[key]
+
+					# Update History
+					for key in prev_gradients:
+						prev_gradients[key] = lookAheads[key]
+
+					# Initialize the gradients
+					grads = self.initialize_gradients()
 		
 			# Validation Accuracy
-			val_acc = self.findAccuracy(x_val, y_val)
+			train_acc, train_loss = self.modelPerformance(x_train, y_train)
+			val_acc, val_loss = self.modelPerformance(x_val, y_val)
+			print("Training Accuracy = " + str(train_acc))
+			print("Training Loss = " + str(train_loss))
 			print("Validation Accuracy = " + str(val_acc))
-			metrics = {'Validation accuracy': val_acc}
+			print("Validation Loss = " + str(val_loss))
+			metrics = {'Validation accuracy': val_acc, 'Validation loss': val_loss, 'Epoch': epoch+1}
 			wandb.log(metrics)
 
 
@@ -270,16 +322,19 @@ class FFNN():
 		beta = 0.9
 
 		# Epsilon
-		eps = 1e-9
+		eps = 0.00000001
 
 		# Previous values -- History
-		grads_lookAhead = self.initialize_gradients()
+		lookAheads = self.initialize_gradients()
 
 		for epoch in range(self.epochs):
 			print(" =============== Epoch Number: " + str(epoch) + " =============== ")
 
 			# Initialize the gradients
 			grads = self.initialize_gradients()
+
+			# Number of points seen
+			num_points_seen = 0
 
 			# Learn the parameters
 			for x,y in tqdm(zip(x_train,y_train), total=len(x_train)):
@@ -294,17 +349,30 @@ class FFNN():
 				for key in grads:
 					grads[key] = grads[key] + current_gradients[key]
 
-			# Update History
-			for key in grads_lookAhead:
-				grads_lookAhead[key] = beta*grads_lookAhead[key] + (1-beta)*np.square(grads[key])
+				num_points_seen = num_points_seen + 1
 
-			# Update Parameters
-			for key in self.parameters:
-				self.parameters[key] = self.parameters[key] - (eta/np.sqrt(grads_lookAhead[key] + eps))*grads[key]
+				if(num_points_seen % self.batch_size == 0):
+
+					# Update History
+					for key in lookAheads:
+						lookAheads[key] = beta*lookAheads[key] + (1-beta)*np.square(grads[key])
+
+					# Update Parameters
+					for key in self.parameters:
+						self.parameters[key] = self.parameters[key] - (eta/np.sqrt(lookAheads[key] + eps))*grads[key]
+
+					# Initialize the gradients
+					grads = self.initialize_gradients()
 		
 			# Validation Accuracy
-			val_acc = self.findAccuracy(x_val, y_val)
+			train_acc, train_loss = self.modelPerformance(x_train, y_train)
+			val_acc, val_loss = self.modelPerformance(x_val, y_val)
+			print("Training Accuracy = " + str(train_acc))
+			print("Training Loss = " + str(train_loss))
 			print("Validation Accuracy = " + str(val_acc))
+			print("Validation Loss = " + str(val_loss))
+			metrics = {'Validation accuracy': val_acc, 'Validation loss': val_loss, 'Epoch': epoch+1}
+			wandb.log(metrics)
 
 
 	# Optimization Algorithm: Adam
@@ -312,54 +380,8 @@ class FFNN():
 		
 		first_momenta = self.initialize_gradients()
 		second_momenta = self.initialize_gradients()
-
-		# Learning rate
-		eta = self.l_rate
-
-		# Beta value
-		beta1 = 0.9
-		beta2 = 0.99
-
-		# Epsilon
-		eps = 1e-9
-
-		for epoch in range(self.epochs):
-			print(" =============== Epoch Number: " + str(epoch) + " =============== ")
-
-			# Initialize the gradients
-			grads = self.initialize_gradients()
-
-			# Learn the parameters
-			for x,y in tqdm(zip(x_train,y_train), total=len(x_train)):
-
-				# Forward Propagation
-				activations, pre_activations = self.forwardPropagation(x)
-
-				# Backward Propagation
-				current_gradients = self.backwardPropagation(y, activations, pre_activations)
-
-				# Accumulate gradients
-				for key in grads:
-					grads[key] = grads[key] + current_gradients[key]
-
-			# Update History
-			for key in self.parameters:
-				first_momenta[key] = beta1*first_momenta[key] + (1-beta1)*grads[key]
-				second_momenta[key] = beta2*second_momenta[key] + (1-beta2)*np.square(grads[key])
-				first_momenta[key] = first_momenta[key]/(1-math.pow(beta1, epoch+1))
-				second_momenta[key] = second_momenta[key]/(1-math.pow(beta2, epoch+1))
-				self.parameters[key] = self.parameters[key] - (eta/np.sqrt(second_momenta[key] + eps))*first_momenta[key]
-		
-			# Validation Accuracy
-			val_acc = self.findAccuracy(x_val, y_val)
-			print("Validation Accuracy = " + str(val_acc))
-
-
-	# Optimization Algorithm: NAdam
-	def do_nadam(self, x_train, y_train, x_val, y_val):
-		
-		first_momenta = self.initialize_gradients()
-		second_momenta = self.initialize_gradients()
+		first_momenta_hat = self.initialize_gradients()
+		second_momenta_hat = self.initialize_gradients()
 
 		# Learning rate
 		eta = self.l_rate
@@ -369,22 +391,16 @@ class FFNN():
 		beta2 = 0.999
 
 		# Epsilon
-		eps = 1e-9
+		eps = 0.00000001
 
 		for epoch in range(self.epochs):
 			print(" =============== Epoch Number: " + str(epoch) + " =============== ")
 
 			# Initialize the gradients
 			grads = self.initialize_gradients()
-			grads_lookAhead = self.initialize_gradients()
 
-			# Calculate Look Ahead
-			for key in grads_lookAhead:
-				grads_lookAhead[key] = gamma*prev_gradients[key]
-
-			# Update parameters based on lookahead
-			for key in self.parameters:
-				self.parameters[key] = self.parameters[key] - grads_lookAhead[key]
+			# Number of points seen
+			num_points_seen = 0
 
 			# Learn the parameters
 			for x,y in tqdm(zip(x_train,y_train), total=len(x_train)):
@@ -399,35 +415,123 @@ class FFNN():
 				for key in grads:
 					grads[key] = grads[key] + current_gradients[key]
 
-			# Update History
-			for key in self.parameters:
-				first_momenta[key] = beta1*first_momenta[key] + (1-beta1)*grads[key]
-				second_momenta[key] = beta2*second_momenta[key] + (1-beta2)*np.square(grads[key])
-				first_momenta[key] = first_momenta[key]/(1-math.pow(beta1, epoch+1))
-				second_momenta[key] = second_momenta[key]/(1-math.pow(beta2, epoch+1))
-				self.parameters[key] = self.parameters[key] - (eta/np.sqrt(second_momenta[key] + eps))*first_momenta[key]
+				num_points_seen = num_points_seen + 1
+
+				if(num_points_seen % self.batch_size == 0):
+
+					# Update History
+					for key in self.parameters:
+						first_momenta[key] = beta1*first_momenta[key] + (1-beta1)*grads[key]
+						second_momenta[key] = beta2*second_momenta[key] + (1-beta2)*np.square(grads[key])
+						first_momenta_hat[key] = first_momenta[key]/(1-math.pow(beta1, epoch+1))
+						second_momenta_hat[key] = second_momenta[key]/(1-math.pow(beta2, epoch+1))
+						self.parameters[key] = self.parameters[key] - (eta/(np.sqrt(second_momenta_hat[key]) + eps))*first_momenta_hat[key]
+
+					# Initialize the gradients
+					grads = self.initialize_gradients()
 		
 			# Validation Accuracy
-			val_acc = self.findAccuracy(x_val, y_val)
+			train_acc, train_loss = self.modelPerformance(x_train, y_train)
+			val_acc, val_loss = self.modelPerformance(x_val, y_val)
+			print("Training Accuracy = " + str(train_acc))
+			print("Training Loss = " + str(train_loss))
 			print("Validation Accuracy = " + str(val_acc))
-			metrics = {'Validation accuracy': val_acc}
+			print("Validation Loss = " + str(val_loss))
+			metrics = {'Validation accuracy': val_acc, 'Validation loss': val_loss, 'Epoch': epoch+1}
+			wandb.log(metrics)
+
+
+	# Optimization Algorithm: NAdam
+	def do_nadam(self, x_train, y_train, x_val, y_val):
+		
+		first_momenta = self.initialize_gradients()
+		second_momenta = self.initialize_gradients()
+		first_momenta_hat = self.initialize_gradients()
+		second_momenta_hat = self.initialize_gradients()
+
+		# Learning rate
+		eta = self.l_rate
+
+		# Beta value
+		beta1 = 0.9
+		beta2 = 0.999
+
+		# Epsilon
+		eps = 0.00000001
+
+		# Gamma
+		gamma = 0.95
+
+		# Previous values -- History
+		prev_gradients = self.initialize_gradients()
+
+		for epoch in range(self.epochs):
+			print(" =============== Epoch Number: " + str(epoch) + " =============== ")
+
+			# Initialize the gradients
+			grads = self.initialize_gradients()
+			lookAheads = self.initialize_gradients()
+
+			# Number of points seen
+			num_points_seen = 0
+
+			# Calculate Look Ahead
+			for key in lookAheads:
+				lookAheads[key] = gamma*prev_gradients[key]
+
+			# Update parameters based on lookahead
+			for key in self.parameters:
+				self.parameters[key] = self.parameters[key] - lookAheads[key]
+
+			# Learn the parameters
+			for x,y in tqdm(zip(x_train,y_train), total=len(x_train)):
+
+				# Forward Propagation
+				activations, pre_activations = self.forwardPropagation(x)
+
+				# Backward Propagation
+				current_gradients = self.backwardPropagation(y, activations, pre_activations)
+
+				# Accumulate gradients
+				for key in grads:
+					grads[key] = grads[key] + current_gradients[key]
+
+				num_points_seen = num_points_seen + 1
+
+				if(num_points_seen % self.batch_size == 0):
+
+					# Calculate Look Ahead
+					for key in lookAheads:
+						lookAheads[key] = gamma*prev_gradients[key] + eta*grads[key]
+
+					# Update History
+					for key in self.parameters:
+						first_momenta[key] = beta1*first_momenta[key] + (1-beta1)*grads[key]
+						second_momenta[key] = beta2*second_momenta[key] + (1-beta2)*np.square(grads[key])
+						first_momenta_hat[key] = first_momenta[key]/(1-math.pow(beta1, epoch+1))
+						second_momenta_hat[key] = second_momenta[key]/(1-math.pow(beta2, epoch+1))
+						self.parameters[key] = self.parameters[key] - (eta/(np.sqrt(second_momenta_hat[key]) + eps))*first_momenta_hat[key]
+
+					# Update History
+					for key in prev_gradients:
+						prev_gradients[key] = lookAheads[key]
+
+					# Initialize the gradients
+					grads = self.initialize_gradients()
+		
+			# Validation Accuracy
+			train_acc, train_loss = self.modelPerformance(x_train, y_train)
+			val_acc, val_loss = self.modelPerformance(x_val, y_val)
+			print("Training Accuracy = " + str(train_acc))
+			print("Training Loss = " + str(train_loss))
+			print("Validation Accuracy = " + str(val_acc))
+			print("Validation Loss = " + str(val_loss))
+			metrics = {'Validation accuracy': val_acc, 'Validation loss': val_loss, 'Epoch': epoch+1}
 			wandb.log(metrics)
 
 
 	# Training the model
 	def train(self, x_train, y_train, x_val, y_val):
-
-
-		hyperparameter_defaults = dict(
-			batch_size = 100,
-			learning_rate = 0.0001,
-			no_of_epochs = 50
-			)
-
-		wandb.init(config=hyperparameter_defaults, project="Feed-Fwd Neural Network")
-		config = wandb.config
-
-
 		if self.optimizer == 'sgd':
 			self.do_stochastic_gradient_descent(x_train, y_train, x_val, y_val)
 		elif self.optimizer == 'mgd':
