@@ -44,7 +44,8 @@ class FFNN():
 	# Compute Loss
 	def computeLoss(self, yHat, y):
 		if self.loss_func == 'cross_entropy':
-			loss = np.sum(-1*y*np.log(yHat))
+			indexClass = np.argmax(y)
+			loss = -math.log(yHat[indexClass])
 			return loss
 		if self.loss_func == 'squared_error':
 			loss = 0.5*np.sum((y-yHat)**2)
@@ -116,11 +117,11 @@ class FFNN():
 		losses = []
 		for x,y in tqdm(zip(x_test ,y_test), total=len(x_test)):
 			activations, pre_activations = self.forwardPropagation(x)
-			predictedClass = np.argmax(activations['h3']) + 1
+			predictedClass = np.argmax(activations['h' + str(self.L-1)]) + 1
 			y.reshape(len(y),1)
 			actualClass = np.argmax(y) + 1
 			predictions.append(predictedClass == actualClass)
-			losses.append(self.computeLoss(activations['h3'],y))
+			losses.append(self.computeLoss(activations['h' + str(self.L-1)],y))
 
 		accuracy = (np.sum(predictions)*100)/len(predictions)
 		loss = np.sum(losses)/len(losses)
@@ -178,6 +179,9 @@ class FFNN():
 			grads = self.initialize_gradients()
 			lookAheads = self.initialize_gradients()
 
+			# Number of points seen
+			num_points_seen = 0
+
 			# Learn the parameters
 			for x,y in tqdm(zip(x_train,y_train), total=len(x_train)):
 
@@ -191,17 +195,24 @@ class FFNN():
 				for key in grads:
 					grads[key] = grads[key] + current_gradients[key]
 
-			# Calculate Look Ahead
-			for key in lookAheads:
-				lookAheads[key] = gamma*prev_gradients[key] + eta*grads[key]
+				num_points_seen = num_points_seen + 1
 
-			# Update Parameters
-			for key in self.parameters:
-				self.parameters[key] = self.parameters[key] - lookAheads[key]
+				if(num_points_seen % self.batch_size == 0):
 
-			# Update History
-			for key in prev_gradients:
-				prev_gradients[key] = lookAheads[key]
+					# Calculate Look Ahead
+					for key in lookAheads:
+						lookAheads[key] = gamma*prev_gradients[key] + eta*grads[key]
+
+					# Update Parameters
+					for key in self.parameters:
+						self.parameters[key] = self.parameters[key] - lookAheads[key]
+
+					# Update History
+					for key in prev_gradients:
+						prev_gradients[key] = lookAheads[key]
+
+					# Initialize the gradients
+					grads = self.initialize_gradients()
 		
 			# Validation Accuracy
 			val_acc, val_loss = self.modelPerformance(x_val, y_val)
@@ -235,6 +246,9 @@ class FFNN():
 			# Update parameters based on lookahead
 			for key in self.parameters:
 				self.parameters[key] = self.parameters[key] - lookAheads[key]
+
+			# Number of points seen
+			num_points_seen = 0
 			
 			# Learn the parameters
 			for x,y in tqdm(zip(x_train,y_train), total=len(x_train)):
@@ -248,18 +262,25 @@ class FFNN():
 				# Accumulate gradients
 				for key in grads:
 					grads[key] = grads[key] + current_gradients[key]
+				
+				num_points_seen = num_points_seen + 1
 
-			# Calculate Look Ahead
-			for key in lookAheads:
-				lookAheads[key] = gamma*prev_gradients[key] + eta*grads[key]
+				if(num_points_seen % self.batch_size == 0):	
 
-			# Update Parameters
-			for key in self.parameters:
-				self.parameters[key] = self.parameters[key] - lookAheads[key]
+					# Calculate Look Ahead
+					for key in lookAheads:
+						lookAheads[key] = gamma*prev_gradients[key] + eta*grads[key]
 
-			# Update History
-			for key in prev_gradients:
-				prev_gradients[key] = lookAheads[key]
+					# Update Parameters
+					for key in self.parameters:
+						self.parameters[key] = self.parameters[key] - lookAheads[key]
+
+					# Update History
+					for key in prev_gradients:
+						prev_gradients[key] = lookAheads[key]
+
+					# Initialize the gradients
+					grads = self.initialize_gradients()
 		
 			# Validation Accuracy
 			val_acc, val_loss = self.modelPerformance(x_val, y_val)
@@ -288,6 +309,9 @@ class FFNN():
 			# Initialize the gradients
 			grads = self.initialize_gradients()
 
+			# Number of points seen
+			num_points_seen = 0
+
 			# Learn the parameters
 			for x,y in tqdm(zip(x_train,y_train), total=len(x_train)):
 
@@ -301,13 +325,20 @@ class FFNN():
 				for key in grads:
 					grads[key] = grads[key] + current_gradients[key]
 
-			# Update History
-			for key in lookAheads:
-				lookAheads[key] = beta*lookAheads[key] + (1-beta)*np.square(grads[key])
+				num_points_seen = num_points_seen + 1
 
-			# Update Parameters
-			for key in self.parameters:
-				self.parameters[key] = self.parameters[key] - (eta/np.sqrt(lookAheads[key] + eps))*grads[key]
+				if(num_points_seen % self.batch_size == 0):
+
+					# Update History
+					for key in lookAheads:
+						lookAheads[key] = beta*lookAheads[key] + (1-beta)*np.square(grads[key])
+
+					# Update Parameters
+					for key in self.parameters:
+						self.parameters[key] = self.parameters[key] - (eta/np.sqrt(lookAheads[key] + eps))*grads[key]
+
+					# Initialize the gradients
+					grads = self.initialize_gradients()
 		
 			# Validation Accuracy
 			val_acc, val_loss = self.modelPerformance(x_val, y_val)
@@ -337,6 +368,9 @@ class FFNN():
 			# Initialize the gradients
 			grads = self.initialize_gradients()
 
+			# Number of points seen
+			num_points_seen = 0
+
 			# Learn the parameters
 			for x,y in tqdm(zip(x_train,y_train), total=len(x_train)):
 
@@ -350,13 +384,20 @@ class FFNN():
 				for key in grads:
 					grads[key] = grads[key] + current_gradients[key]
 
-			# Update History
-			for key in self.parameters:
-				first_momenta[key] = beta1*first_momenta[key] + (1-beta1)*grads[key]
-				second_momenta[key] = beta2*second_momenta[key] + (1-beta2)*np.square(grads[key])
-				first_momenta[key] = first_momenta[key]/(1-math.pow(beta1, epoch+1))
-				second_momenta[key] = second_momenta[key]/(1-math.pow(beta2, epoch+1))
-				self.parameters[key] = self.parameters[key] - (eta/np.sqrt(second_momenta[key] + eps))*first_momenta[key]
+				num_points_seen = num_points_seen + 1
+
+				if(num_points_seen % self.batch_size == 0):
+
+					# Update History
+					for key in self.parameters:
+						first_momenta[key] = beta1*first_momenta[key] + (1-beta1)*grads[key]
+						second_momenta[key] = beta2*second_momenta[key] + (1-beta2)*np.square(grads[key])
+						first_momenta[key] = first_momenta[key]/(1-math.pow(beta1, epoch+1))
+						second_momenta[key] = second_momenta[key]/(1-math.pow(beta2, epoch+1))
+						self.parameters[key] = self.parameters[key] - (eta/np.sqrt(second_momenta[key] + eps))*first_momenta[key]
+
+					# Initialize the gradients
+					grads = self.initialize_gradients()
 		
 			# Validation Accuracy
 			val_acc, val_loss = self.modelPerformance(x_val, y_val)
@@ -387,6 +428,9 @@ class FFNN():
 			grads = self.initialize_gradients()
 			lookAheads = self.initialize_gradients()
 
+			# Number of points seen
+			num_points_seen = 0
+
 			# Calculate Look Ahead
 			for key in lookAheads:
 				lookAheads[key] = gamma*prev_gradients[key]
@@ -408,13 +452,20 @@ class FFNN():
 				for key in grads:
 					grads[key] = grads[key] + current_gradients[key]
 
-			# Update History
-			for key in self.parameters:
-				first_momenta[key] = beta1*first_momenta[key] + (1-beta1)*grads[key]
-				second_momenta[key] = beta2*second_momenta[key] + (1-beta2)*np.square(grads[key])
-				first_momenta[key] = first_momenta[key]/(1-math.pow(beta1, epoch+1))
-				second_momenta[key] = second_momenta[key]/(1-math.pow(beta2, epoch+1))
-				self.parameters[key] = self.parameters[key] - (eta/np.sqrt(second_momenta[key] + eps))*first_momenta[key]
+				num_points_seen = num_points_seen + 1
+
+				if(num_points_seen % self.batch_size == 0):
+
+					# Update History
+					for key in self.parameters:
+						first_momenta[key] = beta1*first_momenta[key] + (1-beta1)*grads[key]
+						second_momenta[key] = beta2*second_momenta[key] + (1-beta2)*np.square(grads[key])
+						first_momenta[key] = first_momenta[key]/(1-math.pow(beta1, epoch+1))
+						second_momenta[key] = second_momenta[key]/(1-math.pow(beta2, epoch+1))
+						self.parameters[key] = self.parameters[key] - (eta/np.sqrt(second_momenta[key] + eps))*first_momenta[key]
+
+					# Initialize the gradients
+					grads = self.initialize_gradients()
 		
 			# Validation Accuracy
 			val_acc, val_loss = self.modelPerformance(x_val, y_val)
