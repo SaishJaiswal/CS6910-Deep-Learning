@@ -8,6 +8,7 @@ from keras.utils.np_utils import to_categorical
 import numpy as np
 import pdb
 from sklearn.preprocessing import StandardScaler
+from keras.preprocessing.image import ImageDataGenerator
 
 
 def main(args):
@@ -30,6 +31,11 @@ def main(args):
 	# Load dataset           
 	(X_train, Y_train), (x_test, y_test) = fashion_mnist.load_data()
 
+	X_train = X_train.astype('float64')
+	Y_train = Y_train.astype('float64')
+	x_test = x_test.astype('float64')
+	y_test = y_test.astype('float64')
+
 	scaler = StandardScaler()
 
 	X_train = X_train.reshape(len(X_train),784)
@@ -50,6 +56,10 @@ def main(args):
 	# Creating an object of the class FFNN
 	network = FeedForwardNN.FFNN(layer_sizes, L, epochs, l_rate, optimizer, batch_size, activation_func, loss_func, output_activation)
 	network.train(x_train, y_train, x_val, y_val)
+	test_acc, test_loss = network.modelPerformance(x_test, y_test)
+	print("################################")
+	print("Testing Accuracy = " + str(test_acc))
+	print("Testing Loss = " + str(test_loss))
 
 
 if __name__ == "__main__":

@@ -155,7 +155,10 @@ class FFNN():
 					self.parameters[key] = self.parameters[key] - eta*current_gradients[key]
 		
 			# Validation Accuracy
+			train_acc, train_loss = self.modelPerformance(x_train, y_train)
 			val_acc, val_loss = self.modelPerformance(x_val, y_val)
+			print("Training Accuracy = " + str(train_acc))
+			print("Training Loss = " + str(train_loss))
 			print("Validation Accuracy = " + str(val_acc))
 			print("Validation Loss = " + str(val_loss))
 
@@ -215,7 +218,10 @@ class FFNN():
 					grads = self.initialize_gradients()
 		
 			# Validation Accuracy
+			train_acc, train_loss = self.modelPerformance(x_train, y_train)
 			val_acc, val_loss = self.modelPerformance(x_val, y_val)
+			print("Training Accuracy = " + str(train_acc))
+			print("Training Loss = " + str(train_loss))
 			print("Validation Accuracy = " + str(val_acc))
 			print("Validation Loss = " + str(val_loss))
 		
@@ -283,7 +289,10 @@ class FFNN():
 					grads = self.initialize_gradients()
 		
 			# Validation Accuracy
+			train_acc, train_loss = self.modelPerformance(x_train, y_train)
 			val_acc, val_loss = self.modelPerformance(x_val, y_val)
+			print("Training Accuracy = " + str(train_acc))
+			print("Training Loss = " + str(train_loss))
 			print("Validation Accuracy = " + str(val_acc))
 			print("Validation Loss = " + str(val_loss))
 
@@ -341,7 +350,10 @@ class FFNN():
 					grads = self.initialize_gradients()
 		
 			# Validation Accuracy
+			train_acc, train_loss = self.modelPerformance(x_train, y_train)
 			val_acc, val_loss = self.modelPerformance(x_val, y_val)
+			print("Training Accuracy = " + str(train_acc))
+			print("Training Loss = " + str(train_loss))
 			print("Validation Accuracy = " + str(val_acc))
 			print("Validation Loss = " + str(val_loss))
 
@@ -351,6 +363,8 @@ class FFNN():
 		
 		first_momenta = self.initialize_gradients()
 		second_momenta = self.initialize_gradients()
+		first_momenta_hat = self.initialize_gradients()
+		second_momenta_hat = self.initialize_gradients()
 
 		# Learning rate
 		eta = self.l_rate
@@ -360,7 +374,7 @@ class FFNN():
 		beta2 = 0.999
 
 		# Epsilon
-		eps = 0.000000001
+		eps = 0.00000001
 
 		for epoch in range(self.epochs):
 			print(" =============== Epoch Number: " + str(epoch) + " =============== ")
@@ -392,15 +406,20 @@ class FFNN():
 					for key in self.parameters:
 						first_momenta[key] = beta1*first_momenta[key] + (1-beta1)*grads[key]
 						second_momenta[key] = beta2*second_momenta[key] + (1-beta2)*np.square(grads[key])
-						first_momenta[key] = first_momenta[key]/(1-math.pow(beta1, epoch+1))
-						second_momenta[key] = second_momenta[key]/(1-math.pow(beta2, epoch+1))
-						self.parameters[key] = self.parameters[key] - (eta/np.sqrt(second_momenta[key] + eps))*first_momenta[key]
+						first_momenta_hat[key] = first_momenta[key]/(1-math.pow(beta1, epoch+1))
+						second_momenta_hat[key] = second_momenta[key]/(1-math.pow(beta2, epoch+1))
+						self.parameters[key] = self.parameters[key] - (eta/np.sqrt(second_momenta[key] + eps))*first_momenta_hat[key]
+
+					#pdb.set_trace()
 
 					# Initialize the gradients
 					grads = self.initialize_gradients()
 		
 			# Validation Accuracy
+			train_acc, train_loss = self.modelPerformance(x_train, y_train)
 			val_acc, val_loss = self.modelPerformance(x_val, y_val)
+			print("Training Accuracy = " + str(train_acc))
+			print("Training Loss = " + str(train_loss))
 			print("Validation Accuracy = " + str(val_acc))
 			print("Validation Loss = " + str(val_loss))
 
@@ -410,6 +429,8 @@ class FFNN():
 		
 		first_momenta = self.initialize_gradients()
 		second_momenta = self.initialize_gradients()
+		first_momenta_hat = self.initialize_gradients()
+		second_momenta_hat = self.initialize_gradients()
 
 		# Learning rate
 		eta = self.l_rate
@@ -420,6 +441,9 @@ class FFNN():
 
 		# Epsilon
 		eps = 0.00000001
+
+		# Gamma
+		gamma = 0.95
 
 		for epoch in range(self.epochs):
 			print(" =============== Epoch Number: " + str(epoch) + " =============== ")
@@ -460,15 +484,18 @@ class FFNN():
 					for key in self.parameters:
 						first_momenta[key] = beta1*first_momenta[key] + (1-beta1)*grads[key]
 						second_momenta[key] = beta2*second_momenta[key] + (1-beta2)*np.square(grads[key])
-						first_momenta[key] = first_momenta[key]/(1-math.pow(beta1, epoch+1))
-						second_momenta[key] = second_momenta[key]/(1-math.pow(beta2, epoch+1))
-						self.parameters[key] = self.parameters[key] - (eta/np.sqrt(second_momenta[key] + eps))*first_momenta[key]
+						first_momenta_hat[key] = first_momenta[key]/(1-math.pow(beta1, epoch+1))
+						second_momenta_hat[key] = second_momenta[key]/(1-math.pow(beta2, epoch+1))
+						self.parameters[key] = self.parameters[key] - (eta/np.sqrt(second_momenta[key] + eps))*first_momenta_hat[key]
 
 					# Initialize the gradients
 					grads = self.initialize_gradients()
 		
 			# Validation Accuracy
+			train_acc, train_loss = self.modelPerformance(x_train, y_train)
 			val_acc, val_loss = self.modelPerformance(x_val, y_val)
+			print("Training Accuracy = " + str(train_acc))
+			print("Training Loss = " + str(train_loss))
 			print("Validation Accuracy = " + str(val_acc))
 			print("Validation Loss = " + str(val_loss))
 
