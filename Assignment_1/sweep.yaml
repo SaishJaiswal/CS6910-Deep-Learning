@@ -1,0 +1,15 @@
+program: FeedForwardNN.py
+method: random
+metric:
+  name: val_loss
+  goal: minimize
+  name: accuracy
+  goal: maximize
+parameters:
+  learning_rate:
+    min: 0.001
+    max: 0.1
+  optimizer:
+    values: ["nag", "sgd"]
+  epochs:
+    values: [5, 10]

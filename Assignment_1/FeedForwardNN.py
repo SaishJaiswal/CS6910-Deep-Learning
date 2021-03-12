@@ -1,14 +1,16 @@
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
+from sklearn.utils import shuffle 
 import numpy as np
 import pdb
 import math
+import wandb
 from tqdm import tqdm
 np.random.seed(1)
 
 class FFNN():
 	# Initializing the hyperparameters
-	def __init__(self, layer_sizes, L, epochs=10, l_rate=0.01, optimizer='sgd', batch_size=1, activation_func='sigmoid', loss_func='cross_entropy', output_activation_func='softmax'):
+	def __init__(self, layer_sizes, L, epochs=10, l_rate=0.0001, optimizer='sgd', batch_size=1, activation_func='tanh', loss_func='cross_entropy', output_activation_func='softmax'):
 		
 		self.layer_sizes = layer_sizes		# Size of each layer			
 		self.L = L				# Number of layers
@@ -38,14 +40,14 @@ class FFNN():
 		if self.output_activation_func == 'softmax':
 			exps = np.exp(x - x.max())
 			if derivative:
-			    return exps / np.sum(exps, axis=0) * (1 - exps / np.sum(exps, axis=0))
+			 return exps / np.sum(exps, axis=0) * (1 - exps / np.sum(exps, axis=0))
 			return exps / np.sum(exps, axis=0)
 
 	# Initializing the parameters -- weights and biases
 	def initializeModelParameters(self):
 		parameters = {}
 		for l in range(1, self.L):
-			parameters["W" + str(l)] = np.random.randn(self.layer_sizes[l], self.layer_sizes[l - 1])/np.sqrt(self.layer_sizes[l - 1])
+			parameters["W" + str(l)] = np.random.randn(self.layer_sizes[l], self.layer_sizes[l - 1]) * np.sqrt(1/(self.layer_sizes[l - 1] + self.layer_sizes[l]))
 			parameters["b" + str(l)] = np.zeros((self.layer_sizes[l], 1))
 		return parameters
 
@@ -104,7 +106,7 @@ class FFNN():
 	# Find the accuracy
 	def findAccuracy(self, x_test, y_test):
 		predictions = []
-		for x,y in tqdm(zip(x_train,y_train), total=len(x_train)):
+		for x,y in tqdm(zip(x_test ,y_test), total=len(x_test)):
 			activations, pre_activations = self.forwardPropagation(x)
 			predictedClass = np.argmax(activations['h3']) + 1
 			y.reshape(len(y),1)
@@ -144,6 +146,8 @@ class FFNN():
 			# Validation Accuracy
 			val_acc = self.findAccuracy(x_val, y_val)
 			print("Validation Accuracy = " + str(val_acc))
+			metrics = {'Validation accuracy': val_acc}
+			wandb.log(metrics)
 
 
 	# Optimization Algorithm: Moment Based Gradient Descent
@@ -193,6 +197,8 @@ class FFNN():
 			# Validation Accuracy
 			val_acc = self.findAccuracy(x_val, y_val)
 			print("Validation Accuracy = " + str(val_acc))
+			metrics = {'Validation accuracy': val_acc}
+			wandb.log(metrics)
 		
 
 	# Optimization Algorithm: Nesterov Accelerated Gradient Descent
@@ -250,6 +256,8 @@ class FFNN():
 			# Validation Accuracy
 			val_acc = self.findAccuracy(x_val, y_val)
 			print("Validation Accuracy = " + str(val_acc))
+			metrics = {'Validation accuracy': val_acc}
+			wandb.log(metrics)
 
 
 	# Optimization Algorithm: RMSProp
@@ -262,7 +270,7 @@ class FFNN():
 		beta = 0.9
 
 		# Epsilon
-		eps = 0.00000001
+		eps = 1e-9
 
 		# Previous values -- History
 		grads_lookAhead = self.initialize_gradients()
@@ -309,11 +317,11 @@ class FFNN():
 		eta = self.l_rate
 
 		# Beta value
-		beta1 = 0.85
-		beta2 = 0.85
+		beta1 = 0.9
+		beta2 = 0.99
 
 		# Epsilon
-		eps = 0.00000001
+		eps = 1e-9
 
 		for epoch in range(self.epochs):
 			print(" =============== Epoch Number: " + str(epoch) + " =============== ")
@@ -361,7 +369,7 @@ class FFNN():
 		beta2 = 0.999
 
 		# Epsilon
-		eps = 0.00000001
+		eps = 1e-9
 
 		for epoch in range(self.epochs):
 			print(" =============== Epoch Number: " + str(epoch) + " =============== ")
@@ -402,10 +410,24 @@ class FFNN():
 			# Validation Accuracy
 			val_acc = self.findAccuracy(x_val, y_val)
 			print("Validation Accuracy = " + str(val_acc))
+			metrics = {'Validation accuracy': val_acc}
+			wandb.log(metrics)
 
 
 	# Training the model
 	def train(self, x_train, y_train, x_val, y_val):
+
+
+		hyperparameter_defaults = dict(
+			batch_size = 100,
+			learning_rate = 0.0001,
+			no_of_epochs = 50
+			)
+
+		wandb.init(config=hyperparameter_defaults, project="Feed-Fwd Neural Network")
+		config = wandb.config
+
+
 		if self.optimizer == 'sgd':
 			self.do_stochastic_gradient_descent(x_train, y_train, x_val, y_val)
 		elif self.optimizer == 'mgd':
