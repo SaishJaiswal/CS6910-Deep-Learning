@@ -408,9 +408,7 @@ class FFNN():
 						second_momenta[key] = beta2*second_momenta[key] + (1-beta2)*np.square(grads[key])
 						first_momenta_hat[key] = first_momenta[key]/(1-math.pow(beta1, epoch+1))
 						second_momenta_hat[key] = second_momenta[key]/(1-math.pow(beta2, epoch+1))
-						self.parameters[key] = self.parameters[key] - (eta/np.sqrt(second_momenta[key] + eps))*first_momenta_hat[key]
-
-					#pdb.set_trace()
+						self.parameters[key] = self.parameters[key] - (eta/(np.sqrt(second_momenta_hat[key]) + eps))*first_momenta_hat[key]
 
 					# Initialize the gradients
 					grads = self.initialize_gradients()
@@ -444,6 +442,9 @@ class FFNN():
 
 		# Gamma
 		gamma = 0.95
+
+		# Previous values -- History
+		prev_gradients = self.initialize_gradients()
 
 		for epoch in range(self.epochs):
 			print(" =============== Epoch Number: " + str(epoch) + " =============== ")
@@ -480,13 +481,21 @@ class FFNN():
 
 				if(num_points_seen % self.batch_size == 0):
 
+					# Calculate Look Ahead
+					for key in lookAheads:
+						lookAheads[key] = gamma*prev_gradients[key] + eta*grads[key]
+
 					# Update History
 					for key in self.parameters:
 						first_momenta[key] = beta1*first_momenta[key] + (1-beta1)*grads[key]
 						second_momenta[key] = beta2*second_momenta[key] + (1-beta2)*np.square(grads[key])
 						first_momenta_hat[key] = first_momenta[key]/(1-math.pow(beta1, epoch+1))
 						second_momenta_hat[key] = second_momenta[key]/(1-math.pow(beta2, epoch+1))
-						self.parameters[key] = self.parameters[key] - (eta/np.sqrt(second_momenta[key] + eps))*first_momenta_hat[key]
+						self.parameters[key] = self.parameters[key] - (eta/(np.sqrt(second_momenta_hat[key]) + eps))*first_momenta_hat[key]
+
+					# Update History
+					for key in prev_gradients:
+						prev_gradients[key] = lookAheads[key]
 
 					# Initialize the gradients
 					grads = self.initialize_gradients()
