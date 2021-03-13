@@ -4,14 +4,15 @@ import numpy as np
 import pdb
 import math
 from tqdm import tqdm
+import wandb
 np.random.seed(1)
 
 class FFNN():
 	# Initializing the hyperparameters
-	def __init__(self, layer_sizes, L, epochs=10, l_rate=0.01, optimizer='sgd', batch_size=1, activation_func='sigmoid', loss_func='cross_entropy', output_activation_func='softmax'):
+	def __init__(self, layer_sizes, L, epochs=10, l_rate=0.01, optimizer='sgd', batch_size=1, activation_func='sigmoid', loss_func='cross_entropy', output_activation_func='softmax', initializer='xavier'):
 		
 		self.layer_sizes = layer_sizes		# Size of each layer			
-		self.L = L				# Number of layers
+		self.L = L				# Number of layer
 		self.epochs = epochs			# Total number of epochs
 		self.l_rate = l_rate			# Learning rate
 		self.optimizer = optimizer		# Optimization algorithm
@@ -19,6 +20,7 @@ class FFNN():
 		self.activation_func = activation_func	# Activation funtion for the hidden layers
 		self.loss_func = loss_func		# Loss funtion
 		self.output_activation_func = output_activation_func	# Activation funtion for the output layer
+		self.initializer = initializer		# For initializing wights
 		self.parameters = self.initializeModelParameters()	# Initializing the parameters -- weights and biases
 
 	# Activation funtion for the hidden layers
@@ -32,6 +34,13 @@ class FFNN():
 			if derivative:
 				return (1 - np.square(tanh_x))
 			return tanh_x
+		elif self.activation_func == 'relu':
+			if derivative:
+				dx = x
+				dx[dx>0] = 1
+				dx[dx<=0] = 0
+				return dx
+			return np.maximum(0.0, x)
 
 	# Activation funtion for the output layer
 	def outputActivation(self, x, derivative=False):
@@ -55,7 +64,10 @@ class FFNN():
 	def initializeModelParameters(self):
 		parameters = {}
 		for l in range(1, self.L):
-			parameters["W" + str(l)] = np.random.randn(self.layer_sizes[l], self.layer_sizes[l - 1])*0.1
+			if self.initializer == 'random':
+				parameters["W" + str(l)] = np.random.randn(self.layer_sizes[l], self.layer_sizes[l - 1])*0.1
+			elif self.initializer == 'xavier':
+				parameters["W" + str(l)] = np.random.randn(self.layer_sizes[l], self.layer_sizes[l - 1]) * np.sqrt(1/ (self.layer_sizes[l - 1] + self.layer_sizes[l]))
 			parameters["b" + str(l)] = np.zeros((self.layer_sizes[l], 1))
 		return parameters
 
@@ -94,7 +106,12 @@ class FFNN():
 		# Compute output gradient
 		f_x = activations['h' + str(self.L-1)]
 		e_y = y.reshape(len(y), 1)
-		gradients['a' + str(self.L-1)] = (f_x - e_y)
+
+		# Gardient with respect to last layer
+		if self.loss_func == 'cross_entropy':
+			gradients['a' + str(self.L-1)] = (f_x - e_y)
+		elif self.loss_func == 'squared_error':
+			gradients['a' + str(self.L-1)] = (f_x - e_y)*f_x*(1-f_x)
 
 		# Compute gradients for hidden layers
 		for k in range(self.L-1, 0, -1):
@@ -161,6 +178,7 @@ class FFNN():
 			print("Training Loss = " + str(train_loss))
 			print("Validation Accuracy = " + str(val_acc))
 			print("Validation Loss = " + str(val_loss))
+			#wandb.log({"val_acc": val_acc, "train_acc": train_acc, "val_loss": val_loss, "train_loss": train_loss})
 
 
 	# Optimization Algorithm: Moment Based Gradient Descent
@@ -224,6 +242,7 @@ class FFNN():
 			print("Training Loss = " + str(train_loss))
 			print("Validation Accuracy = " + str(val_acc))
 			print("Validation Loss = " + str(val_loss))
+			#wandb.log({"val_acc": val_acc, "train_acc": train_acc, "val_loss": val_loss, "train_loss": train_loss})
 		
 
 	# Optimization Algorithm: Nesterov Accelerated Gradient Descent
@@ -295,6 +314,7 @@ class FFNN():
 			print("Training Loss = " + str(train_loss))
 			print("Validation Accuracy = " + str(val_acc))
 			print("Validation Loss = " + str(val_loss))
+			#wandb.log({"val_acc": val_acc, "train_acc": train_acc, "val_loss": val_loss, "train_loss": train_loss})
 
 
 	# Optimization Algorithm: RMSProp
@@ -356,6 +376,7 @@ class FFNN():
 			print("Training Loss = " + str(train_loss))
 			print("Validation Accuracy = " + str(val_acc))
 			print("Validation Loss = " + str(val_loss))
+			#wandb.log({"val_acc": val_acc, "train_acc": train_acc, "val_loss": val_loss, "train_loss": train_loss})
 
 
 	# Optimization Algorithm: Adam
@@ -420,6 +441,7 @@ class FFNN():
 			print("Training Loss = " + str(train_loss))
 			print("Validation Accuracy = " + str(val_acc))
 			print("Validation Loss = " + str(val_loss))
+			#wandb.log({"val_acc": val_acc, "train_acc": train_acc, "val_loss": val_loss, "train_loss": train_loss})
 
 
 	# Optimization Algorithm: NAdam
@@ -507,6 +529,7 @@ class FFNN():
 			print("Training Loss = " + str(train_loss))
 			print("Validation Accuracy = " + str(val_acc))
 			print("Validation Loss = " + str(val_loss))
+			#wandb.log({"val_acc": val_acc, "train_acc": train_acc, "val_loss": val_loss, "train_loss": train_loss})
 
 
 	# Training the model

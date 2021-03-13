@@ -1,0 +1,12 @@
+program: main.py
+method: random
+metric:
+  name: val_acc
+  goal: maximize
+parameters:
+  l_rate:
+    values: [0.001, 0.0001]
+  optimizer:
+    values: ["mgd", "nag"]
+  epochs:
+    values: [5, 10]

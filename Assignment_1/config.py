@@ -13,6 +13,7 @@ def parseArguments():
 	parser.add_argument('--loss', type=str, default='cross_entropy')
 	parser.add_argument('--output_activation', type=str, default='softmax')
 	parser.add_argument('--batch_size', type=int, default=1)
+	parser.add_argument('--initializer', type=str, default='xavier')
 	args = parser.parse_args()
 
 	return args
