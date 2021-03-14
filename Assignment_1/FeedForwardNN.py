@@ -7,21 +7,52 @@ from tqdm import tqdm
 import wandb
 np.random.seed(1)
 
+wandb.init(config={"batch_size": 64, "l_rate": 0.001, "optimizer": 'mgd', "epochs": 5, "activation": "tanh", "initializer": "xavier", "loss": "cross_entropy"}, project="demo")
+myconfig = wandb.config
+
 class FFNN():
 	# Initializing the hyperparameters
-	def __init__(self, layer_sizes, L, epochs=10, l_rate=0.01, optimizer='sgd', batch_size=1, activation_func='sigmoid', loss_func='cross_entropy', output_activation_func='softmax', initializer='xavier'):
+	def __init__(self, layer_sizes, L, epochs=10, l_rate=0.001, optimizer='sgd', batch_size=16, activation_func='sigmoid', loss_func='cross_entropy', output_activation_func='softmax', initializer='xavier'):
 		
 		self.layer_sizes = layer_sizes		# Size of each layer			
 		self.L = L				# Number of layer
+
+		'''
+		self.epochs = myconfig.epochs			# Total number of epochs
+		self.l_rate = myconfig.l_rate			# Learning rate
+		self.optimizer = myconfig.optimizer		# Optimization algorithm
+		self.batch_size = myconfig.batch_size		# Size of a batch
+		self.activation_func = myconfig.activation	# Activation funtion for the hidden layers
+		self.initializer = myconfig.initializer		# For initializing wights
+		self.loss_func = myconfig.loss			# Loss funtion
+
+		'''
 		self.epochs = epochs			# Total number of epochs
 		self.l_rate = l_rate			# Learning rate
 		self.optimizer = optimizer		# Optimization algorithm
 		self.batch_size = batch_size		# Size of a batch
 		self.activation_func = activation_func	# Activation funtion for the hidden layers
-		self.loss_func = loss_func		# Loss funtion
-		self.output_activation_func = output_activation_func	# Activation funtion for the output layer
 		self.initializer = initializer		# For initializing wights
+		self.loss_func = loss_func			# Loss funtion
+		
+		
+		self.output_activation_func = output_activation_func	# Activation funtion for the output layer
 		self.parameters = self.initializeModelParameters()	# Initializing the parameters -- weights and biases
+
+		print()
+		print("############## Hyperparameters Values ##############")
+		print("Number of Hidden Layers: " + str(self.L - 2))
+		print("Layer Sizes: " + str(self.layer_sizes))
+		print("Number of Epochs: " + str(self.epochs))
+		print("Learning Rate: " + str(self.l_rate))
+		print("Optimizer: " + self.optimizer)
+		print("Batch Size: " + str(self.batch_size))
+		print("Activation Function: " + self.activation_func)
+		print("Loss Function: " + self.loss_func)
+		print("Output Activation Funtion: " + self.output_activation_func)
+		print("Initializer: " + self.initializer)
+		print("###################################################")
+		print()
 
 	# Activation funtion for the hidden layers
 	def activation(self, x, derivative=False):
@@ -30,17 +61,14 @@ class FFNN():
 				return (np.exp(-x))/((np.exp(-x)+1)**2)
 			return 1/(1 + np.exp(-x))
 		elif self.activation_func == 'tanh':
-			tanh_X = np.tanh(x)
+			gz = (np.exp(x) - np.exp(-x))/(np.exp(x) + np.exp(-x))
 			if derivative:
-				return (1 - np.square(tanh_x))
-			return tanh_x
+				return 1 - (gz)**2
+			return gz
 		elif self.activation_func == 'relu':
 			if derivative:
-				dx = x
-				dx[dx>0] = 1
-				dx[dx<=0] = 0
-				return dx
-			return np.maximum(0.0, x)
+				return 1. * (x > 0)
+			return x * (x > 0)
 
 	# Activation funtion for the output layer
 	def outputActivation(self, x, derivative=False):
@@ -67,7 +95,7 @@ class FFNN():
 			if self.initializer == 'random':
 				parameters["W" + str(l)] = np.random.randn(self.layer_sizes[l], self.layer_sizes[l - 1])*0.1
 			elif self.initializer == 'xavier':
-				parameters["W" + str(l)] = np.random.randn(self.layer_sizes[l], self.layer_sizes[l - 1]) * np.sqrt(1/ (self.layer_sizes[l - 1] + self.layer_sizes[l]))
+				parameters["W" + str(l)] = np.random.randn(self.layer_sizes[l], self.layer_sizes[l - 1]) * np.sqrt(2/ (self.layer_sizes[l - 1] + self.layer_sizes[l]))
 			parameters["b" + str(l)] = np.zeros((self.layer_sizes[l], 1))
 		return parameters
 
@@ -90,7 +118,7 @@ class FFNN():
 		# From layer 1 to L-1
 		for i in range(1, self.L-1):
 			pre_activations['a' + str(i)] = self.parameters['b' + str(i)] + np.matmul(self.parameters['W' + str(i)], activations['h' + str(i-1)])
-			activations['h' + str(i)] = self.activation(pre_activations['a' + str(i)])
+			activations['h' + str(i)] = self.activation(pre_activations['a' + str(i)], derivative=False)
 
 		# Last layer L
 		pre_activations['a' + str(self.L-1)] = self.parameters['b' + str(self.L-1)] + + np.matmul(self.parameters['W' + str(self.L-1)], activations['h' + str(self.L-1-1)])
@@ -124,26 +152,30 @@ class FFNN():
 	
 			# Compute gradients with respect to layer below (pre-activation)
 			if k > 1:
-				gradients['a' + str(k-1)] = gradients['h' + str(k-1)] * self.activation(pre_activations['a' + str(k-1)])	
+				gradients['a' + str(k-1)] = gradients['h' + str(k-1)] * self.activation(pre_activations['a' + str(k-1)], derivative=True)	
 
 		return gradients
 		
 	# Find the accuracy
 	def modelPerformance(self, x_test, y_test):
 		predictions = []
+		y_true = []
+		y_pred = []
 		losses = []
 		for x,y in tqdm(zip(x_test ,y_test), total=len(x_test)):
 			activations, pre_activations = self.forwardPropagation(x)
-			predictedClass = np.argmax(activations['h' + str(self.L-1)]) + 1
+			predictedClass = np.argmax(activations['h' + str(self.L-1)])
 			y.reshape(len(y),1)
-			actualClass = np.argmax(y) + 1
+			actualClass = np.argmax(y)
+			y_true.append(actualClass)
+			y_pred.append(predictedClass)
 			predictions.append(predictedClass == actualClass)
 			losses.append(self.computeLoss(activations['h' + str(self.L-1)],y))
 
 		accuracy = (np.sum(predictions)*100)/len(predictions)
 		loss = np.sum(losses)/len(losses)
 			
-		return accuracy, loss
+		return accuracy, loss, y_true, y_pred
 
 
 	# Optimization Algorithm: Stochastic Gradient Descent
@@ -172,13 +204,13 @@ class FFNN():
 					self.parameters[key] = self.parameters[key] - eta*current_gradients[key]
 		
 			# Validation Accuracy
-			train_acc, train_loss = self.modelPerformance(x_train, y_train)
-			val_acc, val_loss = self.modelPerformance(x_val, y_val)
+			train_acc, train_loss, y_true, y_pred = self.modelPerformance(x_train, y_train)
+			val_acc, val_loss, y_true, y_pred = self.modelPerformance(x_val, y_val)
 			print("Training Accuracy = " + str(train_acc))
 			print("Training Loss = " + str(train_loss))
 			print("Validation Accuracy = " + str(val_acc))
 			print("Validation Loss = " + str(val_loss))
-			#wandb.log({"val_acc": val_acc, "train_acc": train_acc, "val_loss": val_loss, "train_loss": train_loss})
+			wandb.log({"val_acc": val_acc, "train_acc": train_acc, "val_loss": val_loss, "train_loss": train_loss})
 
 
 	# Optimization Algorithm: Moment Based Gradient Descent
@@ -194,7 +226,7 @@ class FFNN():
 		prev_gradients = self.initialize_gradients()
 
 		for epoch in range(self.epochs):
-			print(" =============== Epoch Number: " + str(epoch) + " =============== ")
+			print(" =============== Epoch Number: " + str(epoch+1) + " =============== ")
 
 			# Initialize the gradients
 			grads = self.initialize_gradients()
@@ -236,13 +268,13 @@ class FFNN():
 					grads = self.initialize_gradients()
 		
 			# Validation Accuracy
-			train_acc, train_loss = self.modelPerformance(x_train, y_train)
-			val_acc, val_loss = self.modelPerformance(x_val, y_val)
+			train_acc, train_loss, y_true, y_pred = self.modelPerformance(x_train, y_train)
+			val_acc, val_loss, y_true, y_pred = self.modelPerformance(x_val, y_val)
 			print("Training Accuracy = " + str(train_acc))
 			print("Training Loss = " + str(train_loss))
 			print("Validation Accuracy = " + str(val_acc))
 			print("Validation Loss = " + str(val_loss))
-			#wandb.log({"val_acc": val_acc, "train_acc": train_acc, "val_loss": val_loss, "train_loss": train_loss})
+			wandb.log({"val_acc": val_acc, "train_acc": train_acc, "val_loss": val_loss, "train_loss": train_loss})
 		
 
 	# Optimization Algorithm: Nesterov Accelerated Gradient Descent
@@ -258,7 +290,7 @@ class FFNN():
 		prev_gradients = self.initialize_gradients()
 
 		for epoch in range(self.epochs):
-			print(" =============== Epoch Number: " + str(epoch) + " =============== ")
+			print(" =============== Epoch Number: " + str(epoch+1) + " =============== ")
 
 			# Initialize the gradients
 			grads = self.initialize_gradients()			# For accumulating gradients
@@ -308,13 +340,13 @@ class FFNN():
 					grads = self.initialize_gradients()
 		
 			# Validation Accuracy
-			train_acc, train_loss = self.modelPerformance(x_train, y_train)
-			val_acc, val_loss = self.modelPerformance(x_val, y_val)
+			train_acc, train_loss, y_true, y_pred = self.modelPerformance(x_train, y_train)
+			val_acc, val_loss, y_true, y_pred = self.modelPerformance(x_val, y_val)
 			print("Training Accuracy = " + str(train_acc))
 			print("Training Loss = " + str(train_loss))
 			print("Validation Accuracy = " + str(val_acc))
 			print("Validation Loss = " + str(val_loss))
-			#wandb.log({"val_acc": val_acc, "train_acc": train_acc, "val_loss": val_loss, "train_loss": train_loss})
+			wandb.log({"val_acc": val_acc, "train_acc": train_acc, "val_loss": val_loss, "train_loss": train_loss})
 
 
 	# Optimization Algorithm: RMSProp
@@ -333,7 +365,7 @@ class FFNN():
 		lookAheads = self.initialize_gradients()
 
 		for epoch in range(self.epochs):
-			print(" =============== Epoch Number: " + str(epoch) + " =============== ")
+			print(" =============== Epoch Number: " + str(epoch+1) + " =============== ")
 
 			# Initialize the gradients
 			grads = self.initialize_gradients()
@@ -370,13 +402,13 @@ class FFNN():
 					grads = self.initialize_gradients()
 		
 			# Validation Accuracy
-			train_acc, train_loss = self.modelPerformance(x_train, y_train)
-			val_acc, val_loss = self.modelPerformance(x_val, y_val)
+			train_acc, train_loss, y_true, y_pred = self.modelPerformance(x_train, y_train)
+			val_acc, val_loss, y_true, y_pred = self.modelPerformance(x_val, y_val)
 			print("Training Accuracy = " + str(train_acc))
 			print("Training Loss = " + str(train_loss))
 			print("Validation Accuracy = " + str(val_acc))
 			print("Validation Loss = " + str(val_loss))
-			#wandb.log({"val_acc": val_acc, "train_acc": train_acc, "val_loss": val_loss, "train_loss": train_loss})
+			wandb.log({"val_acc": val_acc, "train_acc": train_acc, "val_loss": val_loss, "train_loss": train_loss})
 
 
 	# Optimization Algorithm: Adam
@@ -398,7 +430,7 @@ class FFNN():
 		eps = 0.00000001
 
 		for epoch in range(self.epochs):
-			print(" =============== Epoch Number: " + str(epoch) + " =============== ")
+			print(" =============== Epoch Number: " + str(epoch+1) + " =============== ")
 
 			# Initialize the gradients
 			grads = self.initialize_gradients()
@@ -435,13 +467,13 @@ class FFNN():
 					grads = self.initialize_gradients()
 		
 			# Validation Accuracy
-			train_acc, train_loss = self.modelPerformance(x_train, y_train)
-			val_acc, val_loss = self.modelPerformance(x_val, y_val)
+			train_acc, train_loss, y_true, y_pred = self.modelPerformance(x_train, y_train)
+			val_acc, val_loss, y_true, y_pred = self.modelPerformance(x_val, y_val)
 			print("Training Accuracy = " + str(train_acc))
 			print("Training Loss = " + str(train_loss))
 			print("Validation Accuracy = " + str(val_acc))
 			print("Validation Loss = " + str(val_loss))
-			#wandb.log({"val_acc": val_acc, "train_acc": train_acc, "val_loss": val_loss, "train_loss": train_loss})
+			wandb.log({"val_acc": val_acc, "train_acc": train_acc, "val_loss": val_loss, "train_loss": train_loss})
 
 
 	# Optimization Algorithm: NAdam
@@ -469,7 +501,7 @@ class FFNN():
 		prev_gradients = self.initialize_gradients()
 
 		for epoch in range(self.epochs):
-			print(" =============== Epoch Number: " + str(epoch) + " =============== ")
+			print(" =============== Epoch Number: " + str(epoch+1) + " =============== ")
 
 			# Initialize the gradients
 			grads = self.initialize_gradients()
@@ -523,13 +555,13 @@ class FFNN():
 					grads = self.initialize_gradients()
 		
 			# Validation Accuracy
-			train_acc, train_loss = self.modelPerformance(x_train, y_train)
-			val_acc, val_loss = self.modelPerformance(x_val, y_val)
+			train_acc, train_loss, y_true, y_pred = self.modelPerformance(x_train, y_train)
+			val_acc, val_loss, y_true, y_pred = self.modelPerformance(x_val, y_val)
 			print("Training Accuracy = " + str(train_acc))
 			print("Training Loss = " + str(train_loss))
 			print("Validation Accuracy = " + str(val_acc))
 			print("Validation Loss = " + str(val_loss))
-			#wandb.log({"val_acc": val_acc, "train_acc": train_acc, "val_loss": val_loss, "train_loss": train_loss})
+			wandb.log({"val_acc": val_acc, "train_acc": train_acc, "val_loss": val_loss, "train_loss": train_loss})
 
 
 	# Training the model

@@ -1,0 +1,41 @@
+2021-03-14 23:46:54,689 INFO    MainThread:15281 [internal.py:wandb_internal():91] W&B internal server running at pid: 15281, started at: 2021-03-14 23:46:54.689576
+2021-03-14 23:46:54,691 INFO    WriterThread:15281 [datastore.py:open_for_write():77] open: /cbr/saish/PhD/DL/Assignment_1/wandb/run-20210314_234653-vloxy28c/run-vloxy28c.wandb
+2021-03-14 23:46:54,692 DEBUG   HandlerThread:15281 [handler.py:handle_request():101] handle_request: check_version
+2021-03-14 23:46:54,693 DEBUG   SenderThread:15281 [sender.py:send():161] send: header
+2021-03-14 23:46:54,693 DEBUG   SenderThread:15281 [sender.py:send():161] send: request
+2021-03-14 23:46:54,693 DEBUG   SenderThread:15281 [sender.py:send_request():170] send_request: check_version
+2021-03-14 23:46:54,781 DEBUG   SenderThread:15281 [sender.py:send():161] send: run
+2021-03-14 23:46:55,081 INFO    SenderThread:15281 [sender.py:_start_run_threads():638] run started: vloxy28c with start time 1615745813
+2021-03-14 23:46:55,081 DEBUG   SenderThread:15281 [sender.py:send():161] send: summary
+2021-03-14 23:46:55,082 INFO    SenderThread:15281 [sender.py:_save_file():769] saving file wandb-summary.json with policy end
+2021-03-14 23:46:55,084 DEBUG   HandlerThread:15281 [handler.py:handle_request():101] handle_request: run_start
+2021-03-14 23:46:57,174 DEBUG   HandlerThread:15281 [meta.py:__init__():34] meta init
+2021-03-14 23:46:57,174 DEBUG   HandlerThread:15281 [meta.py:__init__():48] meta init done
+2021-03-14 23:46:57,174 DEBUG   HandlerThread:15281 [meta.py:probe():190] probe
+2021-03-14 23:46:57,181 DEBUG   HandlerThread:15281 [meta.py:_setup_git():180] setup git
+2021-03-14 23:46:57,210 DEBUG   HandlerThread:15281 [meta.py:_setup_git():187] setup git done
+2021-03-14 23:46:57,211 DEBUG   HandlerThread:15281 [meta.py:_save_pip():52] save pip
+2021-03-14 23:46:57,212 DEBUG   HandlerThread:15281 [meta.py:_save_pip():66] save pip done
+2021-03-14 23:46:57,212 DEBUG   HandlerThread:15281 [meta.py:probe():231] probe done
+2021-03-14 23:46:57,216 DEBUG   SenderThread:15281 [sender.py:send():161] send: files
+2021-03-14 23:46:57,216 INFO    SenderThread:15281 [sender.py:_save_file():769] saving file wandb-metadata.json with policy now
+2021-03-14 23:46:57,230 DEBUG   HandlerThread:15281 [handler.py:handle_request():101] handle_request: status
+2021-03-14 23:46:57,230 DEBUG   SenderThread:15281 [sender.py:send():161] send: request
+2021-03-14 23:46:57,230 DEBUG   SenderThread:15281 [sender.py:send_request():170] send_request: status
+2021-03-14 23:46:58,708 DEBUG   SenderThread:15281 [sender.py:send():161] send: history
+2021-03-14 23:46:58,708 DEBUG   SenderThread:15281 [sender.py:send():161] send: summary
+2021-03-14 23:46:58,709 INFO    SenderThread:15281 [sender.py:_save_file():769] saving file wandb-summary.json with policy end
+2021-03-14 23:46:59,530 DEBUG   SenderThread:15281 [sender.py:send():161] send: files
+2021-03-14 23:46:59,531 INFO    SenderThread:15281 [sender.py:_save_file():769] saving file media/images/Images_1_763de35b.png with policy now
+2021-03-14 23:46:59,531 DEBUG   SenderThread:15281 [sender.py:send():161] send: history
+2021-03-14 23:46:59,531 DEBUG   SenderThread:15281 [sender.py:send():161] send: summary
+2021-03-14 23:46:59,535 INFO    SenderThread:15281 [sender.py:_save_file():769] saving file wandb-summary.json with policy end
+2021-03-14 23:47:12,518 DEBUG   HandlerThread:15281 [handler.py:handle_request():101] handle_request: status
+2021-03-14 23:47:12,518 DEBUG   SenderThread:15281 [sender.py:send():161] send: request
+2021-03-14 23:47:12,518 DEBUG   SenderThread:15281 [sender.py:send_request():170] send_request: status
+2021-03-14 23:47:19,717 WARNING MainThread:15281 [internal.py:is_dead():344] Internal process exiting, parent pid 15210 disappeared
+2021-03-14 23:47:19,717 ERROR   MainThread:15281 [internal.py:wandb_internal():142] Internal process shutdown.
+2021-03-14 23:47:20,506 INFO    SenderThread:15281 [sender.py:finish():872] shutting down sender
+2021-03-14 23:47:20,507 INFO    WriterThread:15281 [datastore.py:close():258] close: /cbr/saish/PhD/DL/Assignment_1/wandb/run-20210314_234653-vloxy28c/run-vloxy28c.wandb
+2021-03-14 23:47:20,509 INFO    HandlerThread:15281 [handler.py:finish():535] shutting down handler
+2021-03-14 23:47:23,132 INFO    MainThread:15281 [internal.py:handle_exit():78] Internal process exited

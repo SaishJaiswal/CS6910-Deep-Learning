@@ -7,6 +7,7 @@ import numpy as np
 import pdb
 from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
+import wandb
 
 
 def display_images(images, titles, cols, cmap):
@@ -23,13 +24,38 @@ def display_images(images, titles, cols, cmap):
 
 	plt.show()
 	plt.savefig('/cbr/saish/PhD/image.png')
+	im = plt.imread('/others/ishika/DL/Assignment_1/image.png')
+	wandb.log({"Images": wandb.Image(im, caption="Sample image of each class")})
 
 
 def main(args):
-	print(args)
+	#print(args)
 
 	# Hyperparameters
-	layer_sizes = args.layer_sizes
+
+	############ Layer Sizes ############
+
+	## Option 1 -- getting from command line with each hidden layer of same/different size
+	'''
+	#layer_sizes = args.layer_sizes
+	'''
+
+	# Option 2 -- getting from command line with each hidden layer of same size
+	layer_sizes = []
+	layer_sizes.append(784)
+	n_hlayers = args.n_hlayers
+	hlayer_size = args.hlayer_size
+	for i in range(n_hlayers):
+		layer_sizes.append(hlayer_size)
+	layer_sizes.append(10)
+	wandb.log({"n_hidden_layers": n_hlayers, "hidden_layer_size": hlayer_size})
+
+	# Option 3 -- setting layer sizes manually
+	'''
+	layer_sizes = [784, 128, 32, 10]
+	'''
+
+
 	L = len(layer_sizes)
 	epochs = args.epochs
 	l_rate = args.l_rate
@@ -39,6 +65,9 @@ def main(args):
 	output_activation = args.output_activation
 	batch_size = args.batch_size
 	initializer = args.initializer
+
+	labels = {0: "T-shirt", 1: "Trouser", 2: "Pullover", 3: "Dress", 4: "Coat", 5: "Sandal", 6: "Shirt", 7: "Sneaker", 8: "Bag", 9: "Ankle boot"}
+	lab = ["T-shirt", "Trouser", "Pullover", "Dress", "Coat", "Sandal", "Shirt", "Sneaker", "Bag", "Ankle boot"]
 
 	# Load dataset           
 	(X_train, Y_train), (x_test, y_test) = fashion_mnist.load_data()
@@ -80,10 +109,12 @@ def main(args):
 	network.train(x_train, y_train, x_val, y_val)
 
 	# Testing
-	test_acc, test_loss = network.modelPerformance(x_test, y_test)
+	test_acc, test_loss, y_true, y_pred = network.modelPerformance(x_test, y_test)
 	print("################################")
 	print("Testing Accuracy = " + str(test_acc))
 	print("Testing Loss = " + str(test_loss))
+	wandb.log({"test_acc": test_acc})
+	wandb.log({"Confusion_Matrix": wandb.sklearn.plot_confusion_matrix(y_true, y_pred, lab)})
 
 
 if __name__ == "__main__":
