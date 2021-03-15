@@ -1,0 +1,41 @@
+Using TensorFlow backend.
+/cbr/saish/.local/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:516: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint8 = np.dtype([("qint8", np.int8, 1)])
+/cbr/saish/.local/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:517: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint8 = np.dtype([("quint8", np.uint8, 1)])
+/cbr/saish/.local/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:518: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint16 = np.dtype([("qint16", np.int16, 1)])
+/cbr/saish/.local/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:519: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint16 = np.dtype([("quint16", np.uint16, 1)])
+/cbr/saish/.local/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:520: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint32 = np.dtype([("qint32", np.int32, 1)])
+/cbr/saish/.local/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:525: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  np_resource = np.dtype([("resource", np.ubyte, 1)])
+/cbr/saish/.local/lib/python3.7/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:541: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint8 = np.dtype([("qint8", np.int8, 1)])
+/cbr/saish/.local/lib/python3.7/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:542: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint8 = np.dtype([("quint8", np.uint8, 1)])
+/cbr/saish/.local/lib/python3.7/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:543: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint16 = np.dtype([("qint16", np.int16, 1)])
+/cbr/saish/.local/lib/python3.7/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:544: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint16 = np.dtype([("quint16", np.uint16, 1)])
+/cbr/saish/.local/lib/python3.7/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:545: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint32 = np.dtype([("qint32", np.int32, 1)])
+/cbr/saish/.local/lib/python3.7/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:550: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  np_resource = np.dtype([("resource", np.ubyte, 1)])
+
+############## Hyperparameters Values ##############
+Number of Hidden Layers: 4
+Layer Sizes: [784, 64, 64, 64, 64, 10]
+Number of Epochs: 10
+Learning Rate: 0.0001
+Optimizer: nag
+Batch Size: 16
+Activation Function: tanh
+Loss Function: squared_error
+Output Activation Funtion: softmax
+Initializer: xavier
+###################################################
+
+ =============== Epoch Number: 1 =============== 
+  0%|          | 0/54000 [00:00<?, ?it/s]  0%|          | 107/54000 [00:00<00:50, 1067.11it/s]  0%|          | 215/54000 [00:00<00:50, 1066.98it/s]  1%|          | 281/54000 [00:00<00:59, 896.83it/s]   1%|          | 348/54000 [00:00<01:06, 810.17it/s]  1%|          | 409/54000 [00:00<01:23, 638.28it/s]  1%|          | 464/54000 [00:00<01:30, 594.72it/s]  1%|          | 534/54000 [00:00<01:25, 622.53it/s]  1%|          | 607/54000 [00:00<01:22, 650.54it/s]  1%|▏         | 716/54000 [00:00<01:12, 739.56it/s]  2%|▏         | 825/54000 [00:01<01:04, 818.11it/s]  2%|▏         | 912/54000 [00:01<01:15, 704.57it/s]  2%|▏         | 989/54000 [00:01<01:37, 545.21it/s]  2%|▏         | 1054/54000 [00:01<01:39, 529.89it/s]  2%|▏         | 1114/54000 [00:01<01:55, 457.81it/s]  2%|▏         | 1167/54000 [00:01<02:03, 426.51it/s]  2%|▏         | 1215/54000 [00:02<02:06, 415.85it/s]  2%|▏         | 1267/54000 [00:02<01:59, 442.17it/s]  2%|▏         | 1322/54000 [00:02<01:54, 460.47it/s]  3%|▎         | 1371/54000 [00:02<01:52, 468.49it/s]  3%|▎         | 1479/54000 [00:02<01:33, 564.29it/s]  3%|▎         | 1546/54000 [00:02<01:40, 523.93it/s]  3%|▎         | 1656/54000 [00:02<01:24, 620.72it/s]  3%|▎         | 1731/54000 [00:02<01:20, 645.66it/s]  3%|▎         | 1805/54000 [00:02<01:35, 547.75it/s]  3%|▎         | 1869/54000 [00:03<01:37, 532.35it/s]  4%|▎         | 1929/54000 [00:03<01:54, 454.23it/s]  4%|▎         | 1981/54000 [00:03<02:00, 431.83it/s]  4%|▍         | 2033/54000 [00:03<01:56, 446.71it/s]  4%|▍         | 2082/54000 [00:03<01:54, 451.71it/s]

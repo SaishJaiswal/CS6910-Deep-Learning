@@ -1,0 +1,1 @@
+{"n_hidden_layers": 4, "hidden_layer_size": 64, "_runtime": 4, "_timestamp": 1615799478, "_step": 2, "Fashion-MNIST images": {"_type": "image-file", "path": "media/images/Fashion-MNIST images_1_65989982.png", "sha256": "65989982ca9140b3494aef15e158692a0ca48daf0a3ff66ca953a1819d12d93a", "size": 523, "format": "png", "width": 28, "height": 28, "caption": "Dress"}, "Label": 2}

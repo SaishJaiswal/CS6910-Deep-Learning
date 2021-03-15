@@ -1,0 +1,65 @@
+2021-03-15 14:38:23,602 INFO    MainThread:41794 [internal.py:wandb_internal():91] W&B internal server running at pid: 41794, started at: 2021-03-15 14:38:23.602158
+2021-03-15 14:38:23,604 INFO    WriterThread:41794 [datastore.py:open_for_write():77] open: /cbr/saish/PhD/DL/Assignment_1/wandb/run-20210315_143822-es7ei45w/run-es7ei45w.wandb
+2021-03-15 14:38:23,604 DEBUG   HandlerThread:41794 [handler.py:handle_request():101] handle_request: check_version
+2021-03-15 14:38:23,605 DEBUG   SenderThread:41794 [sender.py:send():161] send: header
+2021-03-15 14:38:23,605 DEBUG   SenderThread:41794 [sender.py:send():161] send: request
+2021-03-15 14:38:23,606 DEBUG   SenderThread:41794 [sender.py:send_request():170] send_request: check_version
+2021-03-15 14:38:23,952 DEBUG   SenderThread:41794 [sender.py:send():161] send: run
+2021-03-15 14:38:24,256 INFO    SenderThread:41794 [sender.py:_start_run_threads():638] run started: es7ei45w with start time 1615799302
+2021-03-15 14:38:24,257 DEBUG   SenderThread:41794 [sender.py:send():161] send: summary
+2021-03-15 14:38:24,257 INFO    SenderThread:41794 [sender.py:_save_file():769] saving file wandb-summary.json with policy end
+2021-03-15 14:38:24,258 DEBUG   HandlerThread:41794 [handler.py:handle_request():101] handle_request: run_start
+2021-03-15 14:38:25,533 DEBUG   HandlerThread:41794 [meta.py:__init__():34] meta init
+2021-03-15 14:38:25,533 DEBUG   HandlerThread:41794 [meta.py:__init__():48] meta init done
+2021-03-15 14:38:25,533 DEBUG   HandlerThread:41794 [meta.py:probe():190] probe
+2021-03-15 14:38:25,540 DEBUG   HandlerThread:41794 [meta.py:_setup_git():180] setup git
+2021-03-15 14:38:25,563 DEBUG   HandlerThread:41794 [meta.py:_setup_git():187] setup git done
+2021-03-15 14:38:25,563 DEBUG   HandlerThread:41794 [meta.py:_save_pip():52] save pip
+2021-03-15 14:38:25,563 DEBUG   HandlerThread:41794 [meta.py:_save_pip():66] save pip done
+2021-03-15 14:38:25,564 DEBUG   HandlerThread:41794 [meta.py:probe():231] probe done
+2021-03-15 14:38:25,567 DEBUG   SenderThread:41794 [sender.py:send():161] send: files
+2021-03-15 14:38:25,567 INFO    SenderThread:41794 [sender.py:_save_file():769] saving file wandb-metadata.json with policy now
+2021-03-15 14:38:25,573 DEBUG   HandlerThread:41794 [handler.py:handle_request():101] handle_request: status
+2021-03-15 14:38:25,573 DEBUG   SenderThread:41794 [sender.py:send():161] send: request
+2021-03-15 14:38:25,573 DEBUG   SenderThread:41794 [sender.py:send_request():170] send_request: status
+2021-03-15 14:38:26,923 DEBUG   SenderThread:41794 [sender.py:send():161] send: history
+2021-03-15 14:38:26,923 DEBUG   SenderThread:41794 [sender.py:send():161] send: summary
+2021-03-15 14:38:26,923 INFO    SenderThread:41794 [sender.py:_save_file():769] saving file wandb-summary.json with policy end
+2021-03-15 14:38:27,440 DEBUG   SenderThread:41794 [sender.py:send():161] send: files
+2021-03-15 14:38:27,442 INFO    SenderThread:41794 [sender.py:_save_file():769] saving file media/images/Fashion-MNIST images_1_adf48a20.png with policy now
+2021-03-15 14:38:27,442 DEBUG   SenderThread:41794 [sender.py:send():161] send: history
+2021-03-15 14:38:27,442 DEBUG   SenderThread:41794 [sender.py:send():161] send: summary
+2021-03-15 14:38:27,443 INFO    SenderThread:41794 [sender.py:_save_file():769] saving file wandb-summary.json with policy end
+2021-03-15 14:38:27,443 DEBUG   SenderThread:41794 [sender.py:send():161] send: history
+2021-03-15 14:38:27,444 DEBUG   SenderThread:41794 [sender.py:send():161] send: summary
+2021-03-15 14:38:27,541 INFO    SenderThread:41794 [sender.py:_save_file():769] saving file wandb-summary.json with policy end
+2021-03-15 14:38:40,921 DEBUG   HandlerThread:41794 [handler.py:handle_request():101] handle_request: status
+2021-03-15 14:38:40,922 DEBUG   SenderThread:41794 [sender.py:send():161] send: request
+2021-03-15 14:38:40,922 DEBUG   SenderThread:41794 [sender.py:send_request():170] send_request: status
+2021-03-15 14:38:55,591 DEBUG   SenderThread:41794 [sender.py:send():161] send: stats
+2021-03-15 14:38:56,184 DEBUG   HandlerThread:41794 [handler.py:handle_request():101] handle_request: status
+2021-03-15 14:38:56,184 DEBUG   SenderThread:41794 [sender.py:send():161] send: request
+2021-03-15 14:38:56,184 DEBUG   SenderThread:41794 [sender.py:send_request():170] send_request: status
+2021-03-15 14:39:11,525 DEBUG   HandlerThread:41794 [handler.py:handle_request():101] handle_request: status
+2021-03-15 14:39:11,525 DEBUG   SenderThread:41794 [sender.py:send():161] send: request
+2021-03-15 14:39:11,526 DEBUG   SenderThread:41794 [sender.py:send_request():170] send_request: status
+2021-03-15 14:39:26,784 DEBUG   HandlerThread:41794 [handler.py:handle_request():101] handle_request: status
+2021-03-15 14:39:26,785 DEBUG   SenderThread:41794 [sender.py:send():161] send: request
+2021-03-15 14:39:26,785 DEBUG   SenderThread:41794 [sender.py:send_request():170] send_request: status
+2021-03-15 14:39:27,612 DEBUG   SenderThread:41794 [sender.py:send():161] send: stats
+2021-03-15 14:39:42,088 DEBUG   HandlerThread:41794 [handler.py:handle_request():101] handle_request: status
+2021-03-15 14:39:42,089 DEBUG   SenderThread:41794 [sender.py:send():161] send: request
+2021-03-15 14:39:42,089 DEBUG   SenderThread:41794 [sender.py:send_request():170] send_request: status
+2021-03-15 14:39:44,267 DEBUG   SenderThread:41794 [sender.py:send():161] send: history
+2021-03-15 14:39:44,267 DEBUG   SenderThread:41794 [sender.py:send():161] send: summary
+2021-03-15 14:39:44,268 INFO    SenderThread:41794 [sender.py:_save_file():769] saving file wandb-summary.json with policy end
+2021-03-15 14:39:57,365 DEBUG   HandlerThread:41794 [handler.py:handle_request():101] handle_request: status
+2021-03-15 14:39:57,365 DEBUG   SenderThread:41794 [sender.py:send():161] send: request
+2021-03-15 14:39:57,365 DEBUG   SenderThread:41794 [sender.py:send_request():170] send_request: status
+2021-03-15 14:39:59,295 DEBUG   SenderThread:41794 [sender.py:send():161] send: stats
+2021-03-15 14:40:08,721 WARNING MainThread:41794 [internal.py:is_dead():344] Internal process exiting, parent pid 41715 disappeared
+2021-03-15 14:40:08,721 ERROR   MainThread:41794 [internal.py:wandb_internal():142] Internal process shutdown.
+2021-03-15 14:40:09,473 INFO    SenderThread:41794 [sender.py:finish():872] shutting down sender
+2021-03-15 14:40:09,474 INFO    WriterThread:41794 [datastore.py:close():258] close: /cbr/saish/PhD/DL/Assignment_1/wandb/run-20210315_143822-es7ei45w/run-es7ei45w.wandb
+2021-03-15 14:40:09,480 INFO    HandlerThread:41794 [handler.py:finish():535] shutting down handler
+2021-03-15 14:40:14,604 INFO    MainThread:41794 [internal.py:handle_exit():78] Internal process exited
