@@ -1,4 +1,4 @@
-#Implementation of Feedforward Neural Network#
+**Implementation of Feedforward Neural Network using NumPy library**
 
 [Link to the wandb.ai report](https://wandb.ai/saish/Deep-Learning/reports/CS6910-Assignment-1--Vmlldzo1MzI2OTE)
 
