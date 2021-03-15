@@ -22,7 +22,7 @@ Hyperparameter | Values/Usage
 -------------------- | --------------------
 n_classes | 10
 n_hlayers | 3, 4, 5
--l | 784 128 64 32 10
+-l (variable length layers) | 784 128 64 32 10
 epochs | 5, 10
 activation | 'sigmoid', 'relu', 'tanh'
 loss | 'cross_entropy', 'squared_error'
