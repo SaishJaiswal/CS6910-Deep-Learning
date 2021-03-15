@@ -1,0 +1,79 @@
+2021-03-15 02:52:48,728 INFO    MainThread:18925 [wandb_setup.py:_flush():69] setting env: {'entity': 'saish', 'project': 'demo', 'sweep_id': 'gn0pd3id', 'root_dir': '/cbr/saish/PhD/DL/Assignment_1', 'run_id': '6ja5l7h7', 'sweep_param_path': '/cbr/saish/PhD/DL/Assignment_1/wandb/sweep-gn0pd3id/config-6ja5l7h7.yaml'}
+2021-03-15 02:52:48,728 INFO    MainThread:18925 [wandb_setup.py:_flush():69] setting login settings: {}
+2021-03-15 02:52:48,729 INFO    MainThread:18925 [wandb_init.py:_log_setup():334] Logging user logs to /cbr/saish/PhD/DL/Assignment_1/wandb/run-20210315_025248-6ja5l7h7/logs/debug.log
+2021-03-15 02:52:48,729 INFO    MainThread:18925 [wandb_init.py:_log_setup():335] Logging internal logs to /cbr/saish/PhD/DL/Assignment_1/wandb/run-20210315_025248-6ja5l7h7/logs/debug-internal.log
+2021-03-15 02:52:48,729 INFO    MainThread:18925 [wandb_init.py:init():367] calling init triggers
+2021-03-15 02:52:48,729 INFO    MainThread:18925 [wandb_init.py:init():374] wandb.init called with sweep_config: {'activation': 'tanh', 'batch_size': 16, 'epochs': 10, 'hlayer_size': 32, 'initializer': 'random', 'l_rate': 0.0001, 'loss': 'cross_entropy', 'n_hlayers': 4, 'optimizer': 'adam'}
+config: {'batch_size': 64, 'l_rate': 0.001, 'optimizer': 'mgd', 'epochs': 5, 'activation': 'tanh', 'initializer': 'xavier', 'loss': 'cross_entropy'}
+2021-03-15 02:52:48,729 INFO    MainThread:18925 [wandb_init.py:init():416] starting backend
+2021-03-15 02:52:48,729 INFO    MainThread:18925 [backend.py:_multiprocessing_setup():71] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2021-03-15 02:52:48,740 INFO    MainThread:18925 [backend.py:ensure_launched():123] starting backend process...
+2021-03-15 02:52:48,744 INFO    MainThread:18925 [backend.py:ensure_launched():128] started backend process with pid: 18996
+2021-03-15 02:52:48,745 INFO    MainThread:18925 [wandb_init.py:init():421] backend started and connected
+2021-03-15 02:52:48,746 INFO    MainThread:18925 [wandb_run.py:_config_callback():733] config_cb None None {'activation': 'tanh', 'batch_size': 16, 'epochs': 10, 'hlayer_size': 32, 'initializer': 'random', 'l_rate': 0.0001, 'loss': 'cross_entropy', 'n_hlayers': 4, 'optimizer': 'adam'}
+2021-03-15 02:52:48,746 INFO    MainThread:18925 [wandb_init.py:init():461] updated telemetry
+2021-03-15 02:52:48,746 INFO    MainThread:18925 [wandb_init.py:init():480] communicating current version
+2021-03-15 02:52:49,925 INFO    MainThread:18925 [wandb_init.py:init():485] got version response 
+2021-03-15 02:52:49,926 INFO    MainThread:18925 [wandb_init.py:init():493] communicating run to backend with 30 second timeout
+2021-03-15 02:52:50,229 INFO    MainThread:18925 [wandb_init.py:init():518] starting run threads in backend
+2021-03-15 02:52:52,585 INFO    MainThread:18925 [wandb_run.py:_console_start():1480] atexit reg
+2021-03-15 02:52:52,586 INFO    MainThread:18925 [wandb_run.py:_redirect():1343] redirect: SettingsConsole.REDIRECT
+2021-03-15 02:52:52,586 INFO    MainThread:18925 [wandb_run.py:_redirect():1348] Redirecting console.
+2021-03-15 02:52:52,586 INFO    MainThread:18925 [redirect.py:install():213] install start
+2021-03-15 02:52:52,587 INFO    MainThread:18925 [redirect.py:install():228] install stop
+2021-03-15 02:52:52,587 INFO    MainThread:18925 [redirect.py:install():213] install start
+2021-03-15 02:52:52,587 INFO    MainThread:18925 [redirect.py:install():228] install stop
+2021-03-15 02:52:52,587 INFO    MainThread:18925 [wandb_run.py:_redirect():1394] Redirects installed.
+2021-03-15 02:52:52,587 INFO    MainThread:18925 [wandb_init.py:init():542] run started, returning control to user process
+2021-03-15 03:02:01,979 INFO    MainThread:18925 [wandb_run.py:_config_callback():733] config_cb ('_wandb', 'viz', 'confusion_matrix') {'id': 'wandb/confusion_matrix/v1', 'historyFieldSettings': {'key': 'confusion_matrix', 'x-axis': '_step'}} None
+2021-03-15 03:02:01,997 INFO    MainThread:18925 [wandb_run.py:_atexit_cleanup():1450] got exitcode: 0
+2021-03-15 03:02:01,998 INFO    MainThread:18925 [wandb_run.py:_restore():1422] restore
+2021-03-15 03:02:01,998 INFO    MainThread:18925 [redirect.py:uninstall():232] uninstall start
+2021-03-15 03:02:01,998 INFO    MainThread:18925 [redirect.py:_stop():287] _stop: stdout
+2021-03-15 03:02:01,999 INFO    MainThread:18925 [redirect.py:_stop():293] _stop closed: stdout
+2021-03-15 03:02:01,999 INFO    stdout    :18925 [redirect.py:_pipe_relay():129] relay done saw last write: stdout
+2021-03-15 03:02:01,999 INFO    stdout    :18925 [redirect.py:_pipe_relay():145] relay done done: stdout
+2021-03-15 03:02:02,000 INFO    MainThread:18925 [redirect.py:_stop():299] _stop joined: stdout
+2021-03-15 03:02:02,000 INFO    MainThread:18925 [redirect.py:_stop():301] _stop rd closed: stdout
+2021-03-15 03:02:02,000 INFO    MainThread:18925 [redirect.py:uninstall():236] uninstall done
+2021-03-15 03:02:02,000 INFO    MainThread:18925 [redirect.py:uninstall():232] uninstall start
+2021-03-15 03:02:02,000 INFO    MainThread:18925 [redirect.py:_stop():287] _stop: stderr
+2021-03-15 03:02:02,000 INFO    MainThread:18925 [redirect.py:_stop():293] _stop closed: stderr
+2021-03-15 03:02:02,000 INFO    stderr    :18925 [redirect.py:_pipe_relay():129] relay done saw last write: stderr
+2021-03-15 03:02:02,000 INFO    stderr    :18925 [redirect.py:_pipe_relay():145] relay done done: stderr
+2021-03-15 03:02:02,000 INFO    MainThread:18925 [redirect.py:_stop():299] _stop joined: stderr
+2021-03-15 03:02:02,001 INFO    MainThread:18925 [redirect.py:_stop():301] _stop rd closed: stderr
+2021-03-15 03:02:02,001 INFO    MainThread:18925 [redirect.py:uninstall():236] uninstall done
+2021-03-15 03:02:02,560 INFO    MainThread:18925 [wandb_run.py:_wait_for_finish():1572] got exit ret: file_counts {
+  wandb_count: 1
+  media_count: 2
+}
+pusher_stats {
+  uploaded_bytes: 33463
+  total_bytes: 36115
+}
+
+2021-03-15 03:02:04,565 INFO    MainThread:18925 [wandb_run.py:_wait_for_finish():1572] got exit ret: file_counts {
+  wandb_count: 5
+  media_count: 2
+}
+pusher_stats {
+  uploaded_bytes: 402490
+  total_bytes: 402490
+}
+
+2021-03-15 03:02:06,571 INFO    MainThread:18925 [wandb_run.py:_wait_for_finish():1572] got exit ret: done: true
+exit_result {
+}
+file_counts {
+  wandb_count: 5
+  media_count: 2
+}
+pusher_stats {
+  uploaded_bytes: 402490
+  total_bytes: 402490
+}
+
+2021-03-15 03:02:08,198 INFO    MainThread:18925 [wandb_run.py:_show_summary():1727] rendering summary
+2021-03-15 03:02:08,199 INFO    MainThread:18925 [wandb_run.py:_show_history():1765] rendering history
+2021-03-15 03:02:08,200 INFO    MainThread:18925 [wandb_run.py:_show_files():1794] logging synced files

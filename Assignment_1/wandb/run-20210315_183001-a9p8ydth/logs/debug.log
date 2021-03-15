@@ -1,0 +1,27 @@
+2021-03-15 18:30:01,764 INFO    MainThread:2320 [wandb_setup.py:_flush():69] setting env: {'entity': 'saish', 'project': 'Deep-Learning', 'sweep_id': '1wyfksde', 'root_dir': '/cbr/saish/PhD/DL/Assignment_1', 'run_id': 'a9p8ydth', 'sweep_param_path': '/cbr/saish/PhD/DL/Assignment_1/wandb/sweep-1wyfksde/config-a9p8ydth.yaml'}
+2021-03-15 18:30:01,764 INFO    MainThread:2320 [wandb_setup.py:_flush():69] setting login settings: {}
+2021-03-15 18:30:01,764 INFO    MainThread:2320 [wandb_init.py:_log_setup():334] Logging user logs to /cbr/saish/PhD/DL/Assignment_1/wandb/run-20210315_183001-a9p8ydth/logs/debug.log
+2021-03-15 18:30:01,764 INFO    MainThread:2320 [wandb_init.py:_log_setup():335] Logging internal logs to /cbr/saish/PhD/DL/Assignment_1/wandb/run-20210315_183001-a9p8ydth/logs/debug-internal.log
+2021-03-15 18:30:01,765 INFO    MainThread:2320 [wandb_init.py:init():367] calling init triggers
+2021-03-15 18:30:01,765 INFO    MainThread:2320 [wandb_init.py:init():374] wandb.init called with sweep_config: {'activation': 'tanh', 'batch_size': 32, 'epochs': 5, 'hlayer_size': 32, 'initializer': 'random', 'l_rate': 0.0001, 'loss': 'cross_entropy', 'n_hlayers': 4, 'optimizer': 'sgd'}
+config: {'batch_size': 64, 'l_rate': 0.001, 'optimizer': 'mgd', 'epochs': 5, 'activation': 'tanh', 'initializer': 'xavier', 'loss': 'cross_entropy'}
+2021-03-15 18:30:01,765 INFO    MainThread:2320 [wandb_init.py:init():416] starting backend
+2021-03-15 18:30:01,765 INFO    MainThread:2320 [backend.py:_multiprocessing_setup():71] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2021-03-15 18:30:01,776 INFO    MainThread:2320 [backend.py:ensure_launched():123] starting backend process...
+2021-03-15 18:30:01,781 INFO    MainThread:2320 [backend.py:ensure_launched():128] started backend process with pid: 2393
+2021-03-15 18:30:01,782 INFO    MainThread:2320 [wandb_init.py:init():421] backend started and connected
+2021-03-15 18:30:01,788 INFO    MainThread:2320 [wandb_run.py:_config_callback():733] config_cb None None {'activation': 'tanh', 'batch_size': 32, 'epochs': 5, 'hlayer_size': 32, 'initializer': 'random', 'l_rate': 0.0001, 'loss': 'cross_entropy', 'n_hlayers': 4, 'optimizer': 'sgd'}
+2021-03-15 18:30:01,789 INFO    MainThread:2320 [wandb_init.py:init():461] updated telemetry
+2021-03-15 18:30:01,789 INFO    MainThread:2320 [wandb_init.py:init():480] communicating current version
+2021-03-15 18:30:02,839 INFO    MainThread:2320 [wandb_init.py:init():485] got version response 
+2021-03-15 18:30:02,840 INFO    MainThread:2320 [wandb_init.py:init():493] communicating run to backend with 30 second timeout
+2021-03-15 18:30:03,151 INFO    MainThread:2320 [wandb_init.py:init():518] starting run threads in backend
+2021-03-15 18:30:06,611 INFO    MainThread:2320 [wandb_run.py:_console_start():1480] atexit reg
+2021-03-15 18:30:06,613 INFO    MainThread:2320 [wandb_run.py:_redirect():1343] redirect: SettingsConsole.REDIRECT
+2021-03-15 18:30:06,613 INFO    MainThread:2320 [wandb_run.py:_redirect():1348] Redirecting console.
+2021-03-15 18:30:06,613 INFO    MainThread:2320 [redirect.py:install():213] install start
+2021-03-15 18:30:06,614 INFO    MainThread:2320 [redirect.py:install():228] install stop
+2021-03-15 18:30:06,614 INFO    MainThread:2320 [redirect.py:install():213] install start
+2021-03-15 18:30:06,614 INFO    MainThread:2320 [redirect.py:install():228] install stop
+2021-03-15 18:30:06,614 INFO    MainThread:2320 [wandb_run.py:_redirect():1394] Redirects installed.
+2021-03-15 18:30:06,614 INFO    MainThread:2320 [wandb_init.py:init():542] run started, returning control to user process

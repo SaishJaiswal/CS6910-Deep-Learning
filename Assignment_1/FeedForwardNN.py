@@ -78,16 +78,6 @@ class FFNN():
 			    return exps / np.sum(exps, axis=0) * (1 - exps / np.sum(exps, axis=0))
 			return exps / np.sum(exps, axis=0)
 
-	# Compute Loss
-	def computeLoss(self, yHat, y):
-		if self.loss_func == 'cross_entropy':
-			indexClass = np.argmax(y)
-			loss = -math.log(yHat[indexClass])
-			return loss
-		if self.loss_func == 'squared_error':
-			loss = 0.5*np.sum((y-yHat)**2)
-			return loss
-
 	# Initializing the parameters -- weights and biases
 	def initializeModelParameters(self):
 		parameters = {}
@@ -155,6 +145,19 @@ class FFNN():
 				gradients['a' + str(k-1)] = gradients['h' + str(k-1)] * self.activation(pre_activations['a' + str(k-1)], derivative=True)	
 
 		return gradients
+
+	# Compute Loss
+	def computeLoss(self, yHat, y):
+		if self.loss_func == 'cross_entropy':
+			indexClass = np.argmax(y)
+			prob = yHat[indexClass]
+			if(prob<=0):
+				prob = prob + 0.0000000001		
+			loss = -math.log(prob)
+			return loss
+		if self.loss_func == 'squared_error':
+			loss = 0.5*np.sum((y-yHat)**2)
+			return loss
 		
 	# Find the accuracy
 	def modelPerformance(self, x_test, y_test):
@@ -210,7 +213,7 @@ class FFNN():
 			print("Training Loss = " + str(train_loss))
 			print("Validation Accuracy = " + str(val_acc))
 			print("Validation Loss = " + str(val_loss))
-			wandb.log({"val_acc": val_acc, "train_acc": train_acc, "val_loss": val_loss, "train_loss": train_loss})
+			wandb.log({"val_acc": val_acc, "train_acc": train_acc, "val_loss": val_loss, "train_loss": train_loss, "epoch": epoch+1})
 
 
 	# Optimization Algorithm: Moment Based Gradient Descent
@@ -274,7 +277,7 @@ class FFNN():
 			print("Training Loss = " + str(train_loss))
 			print("Validation Accuracy = " + str(val_acc))
 			print("Validation Loss = " + str(val_loss))
-			wandb.log({"val_acc": val_acc, "train_acc": train_acc, "val_loss": val_loss, "train_loss": train_loss})
+			wandb.log({"val_acc": val_acc, "train_acc": train_acc, "val_loss": val_loss, "train_loss": train_loss, "epoch": epoch+1})
 		
 
 	# Optimization Algorithm: Nesterov Accelerated Gradient Descent
@@ -346,7 +349,7 @@ class FFNN():
 			print("Training Loss = " + str(train_loss))
 			print("Validation Accuracy = " + str(val_acc))
 			print("Validation Loss = " + str(val_loss))
-			wandb.log({"val_acc": val_acc, "train_acc": train_acc, "val_loss": val_loss, "train_loss": train_loss})
+			wandb.log({"val_acc": val_acc, "train_acc": train_acc, "val_loss": val_loss, "train_loss": train_loss, "epoch": epoch+1})
 
 
 	# Optimization Algorithm: RMSProp
@@ -408,7 +411,7 @@ class FFNN():
 			print("Training Loss = " + str(train_loss))
 			print("Validation Accuracy = " + str(val_acc))
 			print("Validation Loss = " + str(val_loss))
-			wandb.log({"val_acc": val_acc, "train_acc": train_acc, "val_loss": val_loss, "train_loss": train_loss})
+			wandb.log({"val_acc": val_acc, "train_acc": train_acc, "val_loss": val_loss, "train_loss": train_loss, "epoch": epoch+1})
 
 
 	# Optimization Algorithm: Adam
@@ -473,7 +476,7 @@ class FFNN():
 			print("Training Loss = " + str(train_loss))
 			print("Validation Accuracy = " + str(val_acc))
 			print("Validation Loss = " + str(val_loss))
-			wandb.log({"val_acc": val_acc, "train_acc": train_acc, "val_loss": val_loss, "train_loss": train_loss})
+			wandb.log({"val_acc": val_acc, "train_acc": train_acc, "val_loss": val_loss, "train_loss": train_loss, "epoch": epoch+1})
 
 
 	# Optimization Algorithm: NAdam
@@ -561,7 +564,7 @@ class FFNN():
 			print("Training Loss = " + str(train_loss))
 			print("Validation Accuracy = " + str(val_acc))
 			print("Validation Loss = " + str(val_loss))
-			wandb.log({"val_acc": val_acc, "train_acc": train_acc, "val_loss": val_loss, "train_loss": train_loss})
+			wandb.log({"val_acc": val_acc, "train_acc": train_acc, "val_loss": val_loss, "train_loss": train_loss, "epoch": epoch+1})
 
 
 	# Training the model

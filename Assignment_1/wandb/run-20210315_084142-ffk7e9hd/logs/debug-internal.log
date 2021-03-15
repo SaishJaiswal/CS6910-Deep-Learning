@@ -1,0 +1,42 @@
+2021-03-15 08:41:43,672 INFO    MainThread:27767 [internal.py:wandb_internal():91] W&B internal server running at pid: 27767, started at: 2021-03-15 08:41:43.672011
+2021-03-15 08:41:43,674 INFO    WriterThread:27767 [datastore.py:open_for_write():77] open: /cbr/saish/PhD/DL/Assignment_1/wandb/run-20210315_084142-ffk7e9hd/run-ffk7e9hd.wandb
+2021-03-15 08:41:43,674 DEBUG   HandlerThread:27767 [handler.py:handle_request():101] handle_request: check_version
+2021-03-15 08:41:43,676 DEBUG   SenderThread:27767 [sender.py:send():161] send: header
+2021-03-15 08:41:43,676 DEBUG   SenderThread:27767 [sender.py:send():161] send: request
+2021-03-15 08:41:43,676 DEBUG   SenderThread:27767 [sender.py:send_request():170] send_request: check_version
+2021-03-15 08:41:43,763 DEBUG   SenderThread:27767 [sender.py:send():161] send: run
+2021-03-15 08:41:44,044 INFO    SenderThread:27767 [sender.py:_start_run_threads():638] run started: ffk7e9hd with start time 1615777902
+2021-03-15 08:41:44,044 DEBUG   SenderThread:27767 [sender.py:send():161] send: summary
+2021-03-15 08:41:44,044 INFO    SenderThread:27767 [sender.py:_save_file():769] saving file wandb-summary.json with policy end
+2021-03-15 08:41:44,045 DEBUG   HandlerThread:27767 [handler.py:handle_request():101] handle_request: run_start
+2021-03-15 08:41:46,223 DEBUG   HandlerThread:27767 [meta.py:__init__():34] meta init
+2021-03-15 08:41:46,223 DEBUG   HandlerThread:27767 [meta.py:__init__():48] meta init done
+2021-03-15 08:41:46,223 DEBUG   HandlerThread:27767 [meta.py:probe():190] probe
+2021-03-15 08:41:46,230 DEBUG   HandlerThread:27767 [meta.py:_setup_git():180] setup git
+2021-03-15 08:41:46,253 DEBUG   HandlerThread:27767 [meta.py:_setup_git():187] setup git done
+2021-03-15 08:41:46,253 DEBUG   HandlerThread:27767 [meta.py:_save_pip():52] save pip
+2021-03-15 08:41:46,254 DEBUG   HandlerThread:27767 [meta.py:_save_pip():66] save pip done
+2021-03-15 08:41:46,254 DEBUG   HandlerThread:27767 [meta.py:probe():231] probe done
+2021-03-15 08:41:46,257 DEBUG   SenderThread:27767 [sender.py:send():161] send: files
+2021-03-15 08:41:46,257 INFO    SenderThread:27767 [sender.py:_save_file():769] saving file wandb-metadata.json with policy now
+2021-03-15 08:41:46,263 DEBUG   HandlerThread:27767 [handler.py:handle_request():101] handle_request: status
+2021-03-15 08:41:46,264 DEBUG   SenderThread:27767 [sender.py:send():161] send: request
+2021-03-15 08:41:46,264 DEBUG   SenderThread:27767 [sender.py:send_request():170] send_request: status
+2021-03-15 08:41:47,511 DEBUG   SenderThread:27767 [sender.py:send():161] send: history
+2021-03-15 08:41:47,512 DEBUG   SenderThread:27767 [sender.py:send():161] send: summary
+2021-03-15 08:41:47,512 INFO    SenderThread:27767 [sender.py:_save_file():769] saving file wandb-summary.json with policy end
+2021-03-15 08:41:48,337 DEBUG   SenderThread:27767 [sender.py:send():161] send: files
+2021-03-15 08:41:48,337 INFO    SenderThread:27767 [sender.py:_save_file():769] saving file media/images/Images_1_763de35b.png with policy now
+2021-03-15 08:41:48,339 DEBUG   SenderThread:27767 [sender.py:send():161] send: history
+2021-03-15 08:41:48,339 DEBUG   SenderThread:27767 [sender.py:send():161] send: summary
+2021-03-15 08:41:48,342 INFO    SenderThread:27767 [sender.py:_save_file():769] saving file wandb-summary.json with policy end
+2021-03-15 08:42:01,598 DEBUG   HandlerThread:27767 [handler.py:handle_request():101] handle_request: status
+2021-03-15 08:42:01,599 DEBUG   SenderThread:27767 [sender.py:send():161] send: request
+2021-03-15 08:42:01,599 DEBUG   SenderThread:27767 [sender.py:send_request():170] send_request: status
+2021-03-15 08:42:15,732 DEBUG   SenderThread:27767 [sender.py:send():161] send: stats
+2021-03-15 08:42:16,707 WARNING MainThread:27767 [internal.py:is_dead():344] Internal process exiting, parent pid 27696 disappeared
+2021-03-15 08:42:16,707 ERROR   MainThread:27767 [internal.py:wandb_internal():142] Internal process shutdown.
+2021-03-15 08:42:16,732 INFO    HandlerThread:27767 [handler.py:finish():535] shutting down handler
+2021-03-15 08:42:16,735 INFO    SenderThread:27767 [sender.py:finish():872] shutting down sender
+2021-03-15 08:42:16,742 INFO    WriterThread:27767 [datastore.py:close():258] close: /cbr/saish/PhD/DL/Assignment_1/wandb/run-20210315_084142-ffk7e9hd/run-ffk7e9hd.wandb
+2021-03-15 08:42:18,385 INFO    MainThread:27767 [internal.py:handle_exit():78] Internal process exited

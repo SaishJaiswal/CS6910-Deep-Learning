@@ -1,0 +1,1 @@
+{"n_hidden_layers": 5, "hidden_layer_size": 128, "_runtime": 1774, "_timestamp": 1615803585, "_step": 11, "val_acc": 77.96666666666667, "train_acc": 79.7074074074074, "val_loss": 0.6492133127387987, "train_loss": 0.5919260387567166, "epoch": 10, "test_acc": 78.05}

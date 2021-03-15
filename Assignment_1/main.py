@@ -1,6 +1,7 @@
 import config
 import FeedForwardNN
 from keras.datasets import fashion_mnist
+from keras.datasets import mnist
 from sklearn.model_selection import train_test_split
 from keras.utils.np_utils import to_categorical
 import numpy as np
@@ -8,25 +9,7 @@ import pdb
 from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
 import wandb
-
-
-def display_images(images, titles, cols, cmap):
-
-	rows = len(images)//cols + 1
-	plt.figure(figsize=(12,6))
-	i = 1
-	for image, title in zip(images, titles):
-		plt.subplot(rows, cols, i)
-		plt.title(title, fontsize=12)
-		plt.axis('off')
-		plt.imshow(image, cmap=cmap)
-		i += 1
-
-	plt.show()
-	plt.savefig('/cbr/saish/PhD/image.png')
-	im = plt.imread('/others/ishika/DL/Assignment_1/image.png')
-	wandb.log({"Images": wandb.Image(im, caption="Sample image of each class")})
-
+	
 
 def main(args):
 	#print(args)
@@ -69,14 +52,18 @@ def main(args):
 	labels = {0: "T-shirt", 1: "Trouser", 2: "Pullover", 3: "Dress", 4: "Coat", 5: "Sandal", 6: "Shirt", 7: "Sneaker", 8: "Bag", 9: "Ankle boot"}
 	lab = ["T-shirt", "Trouser", "Pullover", "Dress", "Coat", "Sandal", "Shirt", "Sneaker", "Bag", "Ankle boot"]
 
-	# Load dataset           
+	################################### Load dataset ###################################           
 	(X_train, Y_train), (x_test, y_test) = fashion_mnist.load_data()
 
 	# Display images
+	'''
 	indexes = [0,1,3,5,6,8,16,18,19,23]
 	images = [X_train[i] for i in indexes]
 	titles = ['Ankle Boot', 'T-Shirt', 'Dress', 'Pullover', 'Sneaker', 'Sandal', 'Trouser', 'Shirt', 'Coat', 'Bag']
-	display_images(images, titles, cols=5, cmap=plt.get_cmap('gray'))
+	label = 9
+	wandb.log({"Fashion-MNIST images": wandb.Image(images[label], caption=titles[label])})
+	wandb.log({"Label": label})
+	'''
 	
 	# Change data type to float64
 	X_train = X_train.astype('float64')
