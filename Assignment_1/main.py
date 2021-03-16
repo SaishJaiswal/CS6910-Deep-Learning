@@ -53,7 +53,7 @@ def main(args):
 	lab = ["T-shirt", "Trouser", "Pullover", "Dress", "Coat", "Sandal", "Shirt", "Sneaker", "Bag", "Ankle boot"]
 
 	################################### Load dataset ###################################           
-	(X_train, Y_train), (x_test, y_test) = mnist.load_data()
+	(X_train, Y_train), (x_test, y_test) = fashion_mnist.load_data()
 
 	# Display images
 	'''

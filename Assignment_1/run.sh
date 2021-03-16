@@ -7,4 +7,4 @@
 #python -m wandb sweep --project "Deep-Learning" sweep.yaml
 #python -m wandb agent "saish/Deep-Learning/1wyfksde"
 
-python main.py --optimizer sgd --epochs 5 --l_rate 0.001 --batch_size 32 --loss cross_entropy --activation tanh --n_hlayers 3 --hlayer_size 128
+python main.py --optimizer nadam --epochs 5 --l_rate 0.001 --batch_size 32 --loss squared_error --activation relu --n_hlayers 5 --hlayer_size 128 --initializer random

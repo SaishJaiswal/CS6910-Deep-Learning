@@ -7,7 +7,7 @@ from tqdm import tqdm
 import wandb
 np.random.seed(1)
 
-wandb.init(config={"batch_size": 64, "l_rate": 0.001, "optimizer": 'mgd', "epochs": 5, "activation": "tanh", "initializer": "xavier", "loss": "cross_entropy"}, project="demo")
+wandb.init(config={"batch_size": 32, "l_rate": 0.001, "optimizer": 'nadam', "epochs": 5, "activation": "relu", "initializer": "random", "loss": "squared_error", "n_hlayers": 5, "hlayer_size": 128}, project="Deep-Learning")
 myconfig = wandb.config
 
 class FFNN():
