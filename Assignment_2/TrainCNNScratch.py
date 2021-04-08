@@ -88,6 +88,7 @@ y_val = to_categorical(y_val)
 np.savez('data.npz', X_train=X_train, X_val=X_val, y_train=y_train, y_val=y_val)
 '''
 
+'''
 ############################################## Data Augmentation ##############################################
 train_datagen = ImageDataGenerator(
         rotation_range=40,
@@ -124,6 +125,7 @@ for batch in generator:
 
 
 pdb.set_trace()
+'''
 
 #### Read the Stored Data
 data = np.load('/cbr/saish/Datasets/data.npz')
@@ -140,6 +142,19 @@ if K.image_data_format() == 'channels_first':
 else:
     input_shape = (img_width, img_height, 3)
 
+def gelu(x):
+	"""Gaussian Error Linear Unit.
+	This is a smoother version of the RELU.
+	Original paper: https://arxiv.org/abs/1606.08415
+	refer : https://github.com/google-research/bert/blob/bee6030e31e42a9394ac567da170a89a98d2062f/modeling.py#L264
+	Args:
+	x: float Tensor to perform activation.
+	Returns:
+	`x` with the GELU activation applied.
+	"""
+	cdf = 0.5 * (1.0 + tf.tanh((np.sqrt(2 / np.pi) * (x + 0.044715 * tf.pow(x, 3)))))
+    	return x * cdf
+
 pdb.set_trace()
 
 model = Sequential()
@@ -154,6 +169,7 @@ initializer = keras.initializers.Orthogonal(gain=1.0, seed=None)
 #he_normal Initializer
 #keras.initializers.he_normal(seed=None)
 
+'''
 ############################## Layer 1 ##############################
 model.add(Conv2D(128, (2, 2), activation='linear', kernel_initializer=initializer, padding='same', input_shape=input_shape))
 model.add(LeakyReLU(alpha=0.1))
@@ -178,11 +194,36 @@ model.add(MaxPooling2D((2, 2), padding='same'))
 model.add(Conv2D(16, (2, 2), activation='linear', kernel_initializer=initializer, padding='same'))
 model.add(LeakyReLU(alpha=0.1))
 model.add(MaxPooling2D((2, 2), padding='same'))
+'''
+############################## Layer 1 ##############################
+model.add(Conv2D(128, (3, 3), activation='linear', kernel_initializer=initializer, padding='same', input_shape=input_shape))
+model.add(Activation('gelu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+
+############################## Layer 1 ##############################
+model.add(Conv2D(128, (3, 3), activation='linear', kernel_initializer=initializer, padding='same'))
+model.add(Activation('gelu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+
+############################## Layer 1 ##############################
+model.add(Conv2D(128, (3, 3), activation='linear', kernel_initializer=initializer, padding='same'))
+model.add(Activation('gelu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+
+############################## Layer 1 ##############################
+model.add(Conv2D(128, (3, 3), activation='linear', kernel_initializer=initializer, padding='same'))
+model.add(Activation('gelu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+
+############################## Layer 1 ##############################
+model.add(Conv2D(128, (3, 3), activation='linear', kernel_initializer=initializer, padding='same'))
+model.add(Activation('gelu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
 
 ############################## Dense Layer 1 ##############################
 model.add(Flatten())
 model.add(Dense(128, activation='linear', kernel_initializer=initializer))
-model.add(LeakyReLU(alpha=0.1))
+model.add(Activation('gelu'))
 
 ############################## Dense Layer 2 ##############################
 #model.add(Dropout(0.2))
