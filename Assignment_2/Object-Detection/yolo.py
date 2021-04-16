@@ -6,7 +6,7 @@ import pdb
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--webcam', help="True/False", default=False)
-parser.add_argument('--play_video', help="Tue/False", default=False)
+parser.add_argument('--play_video', help="True/False", default=False)
 parser.add_argument('--image', help="Tue/False", default=False)
 parser.add_argument('--video_path', help="Path of video file", default="Videos/car_on_road.mp4")
 parser.add_argument('--image_path', help="Path of image to detect objects", default="Images/bicycle.jpg")
@@ -113,6 +113,7 @@ def webcam_detect():
 
 
 def start_video(video_path):
+	pdb.set_trace()
 	model, classes, colors, output_layers = load_yolo()
 	cap = cv2.VideoCapture(video_path)
 
@@ -121,7 +122,8 @@ def start_video(video_path):
 
 	size = (frame_width, frame_height)
 
-	result = cv2.VideoWriter('Dectected.avi', cv2.VideoWriter_fourcc(*'MJPG'), 10, size)
+	detected_video = '/cbr/saish/Datasets/Videos/traffic-2_dectected.avi'
+	result = cv2.VideoWriter(detected_video, cv2.VideoWriter_fourcc(*'MJPG'), 10, size)
 	count=1
 
 	while True:
@@ -154,6 +156,7 @@ if __name__ == '__main__':
 			print('---- Starting Web Cam object detection ----')
 		webcam_detect()
 	if video_play:
+		pdb.set_trace()
 		video_path = args.video_path
 		if args.verbose:
 			print('Opening '+video_path+" .... ")
