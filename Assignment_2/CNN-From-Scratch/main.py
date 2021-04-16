@@ -11,8 +11,12 @@ from tqdm import tqdm
 import pdb
 import config
 
+from numpy.random import seed
+seed(1)
+
 from tensorflow.keras.models import load_model
 
+############ Main Program ############
 def main(args):
 
 	################################## Reading Arguments ##################################
@@ -32,16 +36,8 @@ def main(args):
 	denselayer_size = args.denselayer_size
 	batch_norm = args.batch_norm
 	train_model = args.train_model
+	dropout = args.dropout
 
-	n_filters_layer1 = 32
-	n_filters_layer2 = 32
-	n_filters_layer3 = 32
-	n_filters_layer4 = 32
-	n_filters_layer5 = 32
-
-	filter_shape = (filter_size, filter_size)
-
-	DROP_OUT = 0.4
 
 	############################################ Data Preprocessing ############################################
 	WIDTH, HEIGHT, CHANNELS = 224, 224, 3
@@ -51,27 +47,40 @@ def main(args):
 	################# Read Data #################
 	X_train, X_val, X_test, y_train, y_val, y_test = ReadData(WIDTH, HEIGHT, CHANNELS, train_data_dir, test_data_dir, read_data=False)
 
-	################# Data Augmentation #################
+	'''
+	################# For Data Augmentation #################
 	if data_augmentation:
-		train_datagen = ImageDataGenerator(
-			rotation_range=40,
-			width_shift_range=0.2,
-			height_shift_range=0.2,
-			shear_range=0.2,
-			zoom_range=0.2,
-			horizontal_flip=True,
-			fill_mode='nearest')
+		gen = ImageDataGenerator(rotation_range=10, width_shift_range=0.1, height_shift_range=0.1, shear_range=0.15, zoom_range=0.1, channel_shift_range=10., horizontal_flip=True)
 
-	if train_model:
-		model = CNNmodel.CNN_Model(n_classes, n_filters, filter_size, filter_multiplier, var_n_filters, l_rate, epochs, optimizer, activation, loss, batch_size, initializer, data_augmentation, denselayer_size, batch_norm, train_model)
+		########## Initialize the model ##########
+		model = <initialize_here>
+
+		########### Train the model ###########
+		model.fit(gen.flow(X_train, y_train, batch_size=32), steps_per_epoch=len(X_train) / 16, validation_data=(X_val, y_val), epochs=5, verbose=1)
+
+		########### Test the model ###########
+		test_eval = model.evaluate(X_test, y_test, verbose=0)
+		print('Test loss:', test_eval[0])
+		print('Test accuracy:', test_eval[1])
+		
+		return 0
+	'''
+
+	if train_model:			
+		########### Initialize the model ###########
+		model = CNNmodel.CNN_Model(n_classes, n_filters, filter_size, filter_multiplier, var_n_filters, l_rate, epochs, optimizer, activation, loss, batch_size, initializer, data_augmentation, denselayer_size, batch_norm, train_model, dropout)
+
+		########### Train the model ###########
 		model.TrainModel(X_train, y_train, X_val, y_val)
+
+		########### Test the model ###########
 		model.TestModel(X_test, y_test)
 
 	else:	
-		######################## Load the Model ########################
+		########### Load the model ###########
 		model = load_model('model.h5')
 
-		################################### Testing ###################################
+		########### Test the model ###########
 		test_eval = model.evaluate(X_test, y_test, verbose=0)
 		print('Test loss:', test_eval[0])
 		print('Test accuracy:', test_eval[1])

@@ -4,8 +4,10 @@ import glob
 from tqdm import tqdm
 
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
 from tensorflow.keras.utils import to_categorical
+
+from numpy.random import seed
+seed(1)
 
 
 def ReadData(WIDTH, HEIGHT, CHANNELS, train_data_dir, test_data_dir, read_data=True):
@@ -55,7 +57,7 @@ def ReadData(WIDTH, HEIGHT, CHANNELS, train_data_dir, test_data_dir, read_data=T
 		y = np.array(y)
 
 		######### Train-Test Split #########
-		X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.10, random_state=0, stratify=y)
+		X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.10, random_state=42, stratify=y)
 
 		######### Reshape #########
 		X_train = X_train.reshape(X_train.shape[0], WIDTH, HEIGHT, 3)
