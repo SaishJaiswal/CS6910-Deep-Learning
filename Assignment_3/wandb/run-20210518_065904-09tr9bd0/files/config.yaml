@@ -1,0 +1,60 @@
+wandb_version: 1
+
+Cell_Type:
+  desc: null
+  value: GRU
+_wandb:
+  desc: null
+  value:
+    cli_version: 0.10.30
+    framework: tensorflow
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    python_version: 3.7.5
+    t:
+      1:
+      - 3
+      - 5
+      2:
+      - 3
+      - 5
+      3:
+      - 3
+      - 8
+      4: 3.7.5
+      5: 0.10.30
+      8:
+      - 5
+batch_size:
+  desc: null
+  value: 64
+beam_size:
+  desc: null
+  value: 10
+dropout:
+  desc: null
+  value: 0.2
+emb_size:
+  desc: null
+  value: 64
+embedding_size:
+  desc: null
+  value: 64
+epochs:
+  desc: null
+  value: 5
+h_layer_size:
+  desc: null
+  value: 64
+hidden_layer_size:
+  desc: null
+  value: 128
+l_rate:
+  desc: null
+  value: 0.01
+n_enc_dec_layers:
+  desc: null
+  value: 3
+optimizer:
+  desc: null
+  value: Nadam

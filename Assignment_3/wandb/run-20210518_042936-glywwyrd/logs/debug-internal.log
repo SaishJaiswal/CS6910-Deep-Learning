@@ -1,0 +1,345 @@
+2021-05-18 04:29:36,859 INFO    MainThread:34622 [internal.py:wandb_internal():91] W&B internal server running at pid: 34622, started at: 2021-05-18 04:29:36.859397
+2021-05-18 04:29:36,861 INFO    WriterThread:34622 [datastore.py:open_for_write():77] open: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_042936-glywwyrd/run-glywwyrd.wandb
+2021-05-18 04:29:36,862 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: check_version
+2021-05-18 04:29:36,864 DEBUG   SenderThread:34622 [sender.py:send():176] send: header
+2021-05-18 04:29:36,864 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: check_version
+2021-05-18 04:29:36,935 DEBUG   SenderThread:34622 [sender.py:send():176] send: run
+2021-05-18 04:29:37,234 INFO    SenderThread:34622 [dir_watcher.py:__init__():168] watching files in: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_042936-glywwyrd/files
+2021-05-18 04:29:37,234 INFO    SenderThread:34622 [sender.py:_start_run_threads():699] run started: glywwyrd with start time 1621292376
+2021-05-18 04:29:37,235 DEBUG   SenderThread:34622 [sender.py:send():176] send: summary
+2021-05-18 04:29:37,235 INFO    SenderThread:34622 [sender.py:_save_file():821] saving file wandb-summary.json with policy end
+2021-05-18 04:29:37,239 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: run_start
+2021-05-18 04:29:38,239 INFO    Thread-8  :34622 [dir_watcher.py:_on_file_created():216] file/dir created: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_042936-glywwyrd/files/wandb-summary.json
+2021-05-18 04:29:38,798 DEBUG   HandlerThread:34622 [meta.py:__init__():39] meta init
+2021-05-18 04:29:38,798 DEBUG   HandlerThread:34622 [meta.py:__init__():53] meta init done
+2021-05-18 04:29:38,798 DEBUG   HandlerThread:34622 [meta.py:probe():210] probe
+2021-05-18 04:29:38,805 DEBUG   HandlerThread:34622 [meta.py:_setup_git():200] setup git
+2021-05-18 04:29:38,826 DEBUG   HandlerThread:34622 [meta.py:_setup_git():207] setup git done
+2021-05-18 04:29:38,826 DEBUG   HandlerThread:34622 [meta.py:_save_pip():57] save pip
+2021-05-18 04:29:38,827 DEBUG   HandlerThread:34622 [meta.py:_save_pip():71] save pip done
+2021-05-18 04:29:38,827 DEBUG   HandlerThread:34622 [meta.py:probe():252] probe done
+2021-05-18 04:29:38,831 DEBUG   SenderThread:34622 [sender.py:send():176] send: files
+2021-05-18 04:29:38,831 INFO    SenderThread:34622 [sender.py:_save_file():821] saving file wandb-metadata.json with policy now
+2021-05-18 04:29:38,837 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:29:38,838 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:29:39,238 INFO    Thread-8  :34622 [dir_watcher.py:_on_file_created():216] file/dir created: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_042936-glywwyrd/files/wandb-metadata.json
+2021-05-18 04:29:39,239 INFO    Thread-8  :34622 [dir_watcher.py:_on_file_created():216] file/dir created: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_042936-glywwyrd/files/output.log
+2021-05-18 04:29:39,239 INFO    Thread-8  :34622 [dir_watcher.py:_on_file_created():216] file/dir created: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_042936-glywwyrd/files/requirements.txt
+2021-05-18 04:29:39,706 INFO    Thread-11 :34622 [upload_job.py:push():133] Uploaded file /tmp/tmpxn35qrvvwandb/vfktfxic-wandb-metadata.json
+2021-05-18 04:29:41,416 DEBUG   SenderThread:34622 [sender.py:send():176] send: run
+2021-05-18 04:29:41,421 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: get_summary
+2021-05-18 04:29:41,717 INFO    SenderThread:34622 [sender.py:send_run():600] updated run: glywwyrd
+2021-05-18 04:29:41,717 DEBUG   SenderThread:34622 [sender.py:send():176] send: files
+2021-05-18 04:29:41,717 INFO    SenderThread:34622 [sender.py:_save_file():821] saving file model-best.h5 with policy live
+2021-05-18 04:29:42,240 INFO    Thread-8  :34622 [dir_watcher.py:_on_file_modified():229] file/dir modified: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_042936-glywwyrd/files/config.yaml
+2021-05-18 04:29:47,758 DEBUG   SenderThread:34622 [sender.py:send():176] send: files
+2021-05-18 04:29:47,758 INFO    SenderThread:34622 [sender.py:_save_file():821] saving file media/graph/graph_summary_8173c73c.graph.json with policy now
+2021-05-18 04:29:47,759 DEBUG   SenderThread:34622 [sender.py:send():176] send: summary
+2021-05-18 04:29:47,762 INFO    SenderThread:34622 [sender.py:_save_file():821] saving file wandb-summary.json with policy end
+2021-05-18 04:29:48,243 INFO    Thread-8  :34622 [dir_watcher.py:_on_file_modified():229] file/dir modified: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_042936-glywwyrd/files/wandb-summary.json
+2021-05-18 04:29:48,243 INFO    Thread-8  :34622 [dir_watcher.py:_on_file_created():216] file/dir created: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_042936-glywwyrd/files/media/graph/graph_summary_8173c73c.graph.json
+2021-05-18 04:29:48,244 INFO    Thread-8  :34622 [dir_watcher.py:_on_file_created():216] file/dir created: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_042936-glywwyrd/files/media
+2021-05-18 04:29:48,244 INFO    Thread-8  :34622 [dir_watcher.py:_on_file_created():216] file/dir created: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_042936-glywwyrd/files/media/graph
+2021-05-18 04:29:48,515 INFO    Thread-12 :34622 [upload_job.py:push():133] Uploaded file /tmp/tmpxn35qrvvwandb/2vn44q5m-media/graph/graph_summary_8173c73c.graph.json
+2021-05-18 04:29:54,109 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:29:54,109 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:30:07,911 DEBUG   SenderThread:34622 [sender.py:send():176] send: stats
+2021-05-18 04:30:09,369 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:30:09,369 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:30:25,098 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:30:25,099 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:30:39,060 DEBUG   SenderThread:34622 [sender.py:send():176] send: stats
+2021-05-18 04:30:40,351 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:30:40,352 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:30:55,614 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:30:55,615 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:31:10,198 DEBUG   SenderThread:34622 [sender.py:send():176] send: stats
+2021-05-18 04:31:10,868 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:31:10,868 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:31:26,133 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:31:26,134 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:31:39,373 DEBUG   SenderThread:34622 [sender.py:send():176] send: history
+2021-05-18 04:31:39,374 DEBUG   SenderThread:34622 [sender.py:send():176] send: summary
+2021-05-18 04:31:39,376 INFO    SenderThread:34622 [sender.py:_save_file():821] saving file wandb-summary.json with policy end
+2021-05-18 04:31:39,376 DEBUG   SenderThread:34622 [sender.py:send():176] send: summary
+2021-05-18 04:31:39,376 INFO    SenderThread:34622 [sender.py:_save_file():821] saving file wandb-summary.json with policy end
+2021-05-18 04:31:39,377 DEBUG   SenderThread:34622 [sender.py:send():176] send: summary
+2021-05-18 04:31:39,377 INFO    SenderThread:34622 [sender.py:_save_file():821] saving file wandb-summary.json with policy end
+2021-05-18 04:31:40,313 INFO    Thread-8  :34622 [dir_watcher.py:_on_file_modified():229] file/dir modified: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_042936-glywwyrd/files/wandb-summary.json
+2021-05-18 04:31:40,314 INFO    Thread-8  :34622 [dir_watcher.py:_on_file_created():216] file/dir created: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_042936-glywwyrd/files/model-best.h5
+2021-05-18 04:31:41,314 INFO    Thread-8  :34622 [dir_watcher.py:_on_file_modified():229] file/dir modified: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_042936-glywwyrd/files/model-best.h5
+2021-05-18 04:31:41,366 DEBUG   SenderThread:34622 [sender.py:send():176] send: stats
+2021-05-18 04:31:41,467 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:31:41,468 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:31:44,336 INFO    Thread-13 :34622 [upload_job.py:push():133] Uploaded file /tmp/tmpxn35qrvvwandb/3ozt7egi-model-best.h5
+2021-05-18 04:31:56,727 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:31:56,727 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:32:11,992 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:32:11,993 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:32:12,500 DEBUG   SenderThread:34622 [sender.py:send():176] send: stats
+2021-05-18 04:32:27,252 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:32:27,252 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:32:42,521 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:32:42,522 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:32:43,679 DEBUG   SenderThread:34622 [sender.py:send():176] send: stats
+2021-05-18 04:32:57,776 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:32:57,776 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:33:13,030 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:33:13,031 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:33:14,824 DEBUG   SenderThread:34622 [sender.py:send():176] send: stats
+2021-05-18 04:33:28,292 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:33:28,293 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:33:31,457 DEBUG   SenderThread:34622 [sender.py:send():176] send: history
+2021-05-18 04:33:31,458 DEBUG   SenderThread:34622 [sender.py:send():176] send: summary
+2021-05-18 04:33:31,459 INFO    SenderThread:34622 [sender.py:_save_file():821] saving file wandb-summary.json with policy end
+2021-05-18 04:33:31,460 DEBUG   SenderThread:34622 [sender.py:send():176] send: summary
+2021-05-18 04:33:31,460 INFO    SenderThread:34622 [sender.py:_save_file():821] saving file wandb-summary.json with policy end
+2021-05-18 04:33:31,460 DEBUG   SenderThread:34622 [sender.py:send():176] send: summary
+2021-05-18 04:33:31,461 INFO    SenderThread:34622 [sender.py:_save_file():821] saving file wandb-summary.json with policy end
+2021-05-18 04:33:32,385 INFO    Thread-8  :34622 [dir_watcher.py:_on_file_modified():229] file/dir modified: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_042936-glywwyrd/files/model-best.h5
+2021-05-18 04:33:32,385 INFO    Thread-8  :34622 [dir_watcher.py:_on_file_modified():229] file/dir modified: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_042936-glywwyrd/files/wandb-summary.json
+2021-05-18 04:33:34,434 INFO    Thread-14 :34622 [upload_job.py:push():133] Uploaded file /tmp/tmpxn35qrvvwandb/2lwzs9ln-model-best.h5
+2021-05-18 04:33:43,549 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:33:43,550 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:33:45,976 DEBUG   SenderThread:34622 [sender.py:send():176] send: stats
+2021-05-18 04:33:58,929 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:33:58,929 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:34:14,188 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:34:14,189 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:34:17,150 DEBUG   SenderThread:34622 [sender.py:send():176] send: stats
+2021-05-18 04:34:29,447 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:34:29,448 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:34:44,750 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:34:44,750 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:34:48,320 DEBUG   SenderThread:34622 [sender.py:send():176] send: stats
+2021-05-18 04:35:00,015 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:35:00,016 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:35:15,622 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:35:15,623 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:35:19,453 DEBUG   SenderThread:34622 [sender.py:send():176] send: stats
+2021-05-18 04:35:22,047 DEBUG   SenderThread:34622 [sender.py:send():176] send: history
+2021-05-18 04:35:22,048 DEBUG   SenderThread:34622 [sender.py:send():176] send: summary
+2021-05-18 04:35:22,049 INFO    SenderThread:34622 [sender.py:_save_file():821] saving file wandb-summary.json with policy end
+2021-05-18 04:35:22,050 DEBUG   SenderThread:34622 [sender.py:send():176] send: summary
+2021-05-18 04:35:22,050 INFO    SenderThread:34622 [sender.py:_save_file():821] saving file wandb-summary.json with policy end
+2021-05-18 04:35:22,050 DEBUG   SenderThread:34622 [sender.py:send():176] send: summary
+2021-05-18 04:35:22,050 INFO    SenderThread:34622 [sender.py:_save_file():821] saving file wandb-summary.json with policy end
+2021-05-18 04:35:22,453 INFO    Thread-8  :34622 [dir_watcher.py:_on_file_modified():229] file/dir modified: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_042936-glywwyrd/files/model-best.h5
+2021-05-18 04:35:22,453 INFO    Thread-8  :34622 [dir_watcher.py:_on_file_modified():229] file/dir modified: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_042936-glywwyrd/files/wandb-summary.json
+2021-05-18 04:35:30,884 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:35:30,884 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:35:46,138 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:35:46,139 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:35:50,632 DEBUG   SenderThread:34622 [sender.py:send():176] send: stats
+2021-05-18 04:36:01,394 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:36:01,394 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:36:16,661 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:36:16,661 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:36:21,798 DEBUG   SenderThread:34622 [sender.py:send():176] send: stats
+2021-05-18 04:36:31,922 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:36:31,922 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:36:47,190 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:36:47,190 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:36:52,945 DEBUG   SenderThread:34622 [sender.py:send():176] send: stats
+2021-05-18 04:37:02,445 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:37:02,445 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:37:13,185 DEBUG   SenderThread:34622 [sender.py:send():176] send: history
+2021-05-18 04:37:13,186 DEBUG   SenderThread:34622 [sender.py:send():176] send: summary
+2021-05-18 04:37:13,188 INFO    SenderThread:34622 [sender.py:_save_file():821] saving file wandb-summary.json with policy end
+2021-05-18 04:37:13,188 DEBUG   SenderThread:34622 [sender.py:send():176] send: summary
+2021-05-18 04:37:13,189 INFO    SenderThread:34622 [sender.py:_save_file():821] saving file wandb-summary.json with policy end
+2021-05-18 04:37:13,189 DEBUG   SenderThread:34622 [sender.py:send():176] send: summary
+2021-05-18 04:37:13,189 INFO    SenderThread:34622 [sender.py:_save_file():821] saving file wandb-summary.json with policy end
+2021-05-18 04:37:13,520 INFO    Thread-8  :34622 [dir_watcher.py:_on_file_modified():229] file/dir modified: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_042936-glywwyrd/files/model-best.h5
+2021-05-18 04:37:13,521 INFO    Thread-8  :34622 [dir_watcher.py:_on_file_modified():229] file/dir modified: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_042936-glywwyrd/files/wandb-summary.json
+2021-05-18 04:37:17,698 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:37:17,698 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:37:24,101 DEBUG   SenderThread:34622 [sender.py:send():176] send: stats
+2021-05-18 04:37:32,959 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:37:32,959 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:37:48,217 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:37:48,217 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:37:55,253 DEBUG   SenderThread:34622 [sender.py:send():176] send: stats
+2021-05-18 04:38:03,472 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:38:03,473 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:38:18,730 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:38:18,731 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:38:26,448 DEBUG   SenderThread:34622 [sender.py:send():176] send: stats
+2021-05-18 04:38:33,987 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:38:33,987 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:38:49,249 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:38:49,249 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:38:57,595 DEBUG   SenderThread:34622 [sender.py:send():176] send: stats
+2021-05-18 04:39:04,500 DEBUG   SenderThread:34622 [sender.py:send():176] send: history
+2021-05-18 04:39:04,500 DEBUG   SenderThread:34622 [sender.py:send():176] send: summary
+2021-05-18 04:39:04,502 INFO    SenderThread:34622 [sender.py:_save_file():821] saving file wandb-summary.json with policy end
+2021-05-18 04:39:04,502 DEBUG   SenderThread:34622 [sender.py:send():176] send: summary
+2021-05-18 04:39:04,502 INFO    SenderThread:34622 [sender.py:_save_file():821] saving file wandb-summary.json with policy end
+2021-05-18 04:39:04,503 DEBUG   SenderThread:34622 [sender.py:send():176] send: summary
+2021-05-18 04:39:04,503 INFO    SenderThread:34622 [sender.py:_save_file():821] saving file wandb-summary.json with policy end
+2021-05-18 04:39:04,512 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:39:04,512 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:39:04,589 INFO    Thread-8  :34622 [dir_watcher.py:_on_file_modified():229] file/dir modified: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_042936-glywwyrd/files/model-best.h5
+2021-05-18 04:39:04,589 INFO    Thread-8  :34622 [dir_watcher.py:_on_file_modified():229] file/dir modified: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_042936-glywwyrd/files/wandb-summary.json
+2021-05-18 04:39:19,767 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:39:19,768 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:39:28,668 DEBUG   SenderThread:34622 [sender.py:send():176] send: stats
+2021-05-18 04:39:35,038 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:39:35,038 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:39:50,296 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:39:50,297 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:39:59,717 DEBUG   SenderThread:34622 [sender.py:send():176] send: stats
+2021-05-18 04:40:05,564 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:40:05,564 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:40:20,821 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:40:20,821 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:40:30,770 DEBUG   SenderThread:34622 [sender.py:send():176] send: stats
+2021-05-18 04:40:36,086 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:40:36,087 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:40:51,461 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:40:51,462 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:41:01,799 DEBUG   SenderThread:34622 [sender.py:send():176] send: stats
+2021-05-18 04:41:06,720 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 04:41:06,720 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 04:41:21,847 DEBUG   SenderThread:34622 [sender.py:send():176] send: history
+2021-05-18 04:41:21,848 DEBUG   SenderThread:34622 [sender.py:send():176] send: summary
+2021-05-18 04:41:21,848 INFO    SenderThread:34622 [sender.py:_save_file():821] saving file wandb-summary.json with policy end
+2021-05-18 04:41:22,656 INFO    Thread-8  :34622 [dir_watcher.py:_on_file_modified():229] file/dir modified: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_042936-glywwyrd/files/wandb-summary.json
+2021-05-18 04:41:23,879 DEBUG   SenderThread:34622 [sender.py:send():176] send: telemetry
+2021-05-18 04:41:23,880 DEBUG   SenderThread:34622 [sender.py:send():176] send: exit
+2021-05-18 04:41:23,880 INFO    SenderThread:34622 [sender.py:send_exit():281] handling exit code: 0
+2021-05-18 04:41:23,881 INFO    SenderThread:34622 [sender.py:send_exit():289] send defer
+2021-05-18 04:41:23,882 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: poll_exit
+2021-05-18 04:41:23,883 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: poll_exit
+2021-05-18 04:41:23,884 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: defer
+2021-05-18 04:41:23,884 INFO    HandlerThread:34622 [handler.py:handle_request_defer():138] handle defer: 0
+2021-05-18 04:41:23,885 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: defer
+2021-05-18 04:41:23,885 INFO    SenderThread:34622 [sender.py:send_request_defer():298] handle sender defer: 0
+2021-05-18 04:41:23,885 INFO    SenderThread:34622 [sender.py:send_request_defer():336] send defer: 1
+2021-05-18 04:41:23,886 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: defer
+2021-05-18 04:41:23,886 INFO    HandlerThread:34622 [handler.py:handle_request_defer():138] handle defer: 1
+2021-05-18 04:41:24,011 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: defer
+2021-05-18 04:41:24,012 INFO    SenderThread:34622 [sender.py:send_request_defer():298] handle sender defer: 1
+2021-05-18 04:41:24,012 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: poll_exit
+2021-05-18 04:41:24,012 INFO    SenderThread:34622 [sender.py:send_request_defer():336] send defer: 2
+2021-05-18 04:41:24,012 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: poll_exit
+2021-05-18 04:41:24,013 DEBUG   SenderThread:34622 [sender.py:send():176] send: stats
+2021-05-18 04:41:24,014 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: defer
+2021-05-18 04:41:24,015 INFO    HandlerThread:34622 [handler.py:handle_request_defer():138] handle defer: 2
+2021-05-18 04:41:24,015 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: defer
+2021-05-18 04:41:24,015 INFO    SenderThread:34622 [sender.py:send_request_defer():298] handle sender defer: 2
+2021-05-18 04:41:24,015 INFO    SenderThread:34622 [sender.py:send_request_defer():336] send defer: 3
+2021-05-18 04:41:24,016 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: defer
+2021-05-18 04:41:24,016 INFO    HandlerThread:34622 [handler.py:handle_request_defer():138] handle defer: 3
+2021-05-18 04:41:24,017 DEBUG   SenderThread:34622 [sender.py:send():176] send: summary
+2021-05-18 04:41:24,017 INFO    SenderThread:34622 [sender.py:_save_file():821] saving file wandb-summary.json with policy end
+2021-05-18 04:41:24,018 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: defer
+2021-05-18 04:41:24,018 INFO    SenderThread:34622 [sender.py:send_request_defer():298] handle sender defer: 3
+2021-05-18 04:41:24,018 INFO    SenderThread:34622 [sender.py:send_request_defer():336] send defer: 4
+2021-05-18 04:41:24,018 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: defer
+2021-05-18 04:41:24,019 INFO    HandlerThread:34622 [handler.py:handle_request_defer():138] handle defer: 4
+2021-05-18 04:41:24,019 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: defer
+2021-05-18 04:41:24,019 INFO    SenderThread:34622 [sender.py:send_request_defer():298] handle sender defer: 4
+2021-05-18 04:41:24,115 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: poll_exit
+2021-05-18 04:41:24,308 INFO    SenderThread:34622 [sender.py:send_request_defer():336] send defer: 5
+2021-05-18 04:41:24,308 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: poll_exit
+2021-05-18 04:41:24,309 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: defer
+2021-05-18 04:41:24,309 INFO    HandlerThread:34622 [handler.py:handle_request_defer():138] handle defer: 5
+2021-05-18 04:41:24,310 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: defer
+2021-05-18 04:41:24,310 INFO    SenderThread:34622 [sender.py:send_request_defer():298] handle sender defer: 5
+2021-05-18 04:41:24,310 INFO    SenderThread:34622 [dir_watcher.py:finish():282] shutting down directory watcher
+2021-05-18 04:41:24,410 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: poll_exit
+2021-05-18 04:41:24,658 INFO    SenderThread:34622 [dir_watcher.py:_on_file_modified():229] file/dir modified: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_042936-glywwyrd/files/config.yaml
+2021-05-18 04:41:24,658 INFO    SenderThread:34622 [dir_watcher.py:_on_file_modified():229] file/dir modified: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_042936-glywwyrd/files/output.log
+2021-05-18 04:41:24,658 INFO    SenderThread:34622 [dir_watcher.py:_on_file_modified():229] file/dir modified: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_042936-glywwyrd/files/wandb-summary.json
+2021-05-18 04:41:24,658 INFO    SenderThread:34622 [dir_watcher.py:finish():312] scan: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_042936-glywwyrd/files
+2021-05-18 04:41:24,659 INFO    SenderThread:34622 [dir_watcher.py:finish():318] scan save: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_042936-glywwyrd/files/config.yaml config.yaml
+2021-05-18 04:41:24,659 INFO    SenderThread:34622 [dir_watcher.py:finish():318] scan save: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_042936-glywwyrd/files/wandb-summary.json wandb-summary.json
+2021-05-18 04:41:24,659 INFO    SenderThread:34622 [dir_watcher.py:finish():318] scan save: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_042936-glywwyrd/files/requirements.txt requirements.txt
+2021-05-18 04:41:24,663 INFO    SenderThread:34622 [dir_watcher.py:finish():318] scan save: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_042936-glywwyrd/files/wandb-metadata.json wandb-metadata.json
+2021-05-18 04:41:24,663 INFO    SenderThread:34622 [dir_watcher.py:finish():318] scan save: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_042936-glywwyrd/files/output.log output.log
+2021-05-18 04:41:24,670 INFO    SenderThread:34622 [dir_watcher.py:finish():318] scan save: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_042936-glywwyrd/files/model-best.h5 model-best.h5
+2021-05-18 04:41:24,676 INFO    SenderThread:34622 [dir_watcher.py:finish():318] scan save: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_042936-glywwyrd/files/media/graph/graph_summary_8173c73c.graph.json media/graph/graph_summary_8173c73c.graph.json
+2021-05-18 04:41:24,676 INFO    SenderThread:34622 [sender.py:send_request_defer():336] send defer: 6
+2021-05-18 04:41:24,676 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: poll_exit
+2021-05-18 04:41:24,677 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: defer
+2021-05-18 04:41:24,678 INFO    HandlerThread:34622 [handler.py:handle_request_defer():138] handle defer: 6
+2021-05-18 04:41:24,679 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: defer
+2021-05-18 04:41:24,679 INFO    SenderThread:34622 [sender.py:send_request_defer():298] handle sender defer: 6
+2021-05-18 04:41:24,679 INFO    SenderThread:34622 [file_pusher.py:finish():176] shutting down file pusher
+2021-05-18 04:41:24,679 INFO    SenderThread:34622 [sender.py:send_request_defer():336] send defer: 7
+2021-05-18 04:41:24,681 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: defer
+2021-05-18 04:41:24,681 INFO    HandlerThread:34622 [handler.py:handle_request_defer():138] handle defer: 7
+2021-05-18 04:41:24,681 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: defer
+2021-05-18 04:41:24,681 INFO    SenderThread:34622 [sender.py:send_request_defer():298] handle sender defer: 7
+2021-05-18 04:41:24,779 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: poll_exit
+2021-05-18 04:41:25,422 INFO    Thread-18 :34622 [upload_job.py:push():133] Uploaded file /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_042936-glywwyrd/files/output.log
+2021-05-18 04:41:25,426 INFO    Thread-17 :34622 [upload_job.py:push():133] Uploaded file /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_042936-glywwyrd/files/requirements.txt
+2021-05-18 04:41:25,438 INFO    SenderThread:34622 [sender.py:send_request_defer():336] send defer: 8
+2021-05-18 04:41:25,438 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: poll_exit
+2021-05-18 04:41:25,440 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: defer
+2021-05-18 04:41:25,440 INFO    HandlerThread:34622 [handler.py:handle_request_defer():138] handle defer: 8
+2021-05-18 04:41:25,440 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: defer
+2021-05-18 04:41:25,440 INFO    SenderThread:34622 [sender.py:send_request_defer():298] handle sender defer: 8
+2021-05-18 04:41:25,441 INFO    SenderThread:34622 [sender.py:send_request_defer():336] send defer: 9
+2021-05-18 04:41:25,442 DEBUG   SenderThread:34622 [sender.py:send():176] send: final
+2021-05-18 04:41:25,442 DEBUG   SenderThread:34622 [sender.py:send():176] send: footer
+2021-05-18 04:41:25,443 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: defer
+2021-05-18 04:41:25,443 INFO    HandlerThread:34622 [handler.py:handle_request_defer():138] handle defer: 9
+2021-05-18 04:41:25,443 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: defer
+2021-05-18 04:41:25,443 INFO    SenderThread:34622 [sender.py:send_request_defer():298] handle sender defer: 9
+2021-05-18 04:41:25,484 INFO    Thread-15 :34622 [upload_job.py:push():133] Uploaded file /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_042936-glywwyrd/files/config.yaml
+2021-05-18 04:41:25,516 INFO    Thread-16 :34622 [upload_job.py:push():133] Uploaded file /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_042936-glywwyrd/files/wandb-summary.json
+2021-05-18 04:41:25,541 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: poll_exit
+2021-05-18 04:41:25,542 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: poll_exit
+2021-05-18 04:41:25,644 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: poll_exit
+2021-05-18 04:41:25,645 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: poll_exit
+2021-05-18 04:41:25,747 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: poll_exit
+2021-05-18 04:41:25,747 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: poll_exit
+2021-05-18 04:41:25,850 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: poll_exit
+2021-05-18 04:41:25,850 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: poll_exit
+2021-05-18 04:41:25,953 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: poll_exit
+2021-05-18 04:41:25,953 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: poll_exit
+2021-05-18 04:41:26,056 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: poll_exit
+2021-05-18 04:41:26,056 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: poll_exit
+2021-05-18 04:41:26,159 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: poll_exit
+2021-05-18 04:41:26,159 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: poll_exit
+2021-05-18 04:41:26,262 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: poll_exit
+2021-05-18 04:41:26,262 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: poll_exit
+2021-05-18 04:41:26,364 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: poll_exit
+2021-05-18 04:41:26,365 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: poll_exit
+2021-05-18 04:41:26,467 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: poll_exit
+2021-05-18 04:41:26,468 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: poll_exit
+2021-05-18 04:41:26,570 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: poll_exit
+2021-05-18 04:41:26,571 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: poll_exit
+2021-05-18 04:41:26,673 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: poll_exit
+2021-05-18 04:41:26,674 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: poll_exit
+2021-05-18 04:41:26,776 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: poll_exit
+2021-05-18 04:41:26,777 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: poll_exit
+2021-05-18 04:41:26,879 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: poll_exit
+2021-05-18 04:41:26,880 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: poll_exit
+2021-05-18 04:41:26,982 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: poll_exit
+2021-05-18 04:41:26,983 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: poll_exit
+2021-05-18 04:41:27,085 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: poll_exit
+2021-05-18 04:41:27,085 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: poll_exit
+2021-05-18 04:41:27,188 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: poll_exit
+2021-05-18 04:41:27,188 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: poll_exit
+2021-05-18 04:41:27,291 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: poll_exit
+2021-05-18 04:41:27,291 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: poll_exit
+2021-05-18 04:41:27,326 INFO    Thread-19 :34622 [upload_job.py:push():133] Uploaded file /tmp/tmpxn35qrvvwandb/2fgbe8xf-model-best.h5
+2021-05-18 04:41:27,394 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: poll_exit
+2021-05-18 04:41:27,394 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: poll_exit
+2021-05-18 04:41:27,497 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: poll_exit
+2021-05-18 04:41:27,497 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: poll_exit
+2021-05-18 04:41:27,600 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: poll_exit
+2021-05-18 04:41:27,600 DEBUG   SenderThread:34622 [sender.py:send_request():186] send_request: poll_exit
+2021-05-18 04:41:27,600 INFO    SenderThread:34622 [file_pusher.py:join():181] waiting for file pusher
+2021-05-18 04:41:27,603 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: get_summary
+2021-05-18 04:41:27,606 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: sampled_history
+2021-05-18 04:41:27,609 DEBUG   HandlerThread:34622 [handler.py:handle_request():121] handle_request: shutdown
+2021-05-18 04:41:27,609 INFO    HandlerThread:34622 [handler.py:finish():632] shutting down handler
+2021-05-18 04:41:28,443 INFO    WriterThread:34622 [datastore.py:close():258] close: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_042936-glywwyrd/run-glywwyrd.wandb
+2021-05-18 04:41:28,601 INFO    SenderThread:34622 [sender.py:finish():925] shutting down sender
+2021-05-18 04:41:28,601 INFO    SenderThread:34622 [file_pusher.py:finish():176] shutting down file pusher
+2021-05-18 04:41:28,601 INFO    SenderThread:34622 [file_pusher.py:join():181] waiting for file pusher
+2021-05-18 04:41:28,603 INFO    MainThread:34622 [internal.py:handle_exit():78] Internal process exited

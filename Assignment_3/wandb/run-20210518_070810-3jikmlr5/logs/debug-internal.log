@@ -1,0 +1,246 @@
+2021-05-18 07:08:11,304 INFO    MainThread:39286 [internal.py:wandb_internal():91] W&B internal server running at pid: 39286, started at: 2021-05-18 07:08:11.304020
+2021-05-18 07:08:11,306 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: check_version
+2021-05-18 07:08:11,306 INFO    WriterThread:39286 [datastore.py:open_for_write():77] open: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_070810-3jikmlr5/run-3jikmlr5.wandb
+2021-05-18 07:08:11,308 DEBUG   SenderThread:39286 [sender.py:send():176] send: header
+2021-05-18 07:08:11,308 DEBUG   SenderThread:39286 [sender.py:send_request():186] send_request: check_version
+2021-05-18 07:08:11,383 DEBUG   SenderThread:39286 [sender.py:send():176] send: run
+2021-05-18 07:08:11,684 INFO    SenderThread:39286 [dir_watcher.py:__init__():168] watching files in: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_070810-3jikmlr5/files
+2021-05-18 07:08:11,684 INFO    SenderThread:39286 [sender.py:_start_run_threads():699] run started: 3jikmlr5 with start time 1621301890
+2021-05-18 07:08:11,684 DEBUG   SenderThread:39286 [sender.py:send():176] send: summary
+2021-05-18 07:08:11,684 INFO    SenderThread:39286 [sender.py:_save_file():821] saving file wandb-summary.json with policy end
+2021-05-18 07:08:11,685 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: run_start
+2021-05-18 07:08:12,686 INFO    Thread-8  :39286 [dir_watcher.py:_on_file_created():216] file/dir created: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_070810-3jikmlr5/files/wandb-summary.json
+2021-05-18 07:08:13,421 DEBUG   HandlerThread:39286 [meta.py:__init__():39] meta init
+2021-05-18 07:08:13,421 DEBUG   HandlerThread:39286 [meta.py:__init__():53] meta init done
+2021-05-18 07:08:13,421 DEBUG   HandlerThread:39286 [meta.py:probe():210] probe
+2021-05-18 07:08:13,427 DEBUG   HandlerThread:39286 [meta.py:_setup_git():200] setup git
+2021-05-18 07:08:13,450 DEBUG   HandlerThread:39286 [meta.py:_setup_git():207] setup git done
+2021-05-18 07:08:13,451 DEBUG   HandlerThread:39286 [meta.py:_save_pip():57] save pip
+2021-05-18 07:08:13,451 DEBUG   HandlerThread:39286 [meta.py:_save_pip():71] save pip done
+2021-05-18 07:08:13,451 DEBUG   HandlerThread:39286 [meta.py:probe():252] probe done
+2021-05-18 07:08:13,455 DEBUG   SenderThread:39286 [sender.py:send():176] send: files
+2021-05-18 07:08:13,455 INFO    SenderThread:39286 [sender.py:_save_file():821] saving file wandb-metadata.json with policy now
+2021-05-18 07:08:13,462 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 07:08:13,462 DEBUG   SenderThread:39286 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 07:08:13,687 INFO    Thread-8  :39286 [dir_watcher.py:_on_file_created():216] file/dir created: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_070810-3jikmlr5/files/output.log
+2021-05-18 07:08:13,687 INFO    Thread-8  :39286 [dir_watcher.py:_on_file_created():216] file/dir created: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_070810-3jikmlr5/files/requirements.txt
+2021-05-18 07:08:13,687 INFO    Thread-8  :39286 [dir_watcher.py:_on_file_created():216] file/dir created: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_070810-3jikmlr5/files/wandb-metadata.json
+2021-05-18 07:08:14,290 INFO    Thread-11 :39286 [upload_job.py:push():133] Uploaded file /tmp/tmpk8b95gd8wandb/1yydrdnm-wandb-metadata.json
+2021-05-18 07:08:15,486 DEBUG   SenderThread:39286 [sender.py:send():176] send: run
+2021-05-18 07:08:15,491 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: get_summary
+2021-05-18 07:08:15,688 INFO    Thread-8  :39286 [dir_watcher.py:_on_file_modified():229] file/dir modified: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_070810-3jikmlr5/files/config.yaml
+2021-05-18 07:08:15,790 INFO    SenderThread:39286 [sender.py:send_run():600] updated run: 3jikmlr5
+2021-05-18 07:08:15,791 DEBUG   SenderThread:39286 [sender.py:send():176] send: files
+2021-05-18 07:08:15,791 INFO    SenderThread:39286 [sender.py:_save_file():821] saving file model-best.h5 with policy live
+2021-05-18 07:08:20,385 DEBUG   SenderThread:39286 [sender.py:send():176] send: files
+2021-05-18 07:08:20,385 INFO    SenderThread:39286 [sender.py:_save_file():821] saving file media/graph/graph_summary_b1d47bf6.graph.json with policy now
+2021-05-18 07:08:20,386 DEBUG   SenderThread:39286 [sender.py:send():176] send: summary
+2021-05-18 07:08:20,387 INFO    SenderThread:39286 [sender.py:_save_file():821] saving file wandb-summary.json with policy end
+2021-05-18 07:08:20,690 INFO    Thread-8  :39286 [dir_watcher.py:_on_file_modified():229] file/dir modified: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_070810-3jikmlr5/files/wandb-summary.json
+2021-05-18 07:08:20,690 INFO    Thread-8  :39286 [dir_watcher.py:_on_file_created():216] file/dir created: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_070810-3jikmlr5/files/media/graph/graph_summary_b1d47bf6.graph.json
+2021-05-18 07:08:20,690 INFO    Thread-8  :39286 [dir_watcher.py:_on_file_created():216] file/dir created: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_070810-3jikmlr5/files/media
+2021-05-18 07:08:20,691 INFO    Thread-8  :39286 [dir_watcher.py:_on_file_created():216] file/dir created: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_070810-3jikmlr5/files/media/graph
+2021-05-18 07:08:21,133 INFO    Thread-12 :39286 [upload_job.py:push():133] Uploaded file /tmp/tmpk8b95gd8wandb/2mfagc3x-media/graph/graph_summary_b1d47bf6.graph.json
+2021-05-18 07:08:28,741 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 07:08:28,742 DEBUG   SenderThread:39286 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 07:08:42,537 DEBUG   SenderThread:39286 [sender.py:send():176] send: stats
+2021-05-18 07:08:43,997 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 07:08:43,997 DEBUG   SenderThread:39286 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 07:08:53,781 DEBUG   SenderThread:39286 [sender.py:send():176] send: history
+2021-05-18 07:08:53,782 DEBUG   SenderThread:39286 [sender.py:send():176] send: summary
+2021-05-18 07:08:53,784 INFO    SenderThread:39286 [sender.py:_save_file():821] saving file wandb-summary.json with policy end
+2021-05-18 07:08:53,784 DEBUG   SenderThread:39286 [sender.py:send():176] send: summary
+2021-05-18 07:08:53,785 INFO    SenderThread:39286 [sender.py:_save_file():821] saving file wandb-summary.json with policy end
+2021-05-18 07:08:53,785 DEBUG   SenderThread:39286 [sender.py:send():176] send: summary
+2021-05-18 07:08:53,785 INFO    SenderThread:39286 [sender.py:_save_file():821] saving file wandb-summary.json with policy end
+2021-05-18 07:08:54,708 INFO    Thread-8  :39286 [dir_watcher.py:_on_file_modified():229] file/dir modified: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_070810-3jikmlr5/files/wandb-summary.json
+2021-05-18 07:08:54,708 INFO    Thread-8  :39286 [dir_watcher.py:_on_file_created():216] file/dir created: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_070810-3jikmlr5/files/model-best.h5
+2021-05-18 07:08:55,760 INFO    Thread-13 :39286 [upload_job.py:push():133] Uploaded file /tmp/tmpk8b95gd8wandb/2gv1fngt-model-best.h5
+2021-05-18 07:08:59,269 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 07:08:59,270 DEBUG   SenderThread:39286 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 07:09:13,657 DEBUG   SenderThread:39286 [sender.py:send():176] send: stats
+2021-05-18 07:09:14,535 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 07:09:14,535 DEBUG   SenderThread:39286 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 07:09:27,353 DEBUG   SenderThread:39286 [sender.py:send():176] send: history
+2021-05-18 07:09:27,354 DEBUG   SenderThread:39286 [sender.py:send():176] send: summary
+2021-05-18 07:09:27,355 INFO    SenderThread:39286 [sender.py:_save_file():821] saving file wandb-summary.json with policy end
+2021-05-18 07:09:27,355 DEBUG   SenderThread:39286 [sender.py:send():176] send: summary
+2021-05-18 07:09:27,356 INFO    SenderThread:39286 [sender.py:_save_file():821] saving file wandb-summary.json with policy end
+2021-05-18 07:09:27,356 DEBUG   SenderThread:39286 [sender.py:send():176] send: summary
+2021-05-18 07:09:27,356 INFO    SenderThread:39286 [sender.py:_save_file():821] saving file wandb-summary.json with policy end
+2021-05-18 07:09:27,727 INFO    Thread-8  :39286 [dir_watcher.py:_on_file_modified():229] file/dir modified: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_070810-3jikmlr5/files/model-best.h5
+2021-05-18 07:09:27,727 INFO    Thread-8  :39286 [dir_watcher.py:_on_file_modified():229] file/dir modified: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_070810-3jikmlr5/files/wandb-summary.json
+2021-05-18 07:09:29,820 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 07:09:29,821 DEBUG   SenderThread:39286 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 07:09:44,771 DEBUG   SenderThread:39286 [sender.py:send():176] send: stats
+2021-05-18 07:09:45,079 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 07:09:45,080 DEBUG   SenderThread:39286 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 07:10:00,055 DEBUG   SenderThread:39286 [sender.py:send():176] send: history
+2021-05-18 07:10:00,056 DEBUG   SenderThread:39286 [sender.py:send():176] send: summary
+2021-05-18 07:10:00,058 INFO    SenderThread:39286 [sender.py:_save_file():821] saving file wandb-summary.json with policy end
+2021-05-18 07:10:00,058 DEBUG   SenderThread:39286 [sender.py:send():176] send: summary
+2021-05-18 07:10:00,059 INFO    SenderThread:39286 [sender.py:_save_file():821] saving file wandb-summary.json with policy end
+2021-05-18 07:10:00,059 DEBUG   SenderThread:39286 [sender.py:send():176] send: summary
+2021-05-18 07:10:00,060 INFO    SenderThread:39286 [sender.py:_save_file():821] saving file wandb-summary.json with policy end
+2021-05-18 07:10:00,332 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 07:10:00,332 DEBUG   SenderThread:39286 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 07:10:00,744 INFO    Thread-8  :39286 [dir_watcher.py:_on_file_modified():229] file/dir modified: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_070810-3jikmlr5/files/model-best.h5
+2021-05-18 07:10:00,745 INFO    Thread-8  :39286 [dir_watcher.py:_on_file_modified():229] file/dir modified: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_070810-3jikmlr5/files/wandb-summary.json
+2021-05-18 07:10:15,613 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 07:10:15,614 DEBUG   SenderThread:39286 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 07:10:15,897 DEBUG   SenderThread:39286 [sender.py:send():176] send: stats
+2021-05-18 07:10:30,870 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 07:10:30,871 DEBUG   SenderThread:39286 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 07:10:32,879 DEBUG   SenderThread:39286 [sender.py:send():176] send: history
+2021-05-18 07:10:32,880 DEBUG   SenderThread:39286 [sender.py:send():176] send: summary
+2021-05-18 07:10:32,881 INFO    SenderThread:39286 [sender.py:_save_file():821] saving file wandb-summary.json with policy end
+2021-05-18 07:10:33,762 INFO    Thread-8  :39286 [dir_watcher.py:_on_file_modified():229] file/dir modified: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_070810-3jikmlr5/files/wandb-summary.json
+2021-05-18 07:10:46,141 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 07:10:46,141 DEBUG   SenderThread:39286 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 07:10:47,035 DEBUG   SenderThread:39286 [sender.py:send():176] send: stats
+2021-05-18 07:11:01,407 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 07:11:01,408 DEBUG   SenderThread:39286 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 07:11:05,605 DEBUG   SenderThread:39286 [sender.py:send():176] send: history
+2021-05-18 07:11:05,605 DEBUG   SenderThread:39286 [sender.py:send():176] send: summary
+2021-05-18 07:11:05,606 INFO    SenderThread:39286 [sender.py:_save_file():821] saving file wandb-summary.json with policy end
+2021-05-18 07:11:05,607 DEBUG   SenderThread:39286 [sender.py:send():176] send: summary
+2021-05-18 07:11:05,607 INFO    SenderThread:39286 [sender.py:_save_file():821] saving file wandb-summary.json with policy end
+2021-05-18 07:11:05,607 DEBUG   SenderThread:39286 [sender.py:send():176] send: summary
+2021-05-18 07:11:05,608 INFO    SenderThread:39286 [sender.py:_save_file():821] saving file wandb-summary.json with policy end
+2021-05-18 07:11:05,778 INFO    Thread-8  :39286 [dir_watcher.py:_on_file_modified():229] file/dir modified: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_070810-3jikmlr5/files/model-best.h5
+2021-05-18 07:11:05,779 INFO    Thread-8  :39286 [dir_watcher.py:_on_file_modified():229] file/dir modified: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_070810-3jikmlr5/files/wandb-summary.json
+2021-05-18 07:11:16,668 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 07:11:16,668 DEBUG   SenderThread:39286 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 07:11:18,086 DEBUG   SenderThread:39286 [sender.py:send():176] send: stats
+2021-05-18 07:11:31,925 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 07:11:31,925 DEBUG   SenderThread:39286 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 07:11:47,186 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 07:11:47,186 DEBUG   SenderThread:39286 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 07:11:49,065 DEBUG   SenderThread:39286 [sender.py:send():176] send: stats
+2021-05-18 07:12:02,441 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 07:12:02,442 DEBUG   SenderThread:39286 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 07:12:17,712 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 07:12:17,713 DEBUG   SenderThread:39286 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 07:12:20,071 DEBUG   SenderThread:39286 [sender.py:send():176] send: stats
+2021-05-18 07:12:32,985 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: stop_status
+2021-05-18 07:12:32,985 DEBUG   SenderThread:39286 [sender.py:send_request():186] send_request: stop_status
+2021-05-18 07:12:43,526 DEBUG   SenderThread:39286 [sender.py:send():176] send: history
+2021-05-18 07:12:43,527 DEBUG   SenderThread:39286 [sender.py:send():176] send: summary
+2021-05-18 07:12:43,528 INFO    SenderThread:39286 [sender.py:_save_file():821] saving file wandb-summary.json with policy end
+2021-05-18 07:12:43,823 INFO    Thread-8  :39286 [dir_watcher.py:_on_file_modified():229] file/dir modified: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_070810-3jikmlr5/files/wandb-summary.json
+2021-05-18 07:12:45,559 DEBUG   SenderThread:39286 [sender.py:send():176] send: telemetry
+2021-05-18 07:12:45,560 DEBUG   SenderThread:39286 [sender.py:send():176] send: exit
+2021-05-18 07:12:45,560 INFO    SenderThread:39286 [sender.py:send_exit():281] handling exit code: 0
+2021-05-18 07:12:45,561 INFO    SenderThread:39286 [sender.py:send_exit():289] send defer
+2021-05-18 07:12:45,562 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: poll_exit
+2021-05-18 07:12:45,563 DEBUG   SenderThread:39286 [sender.py:send_request():186] send_request: poll_exit
+2021-05-18 07:12:45,564 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: defer
+2021-05-18 07:12:45,564 INFO    HandlerThread:39286 [handler.py:handle_request_defer():138] handle defer: 0
+2021-05-18 07:12:45,565 DEBUG   SenderThread:39286 [sender.py:send_request():186] send_request: defer
+2021-05-18 07:12:45,565 INFO    SenderThread:39286 [sender.py:send_request_defer():298] handle sender defer: 0
+2021-05-18 07:12:45,565 INFO    SenderThread:39286 [sender.py:send_request_defer():336] send defer: 1
+2021-05-18 07:12:45,565 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: defer
+2021-05-18 07:12:45,566 INFO    HandlerThread:39286 [handler.py:handle_request_defer():138] handle defer: 1
+2021-05-18 07:12:45,715 DEBUG   SenderThread:39286 [sender.py:send_request():186] send_request: defer
+2021-05-18 07:12:45,716 INFO    SenderThread:39286 [sender.py:send_request_defer():298] handle sender defer: 1
+2021-05-18 07:12:45,716 INFO    SenderThread:39286 [sender.py:send_request_defer():336] send defer: 2
+2021-05-18 07:12:45,716 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: poll_exit
+2021-05-18 07:12:45,717 DEBUG   SenderThread:39286 [sender.py:send_request():186] send_request: poll_exit
+2021-05-18 07:12:45,717 DEBUG   SenderThread:39286 [sender.py:send():176] send: stats
+2021-05-18 07:12:45,718 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: defer
+2021-05-18 07:12:45,719 INFO    HandlerThread:39286 [handler.py:handle_request_defer():138] handle defer: 2
+2021-05-18 07:12:45,719 DEBUG   SenderThread:39286 [sender.py:send_request():186] send_request: defer
+2021-05-18 07:12:45,719 INFO    SenderThread:39286 [sender.py:send_request_defer():298] handle sender defer: 2
+2021-05-18 07:12:45,719 INFO    SenderThread:39286 [sender.py:send_request_defer():336] send defer: 3
+2021-05-18 07:12:45,720 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: defer
+2021-05-18 07:12:45,720 INFO    HandlerThread:39286 [handler.py:handle_request_defer():138] handle defer: 3
+2021-05-18 07:12:45,721 DEBUG   SenderThread:39286 [sender.py:send():176] send: summary
+2021-05-18 07:12:45,722 INFO    SenderThread:39286 [sender.py:_save_file():821] saving file wandb-summary.json with policy end
+2021-05-18 07:12:45,722 DEBUG   SenderThread:39286 [sender.py:send_request():186] send_request: defer
+2021-05-18 07:12:45,722 INFO    SenderThread:39286 [sender.py:send_request_defer():298] handle sender defer: 3
+2021-05-18 07:12:45,722 INFO    SenderThread:39286 [sender.py:send_request_defer():336] send defer: 4
+2021-05-18 07:12:45,723 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: defer
+2021-05-18 07:12:45,723 INFO    HandlerThread:39286 [handler.py:handle_request_defer():138] handle defer: 4
+2021-05-18 07:12:45,723 DEBUG   SenderThread:39286 [sender.py:send_request():186] send_request: defer
+2021-05-18 07:12:45,723 INFO    SenderThread:39286 [sender.py:send_request_defer():298] handle sender defer: 4
+2021-05-18 07:12:45,819 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: poll_exit
+2021-05-18 07:12:45,825 INFO    Thread-8  :39286 [dir_watcher.py:_on_file_modified():229] file/dir modified: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_070810-3jikmlr5/files/output.log
+2021-05-18 07:12:45,825 INFO    Thread-8  :39286 [dir_watcher.py:_on_file_modified():229] file/dir modified: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_070810-3jikmlr5/files/wandb-summary.json
+2021-05-18 07:12:45,996 INFO    SenderThread:39286 [sender.py:send_request_defer():336] send defer: 5
+2021-05-18 07:12:45,997 DEBUG   SenderThread:39286 [sender.py:send_request():186] send_request: poll_exit
+2021-05-18 07:12:45,998 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: defer
+2021-05-18 07:12:45,998 INFO    HandlerThread:39286 [handler.py:handle_request_defer():138] handle defer: 5
+2021-05-18 07:12:45,998 DEBUG   SenderThread:39286 [sender.py:send_request():186] send_request: defer
+2021-05-18 07:12:45,998 INFO    SenderThread:39286 [sender.py:send_request_defer():298] handle sender defer: 5
+2021-05-18 07:12:45,998 INFO    SenderThread:39286 [dir_watcher.py:finish():282] shutting down directory watcher
+2021-05-18 07:12:46,099 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: poll_exit
+2021-05-18 07:12:46,826 INFO    Thread-8  :39286 [dir_watcher.py:_on_file_modified():229] file/dir modified: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_070810-3jikmlr5/files/config.yaml
+2021-05-18 07:12:46,827 INFO    SenderThread:39286 [dir_watcher.py:finish():312] scan: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_070810-3jikmlr5/files
+2021-05-18 07:12:46,827 INFO    SenderThread:39286 [dir_watcher.py:finish():318] scan save: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_070810-3jikmlr5/files/config.yaml config.yaml
+2021-05-18 07:12:46,827 INFO    SenderThread:39286 [dir_watcher.py:finish():318] scan save: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_070810-3jikmlr5/files/wandb-summary.json wandb-summary.json
+2021-05-18 07:12:46,828 INFO    SenderThread:39286 [dir_watcher.py:finish():318] scan save: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_070810-3jikmlr5/files/requirements.txt requirements.txt
+2021-05-18 07:12:46,828 INFO    SenderThread:39286 [dir_watcher.py:finish():318] scan save: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_070810-3jikmlr5/files/wandb-metadata.json wandb-metadata.json
+2021-05-18 07:12:46,828 INFO    SenderThread:39286 [dir_watcher.py:finish():318] scan save: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_070810-3jikmlr5/files/output.log output.log
+2021-05-18 07:12:46,828 INFO    SenderThread:39286 [dir_watcher.py:finish():318] scan save: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_070810-3jikmlr5/files/model-best.h5 model-best.h5
+2021-05-18 07:12:46,863 INFO    SenderThread:39286 [dir_watcher.py:finish():318] scan save: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_070810-3jikmlr5/files/media/graph/graph_summary_b1d47bf6.graph.json media/graph/graph_summary_b1d47bf6.graph.json
+2021-05-18 07:12:46,863 INFO    SenderThread:39286 [sender.py:send_request_defer():336] send defer: 6
+2021-05-18 07:12:46,863 DEBUG   SenderThread:39286 [sender.py:send_request():186] send_request: poll_exit
+2021-05-18 07:12:46,864 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: defer
+2021-05-18 07:12:46,864 INFO    HandlerThread:39286 [handler.py:handle_request_defer():138] handle defer: 6
+2021-05-18 07:12:46,865 DEBUG   SenderThread:39286 [sender.py:send_request():186] send_request: defer
+2021-05-18 07:12:46,865 INFO    SenderThread:39286 [sender.py:send_request_defer():298] handle sender defer: 6
+2021-05-18 07:12:46,865 INFO    SenderThread:39286 [file_pusher.py:finish():176] shutting down file pusher
+2021-05-18 07:12:46,866 INFO    SenderThread:39286 [sender.py:send_request_defer():336] send defer: 7
+2021-05-18 07:12:46,866 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: defer
+2021-05-18 07:12:46,866 INFO    HandlerThread:39286 [handler.py:handle_request_defer():138] handle defer: 7
+2021-05-18 07:12:46,866 DEBUG   SenderThread:39286 [sender.py:send_request():186] send_request: defer
+2021-05-18 07:12:46,866 INFO    SenderThread:39286 [sender.py:send_request_defer():298] handle sender defer: 7
+2021-05-18 07:12:46,965 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: poll_exit
+2021-05-18 07:12:47,419 INFO    SenderThread:39286 [sender.py:send_request_defer():336] send defer: 8
+2021-05-18 07:12:47,419 DEBUG   SenderThread:39286 [sender.py:send_request():186] send_request: poll_exit
+2021-05-18 07:12:47,420 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: defer
+2021-05-18 07:12:47,420 INFO    HandlerThread:39286 [handler.py:handle_request_defer():138] handle defer: 8
+2021-05-18 07:12:47,421 DEBUG   SenderThread:39286 [sender.py:send_request():186] send_request: defer
+2021-05-18 07:12:47,421 INFO    SenderThread:39286 [sender.py:send_request_defer():298] handle sender defer: 8
+2021-05-18 07:12:47,421 INFO    SenderThread:39286 [sender.py:send_request_defer():336] send defer: 9
+2021-05-18 07:12:47,422 DEBUG   SenderThread:39286 [sender.py:send():176] send: final
+2021-05-18 07:12:47,422 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: defer
+2021-05-18 07:12:47,423 INFO    HandlerThread:39286 [handler.py:handle_request_defer():138] handle defer: 9
+2021-05-18 07:12:47,423 DEBUG   SenderThread:39286 [sender.py:send():176] send: footer
+2021-05-18 07:12:47,423 DEBUG   SenderThread:39286 [sender.py:send_request():186] send_request: defer
+2021-05-18 07:12:47,423 INFO    SenderThread:39286 [sender.py:send_request_defer():298] handle sender defer: 9
+2021-05-18 07:12:47,522 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: poll_exit
+2021-05-18 07:12:47,522 DEBUG   SenderThread:39286 [sender.py:send_request():186] send_request: poll_exit
+2021-05-18 07:12:47,625 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: poll_exit
+2021-05-18 07:12:47,625 DEBUG   SenderThread:39286 [sender.py:send_request():186] send_request: poll_exit
+2021-05-18 07:12:47,639 INFO    Thread-15 :39286 [upload_job.py:push():133] Uploaded file /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_070810-3jikmlr5/files/wandb-summary.json
+2021-05-18 07:12:47,641 INFO    Thread-16 :39286 [upload_job.py:push():133] Uploaded file /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_070810-3jikmlr5/files/requirements.txt
+2021-05-18 07:12:47,645 INFO    Thread-14 :39286 [upload_job.py:push():133] Uploaded file /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_070810-3jikmlr5/files/config.yaml
+2021-05-18 07:12:47,726 INFO    Thread-17 :39286 [upload_job.py:push():133] Uploaded file /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_070810-3jikmlr5/files/output.log
+2021-05-18 07:12:47,727 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: poll_exit
+2021-05-18 07:12:47,728 DEBUG   SenderThread:39286 [sender.py:send_request():186] send_request: poll_exit
+2021-05-18 07:12:47,830 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: poll_exit
+2021-05-18 07:12:47,831 DEBUG   SenderThread:39286 [sender.py:send_request():186] send_request: poll_exit
+2021-05-18 07:12:47,933 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: poll_exit
+2021-05-18 07:12:47,934 DEBUG   SenderThread:39286 [sender.py:send_request():186] send_request: poll_exit
+2021-05-18 07:12:48,036 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: poll_exit
+2021-05-18 07:12:48,037 DEBUG   SenderThread:39286 [sender.py:send_request():186] send_request: poll_exit
+2021-05-18 07:12:48,139 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: poll_exit
+2021-05-18 07:12:48,140 DEBUG   SenderThread:39286 [sender.py:send_request():186] send_request: poll_exit
+2021-05-18 07:12:48,239 INFO    Thread-18 :39286 [upload_job.py:push():133] Uploaded file /tmp/tmpk8b95gd8wandb/1ukq6l9c-model-best.h5
+2021-05-18 07:12:48,242 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: poll_exit
+2021-05-18 07:12:48,243 DEBUG   SenderThread:39286 [sender.py:send_request():186] send_request: poll_exit
+2021-05-18 07:12:48,345 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: poll_exit
+2021-05-18 07:12:48,346 DEBUG   SenderThread:39286 [sender.py:send_request():186] send_request: poll_exit
+2021-05-18 07:12:48,448 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: poll_exit
+2021-05-18 07:12:48,449 DEBUG   SenderThread:39286 [sender.py:send_request():186] send_request: poll_exit
+2021-05-18 07:12:48,449 INFO    SenderThread:39286 [file_pusher.py:join():181] waiting for file pusher
+2021-05-18 07:12:48,451 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: get_summary
+2021-05-18 07:12:48,454 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: sampled_history
+2021-05-18 07:12:48,457 DEBUG   HandlerThread:39286 [handler.py:handle_request():121] handle_request: shutdown
+2021-05-18 07:12:48,458 INFO    HandlerThread:39286 [handler.py:finish():632] shutting down handler
+2021-05-18 07:12:49,424 INFO    WriterThread:39286 [datastore.py:close():258] close: /cbr/saish/PhD/DL/Assignment_3/wandb/run-20210518_070810-3jikmlr5/run-3jikmlr5.wandb
+2021-05-18 07:12:49,450 INFO    SenderThread:39286 [sender.py:finish():925] shutting down sender
+2021-05-18 07:12:49,450 INFO    SenderThread:39286 [file_pusher.py:finish():176] shutting down file pusher
+2021-05-18 07:12:49,450 INFO    SenderThread:39286 [file_pusher.py:join():181] waiting for file pusher
+2021-05-18 07:12:49,452 INFO    MainThread:39286 [internal.py:handle_exit():78] Internal process exited
