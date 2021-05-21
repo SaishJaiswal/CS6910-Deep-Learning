@@ -12,7 +12,7 @@ from CreateModel import BuildModelAttention
 from Accuracy import CalculateAccuracy, BeamCalculateAccuracy, CalculateAccuracyAttention, BeamCalculateAccuracyAttention
 from EncoderDecoderModels import InferenceModelsAttention
 
-WANDB = 1
+WANDB = 0
 
 if WANDB:
 	import wandb
@@ -87,6 +87,8 @@ def main(args):
 	    		validation_data=([val_encoder_input_data, val_decoder_input_data], val_decoder_target_data)
 			)
 
+	################################ Save Model ################################
+	model.save("s2s_attention")
 
 	################################ Inference Models ################################
 	encoder_model, decoder_model = InferenceModelsAttention(model, Cell_Type, hidden_layer_size, n_enc_dec_layers, decoder_dense)
@@ -100,19 +102,55 @@ def main(args):
 	n_train_words = len(input_texts)
 	n_test_words = len(test_input_texts)
 	
+
 	################################ Calculate Accuracy ################################
 	print('\n CALCULATING WORD-LEVEL ACCURACY!! \n')
 
 	# Beam Search
 	if beam_size > 1:
-		acc = BeamCalculateAccuracyAttention(val_encoder_input_data, encoder_model, decoder_model, val_input_texts, val_target_texts, n_val_words, max_decoder_seq_length, target_token_index, reverse_target_char_index, Cell_Type, n_enc_dec_layers, beam_size)
+		print("Train Data")
+		train_acc = BeamCalculateAccuracyAttention(encoder_input_data, encoder_model, decoder_model, input_texts, target_texts, n_train_words, max_decoder_seq_length, target_token_index, reverse_target_char_index, Cell_Type, n_enc_dec_layers, beam_size)
+		print("Validation Data")
+		val_acc = BeamCalculateAccuracyAttention(val_encoder_input_data, encoder_model, decoder_model, val_input_texts, val_target_texts, n_val_words, max_decoder_seq_length, target_token_index, reverse_target_char_index, Cell_Type, n_enc_dec_layers, beam_size)
+		print("Test Data")
+		test_acc = BeamCalculateAccuracyAttention(test_encoder_input_data, encoder_model, decoder_model, test_input_texts, test_target_texts, n_test_words, max_decoder_seq_length, target_token_index, reverse_target_char_index, Cell_Type, n_enc_dec_layers, beam_size)
 	# No Beam Search
 	else:
-		acc = CalculateAccuracyAttention(val_encoder_input_data, encoder_model, decoder_model, val_input_texts, val_target_texts, n_val_words, max_decoder_seq_length, target_token_index, reverse_target_char_index, Cell_Type, n_enc_dec_layers)
+		print("Train Data")
+		train_acc = CalculateAccuracyAttention(encoder_input_data, encoder_model, decoder_model, input_texts, target_texts, n_train_words, max_decoder_seq_length, target_token_index, reverse_target_char_index, Cell_Type, n_enc_dec_layers)
+		print("Validation Data")
+		val_acc = CalculateAccuracyAttention(val_encoder_input_data, encoder_model, decoder_model, val_input_texts, val_target_texts, n_val_words, max_decoder_seq_length, target_token_index, reverse_target_char_index, Cell_Type, n_enc_dec_layers)
+		print("Test Data")
+		test_acc = CalculateAccuracyAttention(test_encoder_input_data, encoder_model, decoder_model, test_input_texts, test_target_texts, n_test_words, max_decoder_seq_length, target_token_index, reverse_target_char_index, Cell_Type, n_enc_dec_layers)
 
 	if WANDB:
-		wandb.log({"word_level_acc": acc})
-	print("Accuracy (exact string match): %f " % (acc))
+		wandb.log({"word_level_acc": val_acc})
+
+	print("Train Accuracy (exact string match): %f " % (train_acc))
+	print("Validation Accuracy (exact string match): %f " % (val_acc))
+	print("Test Accuracy (exact string match): %f " % (test_acc))
+	
+
+	#################### HeatMaps and Connectivity Plots ######################
+	HeatMap = 0
+	VisConn = 0
+	if HeatMap:
+		from DecodeText import DecodeSequenceAttention
+		from InferAttention import PlotAttentionWeights
+		from VisualizeConnectivity import visualize
+		total_words = n_test_words
+		for seq_index in tqdm(range(total_words), desc='HeatMap generation in Progress'):
+
+			input_seq = test_encoder_input_data[seq_index : seq_index + 1]
+			input_text = test_input_texts[seq_index]
+			len_input = len(input_text)
+			decoded_word, attention_weights = DecodeSequenceAttention(input_seq, encoder_model, decoder_model, max_decoder_seq_length, target_token_index, reverse_target_char_index, Cell_Type, n_enc_dec_layers)
+			attention_mat, pred_char_seq = PlotAttentionWeights(input_seq, len_input, attention_weights, reverse_input_char_index, reverse_target_char_index, input_text)
+
+			################### Connectivity Visualization ###################
+			if VisConn:
+				for input_timestep in range(len_input):
+			  		visualize(attention_mat, result_list, input_timestep, input_text)
 
 
 ############################ Main Funtion ############################

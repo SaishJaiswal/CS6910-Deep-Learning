@@ -6,6 +6,7 @@ import pdb
 def CalculateAccuracy(encoder_input_data, encoder_model, decoder_model, input_texts, target_texts, total_words, max_decoder_seq_length, target_token_index, reverse_target_char_index, Cell_Type, n_enc_dec_layers):
 
 	count = 0
+
 	for seq_index in tqdm(range(total_words), desc='Transliteration in Progress'):
 
 		input_seq = encoder_input_data[seq_index : seq_index + 1]

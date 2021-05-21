@@ -87,6 +87,9 @@ def main(args):
 	    		validation_data=([val_encoder_input_data, val_decoder_input_data], val_decoder_target_data)
 			)
 
+	################################ Save Model ################################
+	model.save("s2s")
+
 	################################ Inference Models ################################
 	encoder_model, decoder_model = InferenceModels(model, Cell_Type, hidden_layer_size, n_enc_dec_layers)
 
@@ -104,14 +107,26 @@ def main(args):
 
 	# Beam Search
 	if beam_size > 1:
-		acc = BeamCalculateAccuracy(val_encoder_input_data, encoder_model, decoder_model, val_input_texts, val_target_texts, n_val_words, max_decoder_seq_length, target_token_index, reverse_target_char_index, Cell_Type, n_enc_dec_layers, beam_size)
+		print("Train Data")
+		train_acc = BeamCalculateAccuracy(encoder_input_data, encoder_model, decoder_model, input_texts, target_texts, n_train_words, max_decoder_seq_length, target_token_index, reverse_target_char_index, Cell_Type, n_enc_dec_layers, beam_size)
+		print("Validation Data")
+		val_acc = BeamCalculateAccuracy(val_encoder_input_data, encoder_model, decoder_model, val_input_texts, val_target_texts, n_val_words, max_decoder_seq_length, target_token_index, reverse_target_char_index, Cell_Type, n_enc_dec_layers, beam_size)
+		print("Test Data")
+		test_acc = BeamCalculateAccuracy(test_encoder_input_data, encoder_model, decoder_model, test_input_texts, test_target_texts, n_test_words, max_decoder_seq_length, target_token_index, reverse_target_char_index, Cell_Type, n_enc_dec_layers, beam_size)
 	# No Beam Search
 	else:
-		acc = CalculateAccuracy(val_encoder_input_data, encoder_model, decoder_model, val_input_texts, val_target_texts, n_val_words, max_decoder_seq_length, target_token_index, reverse_target_char_index, Cell_Type, n_enc_dec_layers)
+		print("Train Data")
+		train_acc = CalculateAccuracy(encoder_input_data, encoder_model, decoder_model, input_texts, target_texts, n_train_words, max_decoder_seq_length, target_token_index, reverse_target_char_index, Cell_Type, n_enc_dec_layers)
+		print("Validation Data")
+		val_acc = CalculateAccuracy(val_encoder_input_data, encoder_model, decoder_model, val_input_texts, val_target_texts, n_val_words, max_decoder_seq_length, target_token_index, reverse_target_char_index, Cell_Type, n_enc_dec_layers)
+		print("Test Data")
+		test_acc = CalculateAccuracy(test_encoder_input_data, encoder_model, decoder_model, test_input_texts, test_target_texts, n_test_words, max_decoder_seq_length, target_token_index, reverse_target_char_index, Cell_Type, n_enc_dec_layers)
 
 	if WANDB:
 		wandb.log({"word_level_acc": acc})
-	print("Accuracy (exact string match): %f " % (acc))
+	print("Train Accuracy (exact string match): %f " % (train_acc))
+	print("Validation Accuracy (exact string match): %f " % (val_acc))
+	print("Test Accuracy (exact string match): %f " % (test_acc))
 
 
 

@@ -36,7 +36,7 @@ def ReadData(data_path, category, inp_chars=None, tar_chars=None, max_enc_seq_le
 	input_texts.append(" ")
 	target_texts.append(" ")
 	# Shuffle the data
-	input_texts, target_texts = shuffle(input_texts, target_texts, random_state=0)
+	#input_texts, target_texts = shuffle(input_texts, target_texts, random_state=0)
 	input_characters.add(" ")
 	target_characters.add(" ")
 
