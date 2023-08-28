@@ -1,1 +1,0 @@
-{"n_hidden_layers": 4, "hidden_layer_size": 64, "_runtime": 4, "_timestamp": 1615799529, "_step": 2, "Fashion-MNIST images": {"_type": "image-file", "path": "media/images/Fashion-MNIST images_1_cd8689e0.png", "sha256": "cd8689e0f2a0353031713390d362b109d117606a2802e05821999e2205919f71", "size": 609, "format": "png", "width": 28, "height": 28, "caption": "Pullover"}, "Label": 3}

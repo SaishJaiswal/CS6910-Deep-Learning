@@ -1,59 +1,0 @@
-Using TensorFlow backend.
-/cbr/saish/.local/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:516: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
-  _np_qint8 = np.dtype([("qint8", np.int8, 1)])
-/cbr/saish/.local/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:517: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
-  _np_quint8 = np.dtype([("quint8", np.uint8, 1)])
-/cbr/saish/.local/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:518: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
-  _np_qint16 = np.dtype([("qint16", np.int16, 1)])
-/cbr/saish/.local/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:519: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
-  _np_quint16 = np.dtype([("quint16", np.uint16, 1)])
-/cbr/saish/.local/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:520: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
-  _np_qint32 = np.dtype([("qint32", np.int32, 1)])
-/cbr/saish/.local/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:525: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
-  np_resource = np.dtype([("resource", np.ubyte, 1)])
-/cbr/saish/.local/lib/python3.7/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:541: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
-  _np_qint8 = np.dtype([("qint8", np.int8, 1)])
-/cbr/saish/.local/lib/python3.7/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:542: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
-  _np_quint8 = np.dtype([("quint8", np.uint8, 1)])
-/cbr/saish/.local/lib/python3.7/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:543: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
-  _np_qint16 = np.dtype([("qint16", np.int16, 1)])
-/cbr/saish/.local/lib/python3.7/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:544: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
-  _np_quint16 = np.dtype([("quint16", np.uint16, 1)])
-/cbr/saish/.local/lib/python3.7/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:545: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
-  _np_qint32 = np.dtype([("qint32", np.int32, 1)])
-/cbr/saish/.local/lib/python3.7/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:550: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
-  np_resource = np.dtype([("resource", np.ubyte, 1)])
-
-############## Hyperparameters Values ##############
-Number of Hidden Layers: 2
-Layer Sizes: [784, 128, 32, 10]
-Number of Epochs: 5
-Learning Rate: 0.001
-Optimizer: nag
-Batch Size: 64
-Activation Function: tanh
-Loss Function: cross_entropy
-Output Activation Funtion: softmax
-Initializer: xavier
-###################################################
-
- =============== Epoch Number: 0 =============== 
-  0%|          | 0/54000 [00:00<?, ?it/s]  0%|          | 125/54000 [00:00<00:43, 1243.98it/s]  0%|          | 262/54000 [00:00<00:42, 1277.03it/s]  1%|          | 388/54000 [00:00<00:42, 1271.14it/s]  1%|          | 490/54000 [00:00<00:45, 1181.09it/s]  1%|          | 580/54000 [00:00<01:02, 857.81it/s]   1%|▏         | 704/54000 [00:00<00:56, 945.04it/s]  2%|▏         | 841/54000 [00:00<00:51, 1041.72it/s]  2%|▏         | 978/54000 [00:00<00:47, 1121.11it/s]  2%|▏         | 1116/54000 [00:00<00:44, 1187.05it/s]  2%|▏         | 1253/54000 [00:01<00:42, 1236.05it/s]  3%|▎         | 1391/54000 [00:01<00:41, 1273.69it/s]  3%|▎         | 1529/54000 [00:01<00:40, 1302.11it/s]  3%|▎         | 1666/54000 [00:01<00:39, 1320.07it/s]  3%|▎         | 1804/54000 [00:01<00:39, 1335.35it/s]  4%|▎         | 1942/54000 [00:01<00:38, 1347.09it/s]  4%|▍         | 2080/54000 [00:01<00:38, 1354.69it/s]  4%|▍         | 2218/54000 [00:01<00:38, 1361.33it/s]  4%|▍         | 2356/54000 [00:01<00:37, 1364.71it/s]  5%|▍         | 2494/54000 [00:01<00:37, 1367.99it/s]  5%|▍         | 2631/54000 [00:02<00:38, 1335.37it/s]  5%|▌         | 2768/54000 [00:02<00:38, 1345.19it/s]/cbr/saish/PhD/DL/Assignment_1/FeedForwardNN.py:64: RuntimeWarning: overflow encountered in exp
-  gz = (np.exp(x) - np.exp(-x))/(np.exp(x) + np.exp(-x))
-/cbr/saish/PhD/DL/Assignment_1/FeedForwardNN.py:64: RuntimeWarning: invalid value encountered in true_divide
-  gz = (np.exp(x) - np.exp(-x))/(np.exp(x) + np.exp(-x))
-  5%|▌         | 2906/54000 [00:02<00:37, 1354.24it/s]  6%|▌         | 3049/54000 [00:02<00:37, 1375.15it/s]  6%|▌         | 3193/54000 [00:02<00:36, 1391.56it/s]  6%|▌         | 3334/54000 [00:02<00:36, 1396.40it/s]  6%|▋         | 3474/54000 [00:02<00:41, 1204.57it/s]  7%|▋         | 3617/54000 [00:02<00:39, 1264.32it/s]  7%|▋         | 3758/54000 [00:02<00:38, 1302.85it/s]  7%|▋         | 3899/54000 [00:03<00:37, 1333.23it/s]  7%|▋         | 4042/54000 [00:03<00:36, 1359.10it/s]  8%|▊         | 4186/54000 [00:03<00:36, 1380.27it/s]  8%|▊         | 4329/54000 [00:03<00:35, 1394.46it/s]  8%|▊         | 4473/54000 [00:03<00:35, 1405.67it/s]  9%|▊         | 4615/54000 [00:03<00:35, 1409.88it/s]  9%|▉         | 4758/54000 [00:03<00:34, 1415.27it/s]  9%|▉         | 4902/54000 [00:03<00:34, 1419.93it/s]  9%|▉         | 5046/54000 [00:03<00:34, 1423.66it/s] 10%|▉         | 5189/54000 [00:03<00:34, 1423.96it/s] 10%|▉         | 5332/54000 [00:04<00:34, 1420.03it/s] 10%|█         | 5476/54000 [00:04<00:34, 1424.19it/s] 10%|█         | 5620/54000 [00:04<00:33, 1426.53it/s] 11%|█         | 5763/54000 [00:04<00:34, 1414.01it/s] 11%|█         | 5906/54000 [00:04<00:33, 1418.73it/s] 11%|█         | 6048/54000 [00:04<00:33, 1415.74it/s] 11%|█▏        | 6190/54000 [00:04<00:33, 1414.94it/s] 12%|█▏        | 6332/54000 [00:04<00:37, 1280.71it/s] 12%|█▏        | 6467/54000 [00:04<00:36, 1299.35it/s] 12%|█▏        | 6611/54000 [00:04<00:35, 1337.27it/s] 13%|█▎        | 6751/54000 [00:05<00:34, 1353.19it/s] 13%|█▎        | 6889/54000 [00:05<00:34, 1360.57it/s] 13%|█▎        | 7033/54000 [00:05<00:33, 1381.68it/s] 13%|█▎        | 7175/54000 [00:05<00:33, 1392.87it/s] 14%|█▎        | 7318/54000 [00:05<00:33, 1403.65it/s] 14%|█▍        | 7459/54000 [00:05<00:33, 1394.60it/s] 14%|█▍        | 7602/54000 [00:05<00:33, 1402.72it/s] 14%|█▍        | 7745/54000 [00:05<00:32, 1408.15it/s] 15%|█▍        | 7886/54000 [00:05<00:32, 1399.52it/s] 15%|█▍        | 8029/54000 [00:05<00:32, 1408.16it/s] 15%|█▌        | 8170/54000 [00:06<00:33, 1377.93it/s] 15%|█▌        | 8313/54000 [00:06<00:32, 1392.55it/s] 16%|█▌        | 8456/54000 [00:06<00:32, 1400.87it/s] 16%|█▌        | 8600/54000 [00:06<00:32, 1409.69it/s] 16%|█▌        | 8744/54000 [00:06<00:31, 1416.10it/s] 16%|█▋        | 8886/54000 [00:06<00:31, 1413.79it/s] 17%|█▋        | 9029/54000 [00:06<00:31, 1416.80it/s] 17%|█▋        | 9173/54000 [00:06<00:31, 1421.47it/s] 17%|█▋        | 9316/54000 [00:06<00:34, 1311.08it/s] 18%|█▊        | 9456/54000 [00:07<00:33, 1334.83it/s] 18%|█▊        | 9599/54000 [00:07<00:32, 1360.29it/s] 18%|█▊        | 9742/54000 [00:07<00:32, 1378.18it/s] 18%|█▊        | 9885/54000 [00:07<00:31, 1392.72it/s] 19%|█▊        | 10028/54000 [00:07<00:31, 1402.51it/s] 19%|█▉        | 10172/54000 [00:07<00:31, 1411.09it/s] 19%|█▉        | 10314/54000 [00:07<00:30, 1412.76it/s] 19%|█▉        | 10458/54000 [00:07<00:30, 1418.37it/s] 20%|█▉        | 10601/54000 [00:07<00:30, 1421.65it/s] 20%|█▉        | 10744/54000 [00:07<00:30, 1419.05it/s] 20%|██        | 10886/54000 [00:08<00:30, 1418.41it/s] 20%|██        | 11029/54000 [00:08<00:30, 1421.33it/s] 21%|██        | 11172/54000 [00:08<00:30, 1423.41it/s] 21%|██        | 11315/54000 [00:08<00:30, 1406.79it/s] 21%|██        | 11457/54000 [00:08<00:30, 1409.77it/s] 21%|██▏       | 11600/54000 [00:08<00:30, 1412.34it/s] 22%|██▏       | 11742/54000 [00:08<00:30, 1397.24it/s] 22%|██▏       | 11885/54000 [00:08<00:29, 1405.70it/s] 22%|██▏       | 11939/54000 [00:08<00:30, 1358.20it/s]
-Traceback (most recent call last):
-  File "main.py", line 122, in <module>
-    main(args)
-  File "main.py", line 109, in main
-    network.train(x_train, y_train, x_val, y_val)
-  File "/cbr/saish/PhD/DL/Assignment_1/FeedForwardNN.py", line 574, in train
-    self.do_nesterov_accelerated_gradient_descent(x_train, y_train, x_val, y_val)
-  File "/cbr/saish/PhD/DL/Assignment_1/FeedForwardNN.py", line 317, in do_nesterov_accelerated_gradient_descent
-    current_gradients = self.backwardPropagation(y, activations, pre_activations)
-  File "/cbr/saish/PhD/DL/Assignment_1/FeedForwardNN.py", line 155, in backwardPropagation
-    gradients['a' + str(k-1)] = gradients['h' + str(k-1)] * self.activation(pre_activations['a' + str(k-1)])
-  File "/cbr/saish/PhD/DL/Assignment_1/FeedForwardNN.py", line 64, in activation
-    gz = (np.exp(x) - np.exp(-x))/(np.exp(x) + np.exp(-x))
-KeyboardInterrupt

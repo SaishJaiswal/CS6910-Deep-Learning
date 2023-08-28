@@ -1,1 +1,0 @@
-{"n_hidden_layers": 4, "hidden_layer_size": 32, "_runtime": 4, "_timestamp": 1615799565, "_step": 2, "Fashion-MNIST images": {"_type": "image-file", "path": "media/images/Fashion-MNIST images_1_4d144877.png", "sha256": "4d144877c9093c197264174caf09a478c9014d46d1f8d5dde0d54305f6d46201", "size": 374, "format": "png", "width": 28, "height": 28, "caption": "Sneaker"}, "Label": 4}

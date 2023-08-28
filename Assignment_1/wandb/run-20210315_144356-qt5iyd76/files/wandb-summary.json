@@ -1,1 +1,0 @@
-{"n_hidden_layers": 3, "hidden_layer_size": 64, "_runtime": 5, "_timestamp": 1615799641, "_step": 2, "Fashion-MNIST images": {"_type": "image-file", "path": "media/images/Fashion-MNIST images_1_ba8afe50.png", "sha256": "ba8afe5093296b9da95d5f8d131581ce20e064a6389dbae0a63408235019eb75", "size": 424, "format": "png", "width": 28, "height": 28, "caption": "Trouser"}, "Label": 6}
